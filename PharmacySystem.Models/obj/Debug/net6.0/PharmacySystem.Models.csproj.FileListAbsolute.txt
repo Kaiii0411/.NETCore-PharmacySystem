@@ -1,0 +1,14 @@
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\bin\Debug\net6.0\PharmacySystem.Models.deps.json
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\bin\Debug\net6.0\PharmacySystem.Models.runtimeconfig.json
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\bin\Debug\net6.0\PharmacySystem.Models.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\bin\Debug\net6.0\PharmacySystem.Models.pdb
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\PharmacySystem.Models.csproj.AssemblyReference.cache
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\PharmacySystem.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\PharmacySystem.Models.AssemblyInfoInputs.cache
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\PharmacySystem.Models.AssemblyInfo.cs
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\PharmacySystem.Models.csproj.CoreCompileInputs.cache
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\PharmacySystem.Models.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\refint\PharmacySystem.Models.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\PharmacySystem.Models.pdb
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\PharmacySystem.Models.genruntimeconfig.cache
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Models\obj\Debug\net6.0\ref\PharmacySystem.Models.dll

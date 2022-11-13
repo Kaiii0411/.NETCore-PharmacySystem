@@ -1,0 +1,128 @@
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\appsettings.Development.json
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\appsettings.json
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.exe
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.deps.json
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.runtimeconfig.json
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.pdb
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Humanizer.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Runtime.Caching.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.csproj.AssemblyReference.cache
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.AssemblyInfoInputs.cache
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.AssemblyInfo.cs
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.csproj.CoreCompileInputs.cache
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\staticwebassets.build.json
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\staticwebassets.development.json
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\scopedcss\bundle\PharmacySystem.WebAPI.styles.css
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.csproj.CopyComplete
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\refint\PharmacySystem.WebAPI.dll
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.pdb
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.genruntimeconfig.cache
+D:\GraduationThesis\New folder\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\ref\PharmacySystem.WebAPI.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.csproj.AssemblyReference.cache
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.AssemblyInfoInputs.cache
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.AssemblyInfo.cs
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.csproj.CoreCompileInputs.cache
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\refint\PharmacySystem.WebAPI.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.pdb
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\appsettings.Development.json
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\appsettings.json
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.exe
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.deps.json
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.runtimeconfig.json
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.WebAPI.pdb
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Humanizer.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Runtime.Caching.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.Models.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.Service.dll
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.Models.pdb
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\PharmacySystem.Service.pdb
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\staticwebassets.build.json
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\staticwebassets.development.json
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\scopedcss\bundle\PharmacySystem.WebAPI.styles.css
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.csproj.CopyComplete
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.genruntimeconfig.cache
+D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\ref\PharmacySystem.WebAPI.dll

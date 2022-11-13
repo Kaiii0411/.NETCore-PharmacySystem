@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "I3tFJva7Q/jRyr/pcr/168QJO8Xb0x82dSH8GqYp+V8=",
+  "Source": "PharmacySystem.WebAPI",
+  "BasePath": "_content/PharmacySystem.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
