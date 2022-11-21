@@ -10,12 +10,12 @@ namespace PharmacySystem.Models.Request
     {
         public string? MedicineName { get; set; }
         public string? Description { get; set; }
-        public long? IdMedicineGroup { get; set; }
-        public DateTime? ExpiryDate { get; set; }
-        public long? Quantity { get; set; }
+        public long IdMedicineGroup { get; set; }
+        public DateTime ExpiryDate { get; set; }
+        public long Quantity { get; set; }
         public string? Unit { get; set; }
-        public double? SellPrice { get; set; }
-        public double? ImportPrice { get; set; }
-        public long? IdSupplier { get; set; }
+        public double SellPrice { get; set; }
+        public double ImportPrice { get; set; }
+        public long IdSupplier { get; set; }
     }
 }

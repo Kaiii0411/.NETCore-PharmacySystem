@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PharmacySystem.APIIntergration\PharmacySystem.APIIntergration.csproj" />
+    <ProjectReference Include="..\PharmacySystem.Models\PharmacySystem.Models.csproj" />
+  </ItemGroup>
+
 </Project>

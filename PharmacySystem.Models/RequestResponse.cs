@@ -9,6 +9,7 @@ namespace PharmacySystem.Models
     public class RequestResponse
     {
         public Code Status { get; set; }
+        public string? Content { get; set; }
         public string? Message { get; set; }
     }
     public enum Code

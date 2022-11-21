@@ -5,7 +5,7 @@ using PharmacySystem.Service;
 
 namespace PharmacySystem.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/medicinegroup")]
     [ApiController]
     public class MedicineGroupController : Controller
     {
@@ -67,6 +67,12 @@ namespace PharmacySystem.WebAPI.Controllers
                 Status = Code.Success,
                 Message = "Delete sucess!"
             };
+        }
+        [HttpGet]
+        public List<MedicineGroup> GetList()
+        {
+            var medicineGroup = _MedicineGroupService.GetListMedicineGroup();
+            return medicineGroup;
         }
     }
 }

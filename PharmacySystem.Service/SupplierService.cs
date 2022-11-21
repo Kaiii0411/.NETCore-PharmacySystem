@@ -14,7 +14,7 @@ namespace PharmacySystem.Service
         Task<long> Update(SupplierUpdateRequest request);
         Task<long> Delete(long supplierId);
     }
-    public class SupplierService
+    public class SupplierService : ISupplierService
     {
         private readonly PharmacySystemContext _context;
         public SupplierService(PharmacySystemContext context)

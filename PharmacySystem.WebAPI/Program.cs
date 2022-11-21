@@ -8,7 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PharmacySystemContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PharmacySystemDB")));
 
+
+builder.Services.AddHttpClient();
 builder.Services.AddTransient<IMedicineService, MedicineService>();
+builder.Services.AddTransient<IMedicineGroupService, MedicineGroupService>();
+builder.Services.AddTransient<IStoreService, StoreService>();
+builder.Services.AddTransient<ISupplierService, SupplierService>();
+builder.Services.AddTransient<ISupplierGroupService, SupplierGroupService>();
+
+
 
 
 builder.Services.AddControllers();

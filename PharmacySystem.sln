@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacySystem.Service", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacySystem.Models", "PharmacySystem.Models\PharmacySystem.Models.csproj", "{71A12057-41B4-4C99-BC63-7098955810A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacySystem.WebAdmin", "PharmacySystem.WebAdmin\PharmacySystem.WebAdmin.csproj", "{45BBF4E4-224A-42A3-9F4C-76DA7ABDED50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacySystem.WebAdmin", "PharmacySystem.WebAdmin\PharmacySystem.WebAdmin.csproj", "{45BBF4E4-224A-42A3-9F4C-76DA7ABDED50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacySystem.APIIntergration", "PharmacySystem.APIIntergration\PharmacySystem.APIIntergration.csproj", "{708BCB04-84BF-474C-9906-460F5F90A183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{45BBF4E4-224A-42A3-9F4C-76DA7ABDED50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45BBF4E4-224A-42A3-9F4C-76DA7ABDED50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45BBF4E4-224A-42A3-9F4C-76DA7ABDED50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{708BCB04-84BF-474C-9906-460F5F90A183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{708BCB04-84BF-474C-9906-460F5F90A183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{708BCB04-84BF-474C-9906-460F5F90A183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{708BCB04-84BF-474C-9906-460F5F90A183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,20 @@
+using PharmacySystem.APIIntergration;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddHttpClient();
+builder.Services.AddTransient<IMedicineApiClient, MedicineApiClient>();
+builder.Services.AddTransient<IMedicineGroupApiClient, MedicineGroupApiClient>();
+builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
