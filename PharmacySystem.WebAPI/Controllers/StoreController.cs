@@ -22,13 +22,13 @@ namespace PharmacySystem.WebAPI.Controllers
             {
                 return new RequestResponse
                 {
-                    Status = Code.Failed,
+                    StatusCode = Code.Failed,
                     Message = "Add Failed!"
                 };
             }
             return new RequestResponse
             {
-                Status = Code.Success,
+                StatusCode = Code.Success,
                 Message = "Add sucess!"
             };
         }
@@ -40,13 +40,13 @@ namespace PharmacySystem.WebAPI.Controllers
             {
                 return new RequestResponse
                 {
-                    Status = Code.Failed,
+                    StatusCode = Code.Failed,
                     Message = "Update Failed!"
                 };
             }
             return new RequestResponse
             {
-                Status = Code.Success,
+                StatusCode = Code.Success,
                 Message = "Update sucess!"
             };
         }
@@ -58,13 +58,13 @@ namespace PharmacySystem.WebAPI.Controllers
             {
                 return new RequestResponse
                 {
-                    Status = Code.Failed,
+                    StatusCode = Code.Failed,
                     Message = $"Delete Failed! Cannot find a store: {storeId}"
                 };
             }
             return new RequestResponse
             {
-                Status = Code.Success,
+                StatusCode = Code.Success,
                 Message = "Delete sucess!"
             };
         }

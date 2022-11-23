@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Service;
@@ -22,13 +23,13 @@ namespace PharmacySystem.WebAPI.Controllers
             {
                 return new RequestResponse
                 {
-                    Status = Code.Failed,
+                    StatusCode = Code.Failed,
                     Message = "Add Failed!"
                 };
             }
             return new RequestResponse
             {
-                Status = Code.Success,
+                StatusCode = Code.Success,
                 Message = "Add sucess!"
             };
         }
@@ -40,13 +41,13 @@ namespace PharmacySystem.WebAPI.Controllers
             {
                 return new RequestResponse
                 {
-                    Status = Code.Failed,
+                    StatusCode = Code.Failed,
                     Message = "Update Failed!"
                 };
             }
             return new RequestResponse
             {
-                Status = Code.Success,
+                StatusCode = Code.Success,
                 Message = "Update sucess!"
             };
         }
@@ -58,21 +59,45 @@ namespace PharmacySystem.WebAPI.Controllers
             {
                 return new RequestResponse
                 {
-                    Status = Code.Failed,
+                    StatusCode = Code.Failed,
                     Message = $"Delete Failed! Can notfind a medicine group: {medicineGroupId}"
                 };
             }
             return new RequestResponse
             {
-                Status = Code.Success,
+                StatusCode = Code.Success,
                 Message = "Delete sucess!"
             };
         }
         [HttpGet]
-        public List<MedicineGroup> GetList()
+        public async Task<RequestResponse> GetList()
         {
-            var medicineGroup = _MedicineGroupService.GetListMedicineGroup();
-            return medicineGroup;
+            try
+            {
+                IEnumerable<MedicineGroup> medicineGroup = await _MedicineGroupService.GetListMedicineGroup();
+                if (medicineGroup != null && medicineGroup.Any())
+                {
+                    return new RequestResponse
+                    {
+                        StatusCode = Code.Success,
+                        Content = JsonConvert.SerializeObject(medicineGroup)
+                    };
+                }
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = string.Empty
+                };
+            }
+            catch (Exception ex)
+            {
+                string errorDetail = ex.InnerException != null ? ex.InnerException.ToString() : ex.Message.ToString();
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = errorDetail
+                };
+            }
         }
     }
 }

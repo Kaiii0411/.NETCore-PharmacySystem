@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Service;
@@ -22,13 +23,13 @@ namespace PharmacySystem.WebAPI.Controllers
             {
                 return new RequestResponse
                 {
-                    Status = Code.Failed,
+                    StatusCode = Code.Failed,
                     Message = "Add Failed!"
                 };
             }
             return new RequestResponse
             {
-                Status = Code.Success,
+                StatusCode = Code.Success,
                 Message = "Add sucess!"
             };
         }
@@ -40,13 +41,13 @@ namespace PharmacySystem.WebAPI.Controllers
             {
                 return new RequestResponse
                 {
-                    Status = Code.Failed,
+                    StatusCode = Code.Failed,
                     Message = "Update Failed!"
                 };
             }
             return new RequestResponse
             {
-                Status = Code.Success,
+                StatusCode = Code.Success,
                 Message = "Update sucess!"
             };
         }
@@ -58,15 +59,45 @@ namespace PharmacySystem.WebAPI.Controllers
             {
                 return new RequestResponse
                 {
-                    Status = Code.Failed,
+                    StatusCode = Code.Failed,
                     Message = $"Delete Failed! Can notfind a supplier: {supplierId}"
                 };
             }
             return new RequestResponse
             {
-                Status = Code.Success,
+                StatusCode = Code.Success,
                 Message = "Delete sucess!"
             };
+        }
+        [HttpGet]
+        public async Task<RequestResponse> GetList()
+        {
+            try
+            {
+                IEnumerable<Supplier> supplier = await _SupplierService.GetListSupplier();
+                if (supplier != null && supplier.Any())
+                {
+                    return new RequestResponse
+                    {
+                        StatusCode = Code.Success,
+                        Content = JsonConvert.SerializeObject(supplier)
+                    };
+                }
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = string.Empty
+                };
+            }
+            catch (Exception ex)
+            {
+                string errorDetail = ex.InnerException != null ? ex.InnerException.ToString() : ex.Message.ToString();
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = errorDetail
+                };
+            }
         }
     }
 }

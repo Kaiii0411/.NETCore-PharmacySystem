@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PharmacySystem.DataAccess\PharmacySystem.DataAccess.csproj" />
     <ProjectReference Include="..\PharmacySystem.Models\PharmacySystem.Models.csproj" />
   </ItemGroup>
 

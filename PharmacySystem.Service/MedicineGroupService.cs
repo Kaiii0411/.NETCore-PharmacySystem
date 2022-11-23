@@ -1,4 +1,6 @@
-﻿using PharmacySystem.Models;
+﻿using AutoMapper;
+using PharmacySystem.DataAccess.Repositorys;
+using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
 using System;
 using System.Collections.Generic;
@@ -13,14 +15,19 @@ namespace PharmacySystem.Service
         Task<long> Create(MedicineGroupCreateRequest request);
         Task<long> Update(MedicineGroupUpdateRequest request);
         Task<long> Delete(long medicineGroupId);
-        List<MedicineGroup> GetListMedicineGroup();
+        Task<IEnumerable<MedicineGroup>> GetListMedicineGroup();
     }
     public class MedicineGroupService : IMedicineGroupService
     {
         private readonly PharmacySystemContext _context;
-        public MedicineGroupService(PharmacySystemContext context)
+        private readonly IMedicineGroupRepo _medicineGroupRepo;
+        private readonly IMapper _mapper;
+
+        public MedicineGroupService(PharmacySystemContext context, IMedicineGroupRepo medicineGroupRepo, IMapper mapper)
         {
             this._context = context;
+            this._medicineGroupRepo = medicineGroupRepo;
+            this._mapper = mapper;
         }
         public async Task<long> Create(MedicineGroupCreateRequest request)
         {
@@ -51,10 +58,10 @@ namespace PharmacySystem.Service
             _context.MedicineGroups.Remove(medicineGroup);
             return await _context.SaveChangesAsync();
         }
-        public List<MedicineGroup> GetListMedicineGroup()
+        public async Task<IEnumerable<MedicineGroup>> GetListMedicineGroup()
         {
-            var listMedicineGroup = _context.MedicineGroups.OrderBy(x => x.MedicineGroupName).ToList();
-            return listMedicineGroup;
+            IReadOnlyList<MedicineGroup> listMedicineGroup = await _medicineGroupRepo.ListAsync();
+            return _mapper.Map<IEnumerable<MedicineGroup>>(listMedicineGroup);
         }
     }
 }

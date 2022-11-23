@@ -12,7 +12,7 @@ namespace PharmacySystem.APIIntergration.Utilities
     {
         public static List<T> OutPut<T>(RequestResponse body)
         {
-            if (body.Status == 0 || body != null)
+            if (body.StatusCode == 0 || body != null)
             {
                 try
                 {
@@ -30,7 +30,7 @@ namespace PharmacySystem.APIIntergration.Utilities
 
         public static string OutPutString<T>(RequestResponse body)
         {
-            if (body.Status == 0 || body != null)
+            if (body.StatusCode == 0 || body != null)
             {
                 return body.Content;
             }
@@ -40,7 +40,7 @@ namespace PharmacySystem.APIIntergration.Utilities
 
         public static bool OutPutBool<T>(RequestResponse body)
         {
-            if (body.Status == 0 && body != null)
+            if (body.StatusCode == 0 && body != null)
             {
                 return true;
             }
@@ -49,7 +49,7 @@ namespace PharmacySystem.APIIntergration.Utilities
 
         public static bool OutPutAddFile<T>(RequestResponse body)
         {
-            if (body.Status == 0 || body != null)
+            if (body.StatusCode == 0 || body != null)
             {
                 try
                 {

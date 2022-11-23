@@ -1,4 +1,6 @@
-﻿using PharmacySystem.Models;
+﻿using AutoMapper;
+using PharmacySystem.DataAccess.Repositorys;
+using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
 using System;
 using System.Collections.Generic;
@@ -13,13 +15,19 @@ namespace PharmacySystem.Service
         Task<long> Create(SupplierCreateRequest request);
         Task<long> Update(SupplierUpdateRequest request);
         Task<long> Delete(long supplierId);
+        Task<IEnumerable<Supplier>> GetListSupplier();
     }
     public class SupplierService : ISupplierService
     {
         private readonly PharmacySystemContext _context;
-        public SupplierService(PharmacySystemContext context)
+        private readonly ISupplierRepo _supplierRepo;
+        private readonly IMapper _mapper;
+
+        public SupplierService(PharmacySystemContext context, ISupplierRepo supplierRepo, IMapper mapper)
         {
             this._context = context;
+            this._supplierRepo = supplierRepo;
+            this._mapper = mapper;
         }
         public async Task<long> Create(SupplierCreateRequest request)
         {
@@ -55,6 +63,11 @@ namespace PharmacySystem.Service
             if (supplier == null) return 0;
             _context.Suppliers.Remove(supplier);
             return await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<Supplier>> GetListSupplier()
+        {
+            IReadOnlyList<Supplier> listSupplier = await _supplierRepo.ListAsync();
+            return _mapper.Map<IEnumerable<Supplier>>(listSupplier);
         }
     }
 }

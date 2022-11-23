@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddTransient<IMedicineApiClient, MedicineApiClient>();
 builder.Services.AddTransient<IMedicineGroupApiClient, MedicineGroupApiClient>();
+builder.Services.AddTransient<ISupplierApiClient, SupplierApiClient>();
 builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
 // Add services to the container.

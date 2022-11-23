@@ -8,13 +8,18 @@ namespace PharmacySystem.WebAdmin.Controllers
     {
         private readonly IMedicineApiClient _medicineApiClient;
         private readonly IMedicineGroupApiClient _medicineGroupApiClient;
+        private readonly ISupplierApiClient _supplierApiClient;
         private readonly IConfiguration _configuration;
 
-        public MedicineController(IMedicineApiClient medicineApiClient, IConfiguration configuration, IMedicineGroupApiClient medicineGroupApiClient)
+        public MedicineController(IMedicineApiClient medicineApiClient
+            , IConfiguration configuration
+            , IMedicineGroupApiClient medicineGroupApiClient
+            , ISupplierApiClient supplierApiClient)
         {
             this._configuration = configuration;
             this._medicineApiClient = medicineApiClient;
             this._medicineGroupApiClient = medicineGroupApiClient;
+            this._supplierApiClient = supplierApiClient;
         }
         public IActionResult Index()
         {          
@@ -23,7 +28,9 @@ namespace PharmacySystem.WebAdmin.Controllers
         public async Task<IActionResult> Create()
         {
             var medicineGroupList = await _medicineGroupApiClient.GetListMedicineGroup();
+            var supplierList = await _supplierApiClient.GetListSupplier();
             ViewBag.ListOfMedicineGroup = medicineGroupList;
+            ViewBag.ListOfSupplier = supplierList;
             return View();
         }
         [HttpPost]

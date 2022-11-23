@@ -25,32 +25,20 @@ namespace PharmacySystem.APIIntergration
             _httpContextAccessor = httpContextAccessor;
             _httpClientFactory = httpClientFactory;
         }
-        protected async Task<TResponse> GetAsync<TResponse>(string url)
+        protected async Task<T> GetAsync<T>(string url)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_Address);
             HttpResponseMessage response;
             string body;
-            try
-            {
-                response = await client.GetAsync(url);
-            }
-            catch (Exception)
-            {
-                Object bodyOB = new { ErrorCode = 1, Content = "" };
-                body = JsonConvert.SerializeObject(bodyOB);
-                return JsonConvert.DeserializeObject<TResponse>(body);
-            }
-
+            response = await client.GetAsync(url);
             body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                TResponse myDeserializedObjList = (TResponse)JsonConvert.DeserializeObject(body,
-                typeof(TResponse));
-
+                T myDeserializedObjList = (T)JsonConvert.DeserializeObject(body, typeof(T));
                 return myDeserializedObjList;
             }
-            return JsonConvert.DeserializeObject<TResponse>(body);
+            return JsonConvert.DeserializeObject<T>(body);
         }
         public async Task<List<T>> GetListAsync<T>(string url, bool requiredLogin = false)
         {
