@@ -14,7 +14,7 @@ namespace PharmacySystem.WebAPI.Controllers
         {
             this._MedicineService = MedicineSerive;
         }
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<RequestResponse> Create(MedicineCreateRequest request)
         {
             var MedicineId = await _MedicineService.Create(request);
@@ -67,6 +67,12 @@ namespace PharmacySystem.WebAPI.Controllers
                 StatusCode = Code.Success,
                 Message = "Delete sucess!"
             };
+        }
+        [HttpGet("paging")]
+        public async Task<IActionResult> Get([FromQuery] GetManageMedicinePagingRequest request)
+        {
+            var medicines = await _MedicineService.Get(request);
+            return Ok(medicines);
         }
     }
 }

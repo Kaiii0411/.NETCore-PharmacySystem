@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lCjHbDL7inn420BO40RDtCZeuDSLTAYaxvsePIaaE8E=",
+  "Hash": "J7O5zChxawyFU/xvDfABJGDMIaQmDs5JvVhIwGihgRM=",
   "Source": "PharmacySystem.WebAdmin",
   "BasePath": "_content/PharmacySystem.WebAdmin",
   "Mode": "Default",
@@ -29204,6 +29204,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\PharmacySystem\\PharmacySystem.WebAdmin\\wwwroot\\js\\medicine.js",
+      "SourceId": "PharmacySystem.WebAdmin",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PharmacySystem\\PharmacySystem.WebAdmin\\wwwroot\\",
+      "BasePath": "_content/PharmacySystem.WebAdmin",
+      "RelativePath": "js/medicine.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\medicine.js"
     },
     {
       "Identity": "D:\\PharmacySystem\\PharmacySystem.WebAdmin\\wwwroot\\js\\site.js",

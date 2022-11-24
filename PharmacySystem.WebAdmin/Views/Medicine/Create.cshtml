@@ -20,80 +20,85 @@
             <div class="col-12">
                 <div class="card m-b-30">
                     <div class="card-body">
-
-                        <h4 class="mt-0 header-title">Textual inputs</h4>
                         <div class="row">
-                            <div class="col-6">
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-sm-3 col-form-label">Medicine Group:</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" id="MGroup" name="txtMGroup" asp-for="IdMedicineGroup" asp-items="@(new SelectList(ViewBag.ListOfMedicineGroup,"IdMedicineGroup", "MedicineGroupName"))">
-                                            <option value="0">Select...</option>
-                                        </select>                                    
+                            <form id="medicine-create" class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="MedicineGroup" class="col-sm-3 col-form-label">Medicine Group:</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="MedicineGroup" asp-for="IdMedicineGroup" asp-items="@(new SelectList(ViewBag.ListOfMedicineGroup,"IdMedicineGroup", "MedicineGroupName"))">
+                                                    <option value="0">Select...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="MedicineName" class="col-sm-3 col-form-label">Medicine Name:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="MedicineName" id="MedicineName" class="form-control" type="text" id="example-search-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="ExpiryDate" class="col-sm-3 col-form-label">Expired Date:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="ExpiryDate" id="ExpiryDate" class="form-control" type="date" id="example-date-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Supplier" class="col-sm-3 col-form-label">Supplier:</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="Supplier" name="txtSupplier" asp-for="IdSupplier" asp-items="@(new SelectList(ViewBag.ListOfSupplier,"IdSupplier", "SupplierName"))">
+                                                    <option value="0">Select...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="Quantity" class="col-sm-3 col-form-label">Quantity:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="Quantity" id="Quantity" class="form-control" type="number">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Unit" class="col-sm-3 col-form-label">Unit:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="Unit" id="Unit" class="form-control" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="ImportPrice" class="col-sm-3 col-form-label">Import Price:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="ImportPrice" id="ImportPrice" class="form-control" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="SellPrice" class="col-sm-3 col-form-label">Sales Price:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="SellPrice" id="SellPrice" class="form-control" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="Description" class="col-form-label">Description: </label>
+                                        <div>
+                                            <textarea asp-for="Description" id="Description" class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 m-t-10">
+                                        <div class="form-group right">
+                                            <div>
+                                                <button id="btnSubmitCreateMedicine" type="button" class="btn btn-primary waves-effect waves-light">
+                                                    Submit
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary waves-effect m-l-5">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="example-search-input" class="col-sm-3 col-form-label">Medicine Name:</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="search" value="How do I shoot web" id="example-search-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-email-input" class="col-sm-3 col-form-label">Expired Date:</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="email" value="bootstrap@example.com" id="example-email-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-url-input" class="col-sm-3 col-form-label">Supplier:</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" id="Supplier" name="txtSupplier" asp-for="IdSupplier" asp-items="@(new SelectList(ViewBag.ListOfSupplier,"IdSupplier", "SupplierName"))">
-                                            <option value="0">Select...</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group row">
-                                    <label for="example-password-input" class="col-sm-3 col-form-label">Quantity:</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="password" value="hunter2" id="example-password-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-number-input" class="col-sm-3 col-form-label">Unit:</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="number" value="42" id="example-number-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Import Price:</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control">
-                                            <option>Select</option>
-                                            <option>Large select</option>
-                                            <option>Small select</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">Sales Price:</label>
-                                    <div class="col-sm-9">
-                                        <select class="custom-select">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label class="col-form-label">Description: </label>
-                                <div>
-                                    <textarea class="form-control" rows="5"></textarea>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -103,3 +108,5 @@
     </div><!-- container fluid -->
 
 </div> <!-- Page content Wrapper -->
+<script src="~/js/medicine.js"></script>
+

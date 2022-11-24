@@ -1,5 +1,8 @@
-﻿using PharmacySystem.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PharmacySystem.Models;
+using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
+using PharmacySystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +17,12 @@ namespace PharmacySystem.Service
         Task<long> Create(MedicineCreateRequest request);
         Task<long> Update(MedicineUpdateRequest request);
         Task<long> Delete(long medicineId);
+        Task<PagedResult<MedicineVM>> Get(GetManageMedicinePagingRequest request);
     }
     public class MedicineService : IMedicineService
     {
         private readonly PharmacySystemContext _context;
+        //crud
         public MedicineService(PharmacySystemContext context)
         {
             this._context = context;
@@ -65,6 +70,47 @@ namespace PharmacySystem.Service
             if (medicine == null) return 0;
             _context.Medicines.Remove(medicine);
             return await _context.SaveChangesAsync();
+        }
+        public async Task<PagedResult<MedicineVM>> Get(GetManageMedicinePagingRequest request)
+        {
+            //select
+            var query = from m in _context.Medicines 
+                       join mg in _context.MedicineGroups on m.IdMedicineGroup equals mg.IdMedicineGroup
+                       join s in _context.Suppliers on m.IdSupplier equals s.IdSupplier
+                       select new { m, mg, s};
+            //search
+            if (!string.IsNullOrEmpty(request.Keyword))
+                query = query.Where(x => x.m.MedicineName.Contains(request.Keyword));
+            if(request.IdMedicineGroup != null && request.IdMedicineGroup !=0)
+            {
+                query = query.Where(x => x.mg.IdMedicineGroup == request.IdMedicineGroup);
+            }
+            if (request.IdSupplier != null && request.IdSupplier != 0)
+            {
+                query = query.Where(x => x.s.IdSupplier == request.IdSupplier);
+            }
+            //list
+            int totalRow = await query.CountAsync();
+            var data = await query.Select(x => new MedicineVM()
+            {
+                IdMedicine = x.m.IdMedicine,
+                MedicineName = x.m.MedicineName,
+                Description = x.m.Description,
+                MedicineGroupName = x.mg.MedicineGroupName,
+                ExpiryDate = x.m.ExpiryDate,
+                Quantity = x.m.Quantity,
+                Unit = x.m.Unit,
+                SellPrice = x.m.SellPrice,
+                ImportPrice = x.m.ImportPrice,
+                SupplierName = x.s.SupplierName
+            }).ToListAsync();
+            //data
+            var pagedResult = new PagedResult<MedicineVM>()
+            {
+                TotalRecords = totalRow,
+                Items = data
+            };
+            return pagedResult;
         }
     }
 }

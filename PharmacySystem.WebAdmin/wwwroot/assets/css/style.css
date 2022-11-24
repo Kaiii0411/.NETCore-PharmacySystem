@@ -3055,3 +3055,10 @@ File: Responsive
   }
 }
 /*# sourceMappingURL=style.css.map */
+
+.right{
+    float: right;
+}
+.left {
+    float: left;
+}

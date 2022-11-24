@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PharmacySystem.APIIntergration;
 using PharmacySystem.Models.Request;
 
@@ -21,9 +22,33 @@ namespace PharmacySystem.WebAdmin.Controllers
             this._medicineGroupApiClient = medicineGroupApiClient;
             this._supplierApiClient = supplierApiClient;
         }
-        public IActionResult Index()
-        {          
-            return View();          
+        public async Task<IActionResult> Index(string? Keyword, long? IdMedicineGroup, long? IdSupplier )
+        {
+            var request = new GetManageMedicinePagingRequest()
+            {
+                Keyword = Keyword,
+                IdMedicineGroup = IdMedicineGroup,
+                IdSupplier = IdSupplier
+            };
+            var data = await _medicineApiClient.Get(request);
+            ViewBag.Keyword = Keyword;
+
+            var medicineGroupList = await _medicineGroupApiClient.GetListMedicineGroup();
+            ViewBag.ListOfMedicineGroup = medicineGroupList.Select(x=> new SelectListItem()
+            {
+                Text = x.MedicineGroupName,
+                Value = x.IdMedicineGroup.ToString(),
+                Selected = IdMedicineGroup.HasValue && IdMedicineGroup.Value == x.IdMedicineGroup
+            });
+            var supplierList = await _supplierApiClient.GetListSupplier();
+            ViewBag.ListOfSupplier = supplierList.Select(x => new SelectListItem()
+            {
+                Text = x.SupplierName,
+                Value = x.IdSupplier.ToString(),
+                Selected = IdSupplier.HasValue && IdSupplier.Value == x.IdSupplier
+            });
+
+            return View(data);          
         }
         public async Task<IActionResult> Create()
         {
@@ -34,18 +59,17 @@ namespace PharmacySystem.WebAdmin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(MedicineCreateRequest request)
+        public async Task<JsonResult> Create(MedicineCreateRequest CreateMedicineForm)
         {
-            if (!ModelState.IsValid)
-                return View(request);
-            var result = await _medicineApiClient.CreateMedicine(request);
-            if (result)
+            if (ModelState.IsValid)
             {
-                TempData["result"] = "Successfully added new medicine!";
-                return RedirectToAction("Index");
+                var result = await _medicineApiClient.CreateMedicine(CreateMedicineForm);
+                if (result == 0 )
+                {
+                    return Json(0);
+                }
             }
-            ModelState.AddModelError("", "Failed to add new medicine");
-            return View(request);
+            return Json(1);
         }
         public IActionResult Edit()
         {

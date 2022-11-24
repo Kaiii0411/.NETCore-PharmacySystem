@@ -52,5 +52,35 @@ namespace PharmacySystem.APIIntergration
             }
             throw new Exception(body);
         }
+        protected async Task<TResponse> AddAsync<TResponse, T>(string url, T data)
+        {
+            string json = JsonConvert.SerializeObject(data);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_Address);
+            HttpResponseMessage response;
+            string body;
+            try
+            {
+                response = await client.PostAsync(url, httpContent);
+            }
+            catch (Exception)
+            {
+                Object bodyOB = new { ErrorCode = 1, Content = "" };
+                body = JsonConvert.SerializeObject(bodyOB);
+                return JsonConvert.DeserializeObject<TResponse>(body);
+            }
+
+            body = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                TResponse myDeserializedObjList = (TResponse)JsonConvert.DeserializeObject(body,
+                typeof(TResponse));
+
+                return myDeserializedObjList;
+            }
+            return JsonConvert.DeserializeObject<TResponse>(body);
+        }
     }
 }
