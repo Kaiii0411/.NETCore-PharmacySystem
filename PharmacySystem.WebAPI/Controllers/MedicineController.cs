@@ -32,7 +32,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Add sucess!"
             };
         }
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<RequestResponse> Update(MedicineUpdateRequest request)
         {
             var MedicineId = await _MedicineService.Update(request);
@@ -50,7 +50,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Update sucess!"
             };
         }
-        [HttpDelete("{medicineId}")]
+        [HttpDelete("delete/{medicineId}")]
         public async Task<RequestResponse> Delete(long medicineId)
         {
             var medicine = await _MedicineService.Delete(medicineId);

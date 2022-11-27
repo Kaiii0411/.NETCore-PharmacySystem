@@ -25,6 +25,7 @@ builder.Services.AddTransient<ISupplierGroupService, SupplierGroupService>();
 builder.Services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddTransient<IMedicineGroupRepo, MedicineGroupRepo>();
 builder.Services.AddTransient<ISupplierRepo, SupplierRepo>();
+builder.Services.AddTransient<ISupplierGroupRepo, SupplierGroupRepo>();
 
 
 

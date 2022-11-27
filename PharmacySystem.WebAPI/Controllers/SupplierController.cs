@@ -15,7 +15,7 @@ namespace PharmacySystem.WebAPI.Controllers
         {
             this._SupplierService = SupplierService;
         }
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<RequestResponse> Create(SupplierCreateRequest request)
         {
             var SupplierId = await _SupplierService.Create(request);
@@ -33,7 +33,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Add sucess!"
             };
         }
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<RequestResponse> Update(SupplierUpdateRequest request)
         {
             var SupplierId = await _SupplierService.Update(request);
@@ -51,7 +51,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Update sucess!"
             };
         }
-        [HttpDelete("{supplierId}")]
+        [HttpDelete("delete/{supplierId}")]
         public async Task<RequestResponse> Delete(long supplierId)
         {
             var supplier = await _SupplierService.Delete(supplierId);
@@ -69,7 +69,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Delete sucess!"
             };
         }
-        [HttpGet]
+        [HttpGet("list")]
         public async Task<RequestResponse> GetList()
         {
             try
@@ -98,6 +98,12 @@ namespace PharmacySystem.WebAPI.Controllers
                     Content = errorDetail
                 };
             }
+        }
+        [HttpGet("paging")]
+        public async Task<IActionResult> Get([FromQuery] GetManageSupplierPagingRequest request)
+        {
+            var suppliers = await _SupplierService.Get(request);
+            return Ok(suppliers);
         }
     }
 }

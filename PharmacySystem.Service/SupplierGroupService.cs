@@ -1,4 +1,8 @@
-﻿using PharmacySystem.Models;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using PharmacySystem.DataAccess.Repositorys;
+using PharmacySystem.Models;
+using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
 using System;
 using System.Collections.Generic;
@@ -13,13 +17,19 @@ namespace PharmacySystem.Service
         Task<long> Create(SupplierGroupCreateRequest request);
         Task<long> Update(SupplierGroupUpdateRequest request);
         Task<long> Delete(long supplierGroupId);
+        Task<IEnumerable<SupplierGroup>> GetListSupplierGroup();
+        Task<PagedResult<SupplierGroup>> Get(GetManageKeywordPagingRequest request);
     }
     public class SupplierGroupService : ISupplierGroupService
     {
         private readonly PharmacySystemContext _context;
-        public SupplierGroupService(PharmacySystemContext context)
+        private readonly ISupplierGroupRepo _supplierGroupRepo;
+        private readonly IMapper _mapper;
+        public SupplierGroupService(PharmacySystemContext context, ISupplierGroupRepo supplierGroupRepo, IMapper mapper)
         {
             this._context = context;
+            this._supplierGroupRepo = supplierGroupRepo;
+            this._mapper = mapper;
         }
         public async Task<long> Create(SupplierGroupCreateRequest request)
         {
@@ -50,5 +60,35 @@ namespace PharmacySystem.Service
             _context.SupplierGroups.Remove(supplierGroup);
             return await _context.SaveChangesAsync();
         }
+        public async Task<IEnumerable<SupplierGroup>> GetListSupplierGroup()
+        {
+            IReadOnlyList<SupplierGroup> listMedicineGroup = await _supplierGroupRepo.ListAsync();
+            return _mapper.Map<IEnumerable<SupplierGroup>>(listMedicineGroup);
+        }
+        public async Task<PagedResult<SupplierGroup>> Get(GetManageKeywordPagingRequest request)
+        {
+            //select
+            var query = from sg in _context.SupplierGroups
+                        select sg;
+            //search
+            if (!string.IsNullOrEmpty(request.Keyword))
+                query = query.Where(x => x.SupplierGroupName.Contains(request.Keyword));
+            //list
+            int totalRow = await query.CountAsync();
+            var data = await query.Select(x => new SupplierGroup()
+            {
+                IdSupplierGroup = x.IdSupplierGroup,
+                SupplierGroupName = x.SupplierGroupName,
+                Note = x.Note
+            }).ToListAsync();
+            //data
+            var pagedResult = new PagedResult<SupplierGroup>()
+            {
+                TotalRecords = totalRow,
+                Items = data
+            };
+            return pagedResult;
+        }
+
     }
 }

@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PharmacySystem.DataAccess.Repositorys;
 using PharmacySystem.Models;
+using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
+using PharmacySystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +19,7 @@ namespace PharmacySystem.Service
         Task<long> Update(SupplierUpdateRequest request);
         Task<long> Delete(long supplierId);
         Task<IEnumerable<Supplier>> GetListSupplier();
+        Task<PagedResult<SupplierVM>> Get(GetManageSupplierPagingRequest request);
     }
     public class SupplierService : ISupplierService
     {
@@ -68,6 +72,38 @@ namespace PharmacySystem.Service
         {
             IReadOnlyList<Supplier> listSupplier = await _supplierRepo.ListAsync();
             return _mapper.Map<IEnumerable<Supplier>>(listSupplier);
+        }
+        public async Task<PagedResult<SupplierVM>> Get(GetManageSupplierPagingRequest request)
+        {
+            //select 
+            var query = from s in _context.Suppliers
+                        join sg in _context.SupplierGroups on s.IdSupplierGroup equals sg.IdSupplierGroup
+                        select new { s, sg };
+            //search
+            if (!string.IsNullOrEmpty(request.Keyword))
+                query = query.Where(x => x.s.SupplierName.Contains(request.Keyword));
+            if (request.IdSupplierGroup != null && request.IdSupplierGroup != 0)
+            {
+                query = query.Where(x => x.s.IdSupplierGroup == request.IdSupplierGroup);
+            }
+            //list
+            int totalRow = await query.CountAsync();
+            var data = await query.Select(x => new SupplierVM()
+            {
+                IdSupplier = x.s.IdSupplier,
+                SupplierName = x.s.SupplierName,
+                Address = x.s.Address,
+                Phone = x.s.Phone,
+                Email = x.s.Email,
+                SupplierGroupName = x.sg.SupplierGroupName
+            }).ToListAsync();
+            //data
+            var pagedResult = new PagedResult<SupplierVM>()
+            {
+                TotalRecords = totalRow,
+                Items = data
+            };
+            return pagedResult;
         }
     }
 }

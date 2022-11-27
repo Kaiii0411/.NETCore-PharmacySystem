@@ -15,7 +15,7 @@ namespace PharmacySystem.WebAPI.Controllers
         {
             this._MedicineGroupService = MedicineGroupSerive;
         }
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<RequestResponse> Create(MedicineGroupCreateRequest request)
         {
             var MedicineGroupId = await _MedicineGroupService.Create(request);
@@ -33,7 +33,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Add sucess!"
             };
         }
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<RequestResponse> Update(MedicineGroupUpdateRequest request)
         {
             var MedicineGroupId = await _MedicineGroupService.Update(request);
@@ -51,7 +51,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Update sucess!"
             };
         }
-        [HttpDelete("{medicineGroupId}")]
+        [HttpDelete("delete/{medicineGroupId}")]
         public async Task<RequestResponse> Delete(long medicineGroupId)
         {
             var medicine = await _MedicineGroupService.Delete(medicineGroupId);
@@ -69,7 +69,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Delete sucess!"
             };
         }
-        [HttpGet]
+        [HttpGet("list")]
         public async Task<RequestResponse> GetList()
         {
             try
@@ -99,5 +99,12 @@ namespace PharmacySystem.WebAPI.Controllers
                 };
             }
         }
+        [HttpGet("paging")]
+        public async Task<IActionResult> Get([FromQuery] GetManageKeywordPagingRequest request)
+        {
+            var medicineGroups = await _MedicineGroupService.Get(request);
+            return Ok(medicineGroups);
+        }
+
     }
 }

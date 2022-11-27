@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Service;
@@ -14,7 +15,7 @@ namespace PharmacySystem.WebAPI.Controllers
         {
             this._SupplierGroupService = SupplierGroupService;
         }
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<RequestResponse> Create(SupplierGroupCreateRequest request)
         {
             var SupplierGroupId = await _SupplierGroupService.Create(request);
@@ -32,7 +33,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Add sucess!"
             };
         }
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<RequestResponse> Update(SupplierGroupUpdateRequest request)
         {
             var SupplierGroupId = await _SupplierGroupService.Update(request);
@@ -50,7 +51,7 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Update sucess!"
             };
         }
-        [HttpDelete("{supplierGroupId}")]
+        [HttpDelete("delete/{supplierGroupId}")]
         public async Task<RequestResponse> Delete(long supplierGroupId)
         {
             var supplierGroup = await _SupplierGroupService.Delete(supplierGroupId);
@@ -67,6 +68,42 @@ namespace PharmacySystem.WebAPI.Controllers
                 StatusCode = Code.Success,
                 Message = "Delete sucess!"
             };
+        }
+        [HttpGet("list")]
+        public async Task<RequestResponse> GetList()
+        {
+            try
+            {
+                IEnumerable<SupplierGroup> supplierGroup = await _SupplierGroupService.GetListSupplierGroup();
+                if (supplierGroup != null && supplierGroup.Any())
+                {
+                    return new RequestResponse
+                    {
+                        StatusCode = Code.Success,
+                        Content = JsonConvert.SerializeObject(supplierGroup)
+                    };
+                }
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = string.Empty
+                };
+            }
+            catch (Exception ex)
+            {
+                string errorDetail = ex.InnerException != null ? ex.InnerException.ToString() : ex.Message.ToString();
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = errorDetail
+                };
+            }
+        }
+        [HttpGet("paging")]
+        public async Task<IActionResult> Get([FromQuery] GetManageKeywordPagingRequest request)
+        {
+            var supplierGroups = await _SupplierGroupService.Get(request);
+            return Ok(supplierGroups);
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PharmacySystem.DataAccess.Repositorys;
 using PharmacySystem.Models;
+using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
+using PharmacySystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +19,7 @@ namespace PharmacySystem.Service
         Task<long> Update(MedicineGroupUpdateRequest request);
         Task<long> Delete(long medicineGroupId);
         Task<IEnumerable<MedicineGroup>> GetListMedicineGroup();
+        Task<PagedResult<MedicineGroup>> Get(GetManageKeywordPagingRequest request);
     }
     public class MedicineGroupService : IMedicineGroupService
     {
@@ -62,6 +66,30 @@ namespace PharmacySystem.Service
         {
             IReadOnlyList<MedicineGroup> listMedicineGroup = await _medicineGroupRepo.ListAsync();
             return _mapper.Map<IEnumerable<MedicineGroup>>(listMedicineGroup);
+        }
+        public async Task<PagedResult<MedicineGroup>> Get(GetManageKeywordPagingRequest request)
+        {
+            //select
+            var query = from mg in _context.MedicineGroups
+                        select mg;
+            //search
+            if (!string.IsNullOrEmpty(request.Keyword))
+                query = query.Where(x => x.MedicineGroupName.Contains(request.Keyword));
+            //list
+            int totalRow = await query.CountAsync();
+            var data = await query.Select(x => new MedicineGroup()
+            {
+                IdMedicineGroup = x.IdMedicineGroup,
+                MedicineGroupName = x.MedicineGroupName,
+                Note = x.Note
+            }).ToListAsync();
+            //data
+            var pagedResult = new PagedResult<MedicineGroup>()
+            {
+                TotalRecords = totalRow,
+                Items = data
+            };
+            return pagedResult;
         }
     }
 }
