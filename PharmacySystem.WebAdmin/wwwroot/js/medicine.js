@@ -34,7 +34,7 @@
                     $('#medicine-create')[0].reset();
                     alertify.success("Done!");
                 }
-                else{
+                else {
                     alertify.error("Error!");
                 }
             },
@@ -43,4 +43,5 @@
             }
         })
     }
-)})
+    )
+});

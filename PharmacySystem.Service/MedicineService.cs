@@ -18,6 +18,7 @@ namespace PharmacySystem.Service
         Task<long> Update(MedicineUpdateRequest request);
         Task<long> Delete(long medicineId);
         Task<PagedResult<MedicineVM>> Get(GetManageMedicinePagingRequest request);
+        Task<Medicine> GetByID(long MedicineId);
     }
     public class MedicineService : IMedicineService
     {
@@ -111,6 +112,25 @@ namespace PharmacySystem.Service
                 Items = data
             };
             return pagedResult;
+        }
+        public async Task<Medicine> GetByID(long MedicineId)
+        {
+            var medicine = await _context.Medicines.FindAsync(MedicineId);
+
+            var medicineDetails = new Medicine()
+            {
+                IdMedicine = medicine.IdMedicine,
+                MedicineName = medicine.MedicineName,
+                Description = medicine.Description,
+                IdMedicineGroup = medicine.IdMedicineGroup,
+                ExpiryDate = medicine.ExpiryDate,
+                Quantity = medicine.Quantity,
+                Unit = medicine.Unit,
+                SellPrice = medicine.SellPrice,
+                ImportPrice = medicine.ImportPrice,
+                IdSupplier = medicine.IdSupplier
+            };
+            return medicineDetails;
         }
     }
 }

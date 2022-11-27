@@ -16,7 +16,9 @@ namespace PharmacySystem.APIIntergration
     public interface IMedicineApiClient
     {
         Task<int> CreateMedicine(MedicineCreateRequest request);
+        Task<int> UpdateMedicine(MedicineUpdateRequest request);
         Task<PagedResult<MedicineVM>> Get(GetManageMedicinePagingRequest request);
+        Task<Medicine> GetById(long id);
     }
     public class MedicineApiClient: BaseApiClient, IMedicineApiClient
     {
@@ -34,10 +36,20 @@ namespace PharmacySystem.APIIntergration
             var body = await AddAsync<RequestResponse, MedicineCreateRequest>($"/api/medicines/create", request);
             return (int)body.StatusCode;
         }
+        public async Task<int> UpdateMedicine(MedicineUpdateRequest request)
+        {
+            var body = await PutAsync<RequestResponse, MedicineUpdateRequest>($"/api/medicines/update/" + +request.IdMedicine, request);
+            return (int)body.StatusCode;
+        }
         public async Task<PagedResult<MedicineVM>> Get(GetManageMedicinePagingRequest request)
         {
             var data = await GetAsync<PagedResult<MedicineVM>>(
                 $"/api/medicines/paging?Keyword={request.Keyword}&IdMedicineGroup={request.IdMedicineGroup}&IdSupplier={request.IdSupplier}");
+            return data;
+        }
+        public async Task<Medicine> GetById(long id)
+        {
+            var data = await GetAsync<Medicine>($"/api/medicines/details/{id}");
             return data;
         }
     }

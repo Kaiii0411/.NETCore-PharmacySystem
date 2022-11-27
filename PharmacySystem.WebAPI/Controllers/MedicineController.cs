@@ -74,5 +74,13 @@ namespace PharmacySystem.WebAPI.Controllers
             var medicines = await _MedicineService.Get(request);
             return Ok(medicines);
         }
+        [HttpGet("details/{medicineId}")]
+        public async Task<IActionResult> GetById(int medicineId)
+        {
+            var medicine = await _MedicineService.GetByID(medicineId);
+            if (medicine == null)
+                return BadRequest("Cannot find medicine");
+            return Ok(medicine);
+        }
     }
 }

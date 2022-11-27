@@ -21,7 +21,7 @@ namespace PharmacySystem.APIIntergration
         { }
         public async Task<List<Supplier>> GetListSupplier()
         {
-            var body = await GetAsync<RequestResponse>("api/supplier");
+            var body = await GetAsync<RequestResponse>("api/supplier/list");
             return OutPutApi.OutPut<Supplier>(body);
         }
     }

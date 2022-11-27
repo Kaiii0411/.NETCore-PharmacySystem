@@ -71,9 +71,37 @@ namespace PharmacySystem.WebAdmin.Controllers
             }
             return Json(1);
         }
-        public IActionResult Edit()
+        [HttpGet]
+        public async Task<IActionResult> Edit(long id)
         {
+            var medicine = await _medicineApiClient.GetById(id);
+            var details = new MedicineUpdateRequest()
+            {
+                IdMedicine = medicine.IdMedicine,
+                MedicineName = medicine.MedicineName,
+                Description = medicine.Description,
+                IdMedicineGroup = medicine.IdMedicineGroup,
+                ExpiryDate = medicine.ExpiryDate,
+                Quantity = medicine.Quantity,
+                Unit = medicine.Unit,
+                SellPrice = medicine.SellPrice,
+                ImportPrice = medicine.ImportPrice,
+                IdSupplier = medicine.IdSupplier
+            };
             return View();
+        }
+        [HttpPut]
+        public async Task<JsonResult> Edit([FromForm] MedicineUpdateRequest UpdateMedicineForm)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _medicineApiClient.UpdateMedicine(UpdateMedicineForm);
+                if (result == 0)
+                {
+                    return Json(0);
+                }
+            }
+            return Json(1);
         }
     }
 }
