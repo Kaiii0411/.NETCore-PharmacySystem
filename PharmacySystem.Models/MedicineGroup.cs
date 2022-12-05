@@ -11,7 +11,7 @@ namespace PharmacySystem.Models
         }
 
         public long IdMedicineGroup { get; set; }
-        public string? MedicineGroupName { get; set; }
+        public string MedicineGroupName { get; set; } = null!;
         public string? Note { get; set; }
 
         public virtual ICollection<Medicine> Medicines { get; set; }

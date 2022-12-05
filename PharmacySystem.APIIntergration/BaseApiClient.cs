@@ -112,5 +112,17 @@ namespace PharmacySystem.APIIntergration
             }
             return JsonConvert.DeserializeObject<TResponse>(body);
         }
+        public async Task<bool> DeleteAsync(string url)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_Address);
+
+            var response = await client.DeleteAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

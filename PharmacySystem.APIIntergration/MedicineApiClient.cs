@@ -19,6 +19,7 @@ namespace PharmacySystem.APIIntergration
         Task<int> UpdateMedicine(MedicineUpdateRequest request);
         Task<PagedResult<MedicineVM>> Get(GetManageMedicinePagingRequest request);
         Task<Medicine> GetById(long id);
+        Task<bool> DeleteMedicine(long id);
     }
     public class MedicineApiClient: BaseApiClient, IMedicineApiClient
     {
@@ -51,6 +52,10 @@ namespace PharmacySystem.APIIntergration
         {
             var data = await GetAsync<Medicine>($"/api/medicines/details/{id}");
             return data;
+        }
+        public async Task<bool> DeleteMedicine(long id)
+        {
+            return await DeleteAsync($"api/medicines/delete/" + id);
         }
     }
 }

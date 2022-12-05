@@ -103,5 +103,17 @@ namespace PharmacySystem.WebAdmin.Controllers
             }
             return Json(1);
         }
+        public async Task<IActionResult> Delete(long id)
+        {
+            if(ModelState.IsValid)
+            {
+                var result = await _medicineApiClient.DeleteMedicine(id);
+                if(result == true)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

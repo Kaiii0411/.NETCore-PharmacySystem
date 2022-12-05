@@ -11,7 +11,7 @@ namespace PharmacySystem.Models
         }
 
         public long IdSupplierGroup { get; set; }
-        public string? SupplierGroupName { get; set; }
+        public string SupplierGroupName { get; set; } = null!;
         public string? Note { get; set; }
 
         public virtual ICollection<Supplier> Suppliers { get; set; }

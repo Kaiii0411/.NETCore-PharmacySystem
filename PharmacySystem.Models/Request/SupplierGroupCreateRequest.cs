@@ -8,7 +8,7 @@ namespace PharmacySystem.Models.Request
 {
     public class SupplierGroupCreateRequest
     {
-        public string? SupplierGroupName { get; set; }
+        public string SupplierGroupName { get; set; }
         public string? Note { get; set; }
     }
 }

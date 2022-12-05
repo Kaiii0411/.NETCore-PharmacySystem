@@ -19,6 +19,7 @@ builder.Services.AddTransient<IMedicineGroupService, MedicineGroupService>();
 builder.Services.AddTransient<IStoreService, StoreService>();
 builder.Services.AddTransient<ISupplierService, SupplierService>();
 builder.Services.AddTransient<ISupplierGroupService, SupplierGroupService>();
+builder.Services.AddTransient<IInvoiceService, InvoiceService>();
 #endregion
 
 //Repositories

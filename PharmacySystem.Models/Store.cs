@@ -11,10 +11,10 @@ namespace PharmacySystem.Models
         }
 
         public long IdStore { get; set; }
-        public string? StoreName { get; set; }
-        public string? Address { get; set; }
-        public string? StoreOwner { get; set; }
-        public string? Phone { get; set; }
+        public string StoreName { get; set; } = null!;
+        public string Address { get; set; } = null!;
+        public string StoreOwner { get; set; } = null!;
+        public string Phone { get; set; } = null!;
 
         public virtual ICollection<staff> staff { get; set; }
     }

@@ -12,13 +12,13 @@ namespace PharmacySystem.Models
         }
 
         public long IdSupplier { get; set; }
-        public string? SupplierName { get; set; }
-        public string? Address { get; set; }
-        public string? Phone { get; set; }
-        public string? Email { get; set; }
-        public long? IdSupplierGroup { get; set; }
+        public string SupplierName { get; set; } = null!;
+        public string Address { get; set; } = null!;
+        public string Phone { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public long IdSupplierGroup { get; set; }
 
-        public virtual SupplierGroup? IdSupplierGroupNavigation { get; set; }
+        public virtual SupplierGroup IdSupplierGroupNavigation { get; set; } = null!;
         public virtual ICollection<ImportInvoice> ImportInvoices { get; set; }
         public virtual ICollection<Medicine> Medicines { get; set; }
     }
