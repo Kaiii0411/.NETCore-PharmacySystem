@@ -6,7 +6,7 @@ using PharmacySystem.Service;
 
 namespace PharmacySystem.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/suppliergroup")]
     [ApiController]
     public class SupplierGroupController : Controller
     {

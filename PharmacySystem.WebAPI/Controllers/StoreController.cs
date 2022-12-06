@@ -5,7 +5,7 @@ using PharmacySystem.Service;
 
 namespace PharmacySystem.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/store")]
     [ApiController]
     public class StoreController : Controller
     {
