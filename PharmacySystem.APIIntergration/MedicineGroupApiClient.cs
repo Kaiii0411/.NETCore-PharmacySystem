@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using PharmacySystem.APIIntergration.Utilities;
 using PharmacySystem.Models;
+using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
+using PharmacySystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,7 @@ namespace PharmacySystem.APIIntergration
         Task<int> CreateMedicineGroup(MedicineGroupCreateRequest request);
         Task<int> UpdateMedicineGroup(MedicineGroupUpdateRequest request);
         Task<bool> DeleteMedicineGroup(long id);
+        Task<PagedResult<MedicineGroupVM>> Get(GetManageKeywordPagingRequest request);
     }
     public class MedicineGroupApiClient: BaseApiClient, IMedicineGroupApiClient
     {
@@ -41,6 +44,12 @@ namespace PharmacySystem.APIIntergration
         public async Task<bool> DeleteMedicineGroup(long id)
         {
             return await DeleteAsync($"api/medicinegroup/delete/" + id);
+        }
+        public async Task<PagedResult<MedicineGroupVM>> Get(GetManageKeywordPagingRequest request)
+        {
+            var data = await GetAsync<PagedResult<MedicineGroupVM>>(
+                $"/api/medicinegroup/paging?Keyword={request.Keyword}");
+            return data;
         }
     }
 }

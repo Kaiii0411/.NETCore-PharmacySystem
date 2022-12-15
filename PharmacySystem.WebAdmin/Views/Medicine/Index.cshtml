@@ -30,13 +30,13 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">Medicine Group: </label>
-                                    <select name="IdMedicineGroup" onchange="this.form.submit()" asp-items="@ViewBag.ListOfMedicineGroup" class="form-control">
+                                    <select name="IdMedicineGroup" asp-items="@ViewBag.ListOfMedicineGroup" class="form-control">
                                         <option>Select...</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">Supplier: </label>
-                                    <select name="IdSupplier" onchange="this.form.submit()" asp-items="@ViewBag.ListOfSupplier" class="form-control">
+                                    <select name="IdSupplier" asp-items="@ViewBag.ListOfSupplier" class="form-control">
                                         <option>Select...</option>
                                     </select>
                                 </div>
@@ -68,7 +68,7 @@
                                     <th>Import Price</th>
                                     <th>Sell Price</th>
                                     <th>Description</th>
-                                    <th>Function</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>

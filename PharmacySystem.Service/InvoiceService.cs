@@ -1,4 +1,6 @@
-﻿using PharmacySystem.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PharmacySystem.Models;
+using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Models.ViewModels;
 using System;
@@ -15,13 +17,19 @@ namespace PharmacySystem.Service
         Task<long> AddExportInvoice(ExportInvoiceCreateRequest request);
         Task<long> DeleteImportInvoice(long IdInvoice);
         Task<long> DeleteExportInvoice(long IdInvoice);
+        Task<PagedResult<ImportInvoiceVM>> GetImportInvoice(GetManageIInvoicePagingRequest request);
+        Task<PagedResult<ExportInvoiceVM>> GetExportInvoice(GetManageEInvoicePagingRequest request);
+        Task<ImportInvoiceVM> GetImportInvoiceByID(long IdInvoice);
+        Task<ExportInvoiceVM> GetExportInvoiceByID(long IdInvoice);
     }
     public class InvoiceService : IInvoiceService
     {
         private readonly PharmacySystemContext _context;
-        public InvoiceService(PharmacySystemContext context)
+        private readonly IInvoiceDetailsService _invoiceDetailsService;
+        public InvoiceService(PharmacySystemContext context, IInvoiceDetailsService invoiceDetailsService)
         {
             this._context = context;
+            this._invoiceDetailsService = invoiceDetailsService;
         }
         public async Task<long> AddImportInvoice(ImportInvoiceCreateRequest request)
         {
@@ -41,7 +49,7 @@ namespace PharmacySystem.Service
                 invoiceDetail.IdImportInvoice = importInvoice.IdImportInvoice;
                 invoiceDetail.IdMedicine = item.IIdMedicine;
                 invoiceDetail.Quantity = item.IQuantity;
-                invoiceDetail.TotalPrice = item.ITotalPrice;
+                invoiceDetail.TotalPrice = item.IIdMedicine * item.IQuantity;
                 _context.InvoiceDetails.Add(invoiceDetail);
             }
             await _context.SaveChangesAsync();
@@ -49,26 +57,26 @@ namespace PharmacySystem.Service
         }
         public async Task<long> AddExportInvoice(ExportInvoiceCreateRequest request)
         {
-            ImportInvoice importInvoice = new ImportInvoice();
-            importInvoice.IdAccount = request.IdAccount;
-            importInvoice.DateCheckIn = request.DateCheckIn;
-            importInvoice.DateCheckOut = request.DateCheckOut;
-            importInvoice.Status.StatusId = request.StatusID;
-            importInvoice.Note = request.Note;
-            _context.ImportInvoices.Add(importInvoice);
+            ExportInvoice exportInvoice = new ExportInvoice();
+            exportInvoice.IdAccount = request.IdAccount;
+            exportInvoice.DateCheckIn = request.DateCheckIn;
+            exportInvoice.DateCheckOut = request.DateCheckOut;
+            exportInvoice.Status.StatusId = request.StatusID;
+            exportInvoice.Note = request.Note;
+            _context.ExportInvoices.Add(exportInvoice);
             await _context.SaveChangesAsync();
             List<IInvoice> invoiceItems = new List<IInvoice>();
             foreach (var item in invoiceItems)
             {
                 InvoiceDetail invoiceDetail = new InvoiceDetail();
-                invoiceDetail.IdImportInvoice = importInvoice.IdImportInvoice;
+                invoiceDetail.IdImportInvoice = exportInvoice.IdExportInvoice;
                 invoiceDetail.IdMedicine = item.IIdMedicine;
                 invoiceDetail.Quantity = item.IQuantity;
-                invoiceDetail.TotalPrice = item.ITotalPrice;
+                invoiceDetail.TotalPrice = item.IIdMedicine * item.IQuantity;
                 _context.InvoiceDetails.Add(invoiceDetail);
             }
             await _context.SaveChangesAsync();
-            return importInvoice.IdImportInvoice;
+            return exportInvoice.IdExportInvoice;
         }
         public async Task<long> DeleteImportInvoice(long IdInvoice)
         {
@@ -87,6 +95,151 @@ namespace PharmacySystem.Service
             _context.InvoiceDetails.Remove(invoiceDetails);
             _context.ExportInvoices.Remove(invoice);
             return await _context.SaveChangesAsync();
+        }
+        public async Task<PagedResult<ImportInvoiceVM>> GetImportInvoice(GetManageIInvoicePagingRequest request)
+        {
+            var query = from i in _context.ImportInvoices
+                        join id in _context.InvoiceDetails on i.IdImportInvoice equals id.IdImportInvoice
+                        join a in _context.Accounts on i.IdAccount equals a.IdAccount
+                        join s in _context.Suppliers on i.IdSupplier equals s.IdSupplier
+                        join st in _context.Statuses on i.StatusId equals st.StatusId
+                        select new { i, id, s, st ,a};
+
+            //search
+            if (request.IdSupplier != null && request.IdSupplier != 0)
+            {
+                query = query.Where(x => x.s.IdSupplier == request.IdSupplier);
+            }
+            if (request.StatusID != null && request.StatusID != 0)
+            {
+                query = query.Where(x => x.i.StatusId == request.StatusID);
+            }
+            if(!string.IsNullOrEmpty(request.DateCheckIn.ToString()))
+            {
+                query = query.Where( x => x.i.DateCheckIn == request.DateCheckIn);
+            }
+            if (!string.IsNullOrEmpty(request.DateCheckOut.ToString()))
+            {
+                query = query.Where(x => x.i.DateCheckOut == request.DateCheckOut);
+            }
+
+            //list
+            int totalRow = await query.CountAsync();
+            var data = await query.Select(x => new ImportInvoiceVM()
+            {
+                IdImportInvoice = x.i.IdImportInvoice,
+                UserName = x.a.UserName,
+                DateCheckIn = x.i.DateCheckIn.ToString("yyyy-MM-dd"),
+                DateCheckOut = x.i.DateCheckOut.ToString("yyyy-MM-dd"),
+                StatusName = x.st.StatusName,
+                StatusColor = x.st.StatusColor,
+                StatusText = x.st.StatusText,
+                Note = x.i.Note,
+                Supplier = x.s.SupplierName,
+            }).ToListAsync();
+
+            //data
+            var pagedResult = new PagedResult<ImportInvoiceVM>()
+            {
+                TotalRecords = totalRow,
+                Items = data,
+            };
+            return pagedResult;
+        }
+        public async Task<PagedResult<ExportInvoiceVM>> GetExportInvoice(GetManageEInvoicePagingRequest request)
+        {
+            var query = from e in _context.ExportInvoices
+                        join id in _context.InvoiceDetails on e.IdExportInvoice equals id.IdExportInvoice
+                        join a in _context.Accounts on e.IdAccount equals a.IdAccount
+                        join st in _context.Statuses on e.StatusId equals st.StatusId
+                        select new { e, id, st, a };
+
+            //search
+            if (request.StatusID != null && request.StatusID != 0)
+            {
+                query = query.Where(x => x.e.StatusId == request.StatusID);
+            }
+            if (!string.IsNullOrEmpty(request.DateCheckIn.ToString()))
+            {
+                query = query.Where(x => x.e.DateCheckIn == request.DateCheckIn);
+            }
+            if (!string.IsNullOrEmpty(request.DateCheckOut.ToString()))
+            {
+                query = query.Where(x => x.e.DateCheckOut == request.DateCheckOut);
+            }
+
+            //list
+            int totalRow = await query.CountAsync();
+            var data = await query.Select(x => new ExportInvoiceVM()
+            {
+                IdExportInvoice = x.e.IdExportInvoice,
+                UserName = x.a.UserName,
+                DateCheckIn = x.e.DateCheckIn.ToString("yyyy-MM-dd"),
+                DateCheckOut = x.e.DateCheckOut.ToString("yyyy-MM-dd"),
+                StatusName = x.st.StatusName,
+                StatusColor = x.st.StatusColor,
+                StatusText = x.st.StatusText,
+                Note = x.e.Note
+            }).ToListAsync();
+
+            //data
+            var pagedResult = new PagedResult<ExportInvoiceVM>()
+            {
+                TotalRecords = totalRow,
+                Items = data,
+            };
+            return pagedResult;
+        }
+        public async Task<ImportInvoiceVM> GetImportInvoiceByID(long IdInvoice)
+        {
+            var query = from i in _context.ImportInvoices
+                        join id in _context.InvoiceDetails on i.IdImportInvoice equals id.IdImportInvoice
+                        join a in _context.Accounts on i.IdAccount equals a.IdAccount
+                        join s in _context.Suppliers on i.IdSupplier equals s.IdSupplier
+                        join st in _context.Statuses on i.StatusId equals st.StatusId
+                        select new { i, id, s, st, a };
+
+            var listdetails = await _invoiceDetailsService.GetListImportDetails(IdInvoice);
+
+            var invoiceDetails = await query.Where(x =>x.i.IdImportInvoice == IdInvoice).Select(invoice =>  new ImportInvoiceVM()
+            {
+                IdImportInvoice = invoice.i.IdImportInvoice,
+                UserName = invoice.a.UserName,
+                DateCheckIn = invoice.i.DateCheckIn.ToString("yyyy-MM-dd"),
+                DateCheckOut = invoice.i.DateCheckOut.ToString("yyyy-MM-dd"),
+                StatusName = invoice.st.StatusName,
+                StatusColor = invoice.st.StatusColor,
+                StatusText = invoice.st.StatusText,
+                Note = invoice.i.Note,
+                IdSupllier = invoice.s.IdSupplier,
+                Supplier = invoice.s.SupplierName,
+                invoiceDetails = listdetails
+            }).FirstOrDefaultAsync();
+            return invoiceDetails;
+        }
+        public async Task<ExportInvoiceVM> GetExportInvoiceByID(long IdInvoice)
+        {
+            var query = from i in _context.ExportInvoices
+                        join id in _context.InvoiceDetails on i.IdExportInvoice equals id.IdExportInvoice
+                        join a in _context.Accounts on i.IdAccount equals a.IdAccount
+                        join st in _context.Statuses on i.StatusId equals st.StatusId
+                        select new { i, id, st, a };
+
+            var listdetails = await _invoiceDetailsService.GetListExportDetails(IdInvoice);
+
+            var invoiceDetails = await query.Where(x => x.i.IdExportInvoice == IdInvoice).Select(invoice => new ExportInvoiceVM()
+            {
+                IdExportInvoice = invoice.i.IdExportInvoice,
+                UserName = invoice.a.UserName,
+                DateCheckIn = invoice.i.DateCheckIn.ToString("yyyy-MM-dd"),
+                DateCheckOut = invoice.i.DateCheckOut.ToString("yyyy-MM-dd"),
+                StatusName = invoice.st.StatusName,
+                StatusColor = invoice.st.StatusColor,
+                StatusText = invoice.st.StatusText,
+                Note = invoice.i.Note,
+                invoiceDetails = listdetails
+            }).FirstOrDefaultAsync();
+            return invoiceDetails;
         }
     }
 }

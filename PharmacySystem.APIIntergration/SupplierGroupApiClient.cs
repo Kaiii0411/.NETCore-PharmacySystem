@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using PharmacySystem.APIIntergration.Utilities;
 using PharmacySystem.Models;
+using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
+using PharmacySystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +18,15 @@ namespace PharmacySystem.APIIntergration
         Task<int> CreateSupplierGroup(SupplierGroupCreateRequest request);
         Task<int> UpdateSupplierGroup(SupplierGroupUpdateRequest request);
         Task<bool> DeleteSupplierGroup(long id);
+        Task<List<SupplierGroup>> GetListSupplierGroup();
+        Task<PagedResult<SupplierGroupVM>> Get(GetManageKeywordPagingRequest request);
     }
     public class SupplierGroupApiClient: BaseApiClient, ISupplierGroupApiClient
     {
         public SupplierGroupApiClient(IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor,
             IConfiguration configuration) : base(httpClientFactory, httpContextAccessor, configuration)
         { }
-        public async Task<List<SupplierGroup>> GetListSupplier()
+        public async Task<List<SupplierGroup>> GetListSupplierGroup()
         {
             var body = await GetAsync<RequestResponse>("api/suppliergroup/list");
             return OutPutApi.OutPut<SupplierGroup>(body);
@@ -40,6 +44,12 @@ namespace PharmacySystem.APIIntergration
         public async Task<bool> DeleteSupplierGroup(long id)
         {
             return await DeleteAsync($"api/suppliergroup/delete/" + id);
+        }
+        public async Task<PagedResult<SupplierGroupVM>> Get(GetManageKeywordPagingRequest request)
+        {
+            var data = await GetAsync<PagedResult<SupplierGroupVM>>(
+                $"/api/suppliergroup/paging?Keyword={request.Keyword}");
+            return data;
         }
     }
 }

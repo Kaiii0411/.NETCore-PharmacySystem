@@ -20,13 +20,17 @@ builder.Services.AddTransient<IStoreService, StoreService>();
 builder.Services.AddTransient<ISupplierService, SupplierService>();
 builder.Services.AddTransient<ISupplierGroupService, SupplierGroupService>();
 builder.Services.AddTransient<IInvoiceService, InvoiceService>();
+builder.Services.AddTransient<IInvoiceDetailsService, InvoiceDetailsService>();
 #endregion
 
 //Repositories
 builder.Services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>));
+builder.Services.AddTransient<IMedicineRepo, MedicineRepo>();
 builder.Services.AddTransient<IMedicineGroupRepo, MedicineGroupRepo>();
 builder.Services.AddTransient<ISupplierRepo, SupplierRepo>();
 builder.Services.AddTransient<ISupplierGroupRepo, SupplierGroupRepo>();
+builder.Services.AddTransient<IImportInvoiceRepo, ImportInvoiceRepo>();
+builder.Services.AddTransient<IExportInvoiceRepo, ExportInvoiceRepo>();
 
 
 

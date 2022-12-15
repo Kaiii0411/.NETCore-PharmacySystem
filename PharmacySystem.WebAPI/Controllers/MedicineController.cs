@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Service;
@@ -81,6 +82,36 @@ namespace PharmacySystem.WebAPI.Controllers
             if (medicine == null)
                 return BadRequest("Cannot find medicine");
             return Ok(medicine);
+        }
+        [HttpGet("list")]
+        public async Task<RequestResponse> GetList()
+        {
+            try
+            {
+                IEnumerable<Medicine> medicines = await _MedicineService.GetListMedicine();
+                if (medicines != null && medicines.Any())
+                {
+                    return new RequestResponse
+                    {
+                        StatusCode = Code.Success,
+                        Content = JsonConvert.SerializeObject(medicines)
+                    };
+                }
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = string.Empty
+                };
+            }
+            catch (Exception ex)
+            {
+                string errorDetail = ex.InnerException != null ? ex.InnerException.ToString() : ex.Message.ToString();
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = errorDetail
+                };
+            }
         }
     }
 }

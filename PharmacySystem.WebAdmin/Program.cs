@@ -7,6 +7,14 @@ builder.Services.AddHttpClient();
 builder.Services.AddTransient<IMedicineApiClient, MedicineApiClient>();
 builder.Services.AddTransient<IMedicineGroupApiClient, MedicineGroupApiClient>();
 builder.Services.AddTransient<ISupplierApiClient, SupplierApiClient>();
+builder.Services.AddTransient<ISupplierGroupApiClient, SupplierGroupApiClient>();
+builder.Services.AddTransient<IInvoiceApiClient, InvoiceApiClient>();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+});
+
 builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
 // Add services to the container.
@@ -31,6 +39,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

@@ -42,6 +42,6 @@
                 alertify.error("Not receiving data!");
             }
         })
-    }
-    )
+    });
 });
+

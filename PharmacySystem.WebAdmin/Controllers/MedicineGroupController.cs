@@ -13,9 +13,28 @@ namespace PharmacySystem.WebAdmin.Controllers
             this._configuration = configuration;
             this._medicineGroupApiClient = medicineGroupApiClient;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string? Keyword)
         {
-            return View();
+            var request = new GetManageKeywordPagingRequest()
+            {
+                Keyword = Keyword
+            };
+            var data = await _medicineGroupApiClient.Get(request);
+            ViewBag.Keyword = Keyword;
+            return View(data);
+        }
+        [HttpPost]
+        public async Task<JsonResult> Create(MedicineGroupCreateRequest CreateMedicineGroupForm)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _medicineGroupApiClient.CreateMedicineGroup(CreateMedicineGroupForm);
+                if (result == 0)
+                {
+                    return Json(0);
+                }
+            }
+            return Json(1);
         }
     }
 }

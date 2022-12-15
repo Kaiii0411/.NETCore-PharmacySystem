@@ -53,5 +53,19 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Delete sucess!"
             };
         }
+        [HttpGet("paging")]
+        public async Task<IActionResult> Get([FromQuery] GetManageEInvoicePagingRequest request)
+        {
+            var invoices = await _InvoiceService.GetExportInvoice(request);
+            return Ok(invoices);
+        }
+        [HttpGet("details/{invoiceId}")]
+        public async Task<IActionResult> GetExportInvoiceById(long invoiceId)
+        {
+            var invoice = await _InvoiceService.GetExportInvoiceByID(invoiceId);
+            if (invoice == null)
+                return BadRequest("Cannot find invoice");
+            return Ok(invoice);
+        }
     }
 }

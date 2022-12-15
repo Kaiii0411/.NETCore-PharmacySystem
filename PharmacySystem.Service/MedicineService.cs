@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using PharmacySystem.DataAccess.Repositorys;
 using PharmacySystem.Models;
 using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
@@ -19,14 +21,20 @@ namespace PharmacySystem.Service
         Task<long> Delete(long medicineId);
         Task<PagedResult<MedicineVM>> Get(GetManageMedicinePagingRequest request);
         Task<Medicine> GetByID(long MedicineId);
+        Task<IEnumerable<Medicine>> GetListMedicine();
     }
     public class MedicineService : IMedicineService
     {
         private readonly PharmacySystemContext _context;
+        private readonly IMedicineRepo _medicineRepo;
+        private readonly IMapper _mapper;
+
         //crud
-        public MedicineService(PharmacySystemContext context)
+        public MedicineService(PharmacySystemContext context, IMedicineRepo medicineRepo, IMapper mapper)
         {
             this._context = context;
+            this._medicineRepo = medicineRepo;
+            this._mapper = mapper;
         }
         public async Task<long> Create(MedicineCreateRequest request)
         {
@@ -131,6 +139,11 @@ namespace PharmacySystem.Service
                 IdSupplier = medicine.IdSupplier
             };
             return medicineDetails;
+        }
+        public async Task<IEnumerable<Medicine>> GetListMedicine()
+        {
+            IReadOnlyList<Medicine> listMedicineGroup = await _medicineRepo.ListAsync();
+            return _mapper.Map<IEnumerable<Medicine>>(listMedicineGroup);
         }
     }
 }

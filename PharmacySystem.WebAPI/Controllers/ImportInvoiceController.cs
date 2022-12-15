@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
+using PharmacySystem.Models.ViewModels;
 using PharmacySystem.Service;
 
 namespace PharmacySystem.WebAPI.Controllers
@@ -55,6 +56,20 @@ namespace PharmacySystem.WebAPI.Controllers
                 StatusCode = Code.Success,
                 Message = "Delete sucess!"
             };
+        }
+        [HttpGet("paging")]
+        public async Task<IActionResult> Get([FromQuery] GetManageIInvoicePagingRequest request)
+        {
+            var invoices = await _InvoiceService.GetImportInvoice(request);
+            return Ok(invoices);
+        }
+        [HttpGet("details/{invoiceId}")]
+        public async Task<IActionResult> GetImportInvoiceById(long invoiceId)
+        {
+            var invoice = await _InvoiceService.GetImportInvoiceByID(invoiceId);
+            if (invoice == null)
+                return BadRequest("Cannot find invoice");
+            return Ok(invoice);
         }
     }
 }

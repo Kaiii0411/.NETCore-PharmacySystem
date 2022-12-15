@@ -13,8 +13,18 @@ $(document).ready(function() {
         lengthChange: false,
         lengthChange: false,
         searching: false,
-        "showNEntries": false,
-        "info": false
+        "showNEntries": true,
+        "info": false,
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Medicines List'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Medicines List'
+            },
+        ]
         //buttons: ['copy', 'excel', 'pdf', 'colvis']
     });
 

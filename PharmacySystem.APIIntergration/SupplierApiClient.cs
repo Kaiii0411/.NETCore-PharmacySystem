@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using PharmacySystem.APIIntergration.Utilities;
 using PharmacySystem.Models;
+using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
+using PharmacySystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,7 @@ namespace PharmacySystem.APIIntergration
         Task<int> CreateSupplier(SupplierCreateRequest request);
         Task<int> UpdateSupplier(SupplierUpdateRequest request);
         Task<bool> DeleteSupplier(long id);
+        Task<PagedResult<SupplierVM>> Get(GetManageSupplierPagingRequest request);
     }
     public class SupplierApiClient : BaseApiClient, ISupplierApiClient
     {
@@ -41,6 +44,12 @@ namespace PharmacySystem.APIIntergration
         public async Task<bool> DeleteSupplier(long id)
         {
             return await DeleteAsync($"api/supplier/delete/" + id);
+        }
+        public async Task<PagedResult<SupplierVM>> Get(GetManageSupplierPagingRequest request)
+        {
+            var data = await GetAsync<PagedResult<SupplierVM>>(
+                $"/api/supplier/paging?Keyword={request.Keyword}&IdSupplierGroup={request.IdSupplierGroup}");
+            return data;
         }
     }
 }

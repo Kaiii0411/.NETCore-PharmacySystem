@@ -1,4 +1,3 @@
-.vs/
 
 # Build results
 [Dd]ebug/
@@ -9,3 +8,6 @@
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+
+# Visual Studio 2015 cache/options directory
+.vs/
