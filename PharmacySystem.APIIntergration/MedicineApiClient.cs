@@ -40,7 +40,7 @@ namespace PharmacySystem.APIIntergration
         }
         public async Task<int> UpdateMedicine(MedicineUpdateRequest request)
         {
-            var body = await PutAsync<RequestResponse, MedicineUpdateRequest>($"/api/medicines/update/" + +request.IdMedicine, request);
+            var body = await PutAsync<RequestResponse, MedicineUpdateRequest>($"/api/medicines/update", request);
             return (int)body.StatusCode;
         }
         public async Task<PagedResult<MedicineVM>> Get(GetManageMedicinePagingRequest request)

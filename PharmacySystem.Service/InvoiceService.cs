@@ -37,22 +37,23 @@ namespace PharmacySystem.Service
             importInvoice.IdAccount = request.IdAccount;
             importInvoice.DateCheckIn = request.DateCheckIn;
             importInvoice.DateCheckOut = request.DateCheckOut;
-            importInvoice.Status.StatusId = request.StatusID;
+            importInvoice.StatusId = request.StatusID;
             importInvoice.Note = request.Note;
             importInvoice.IdSupplier = request.IdSupplier;
             _context.ImportInvoices.Add(importInvoice);
             await _context.SaveChangesAsync();
-            List<IInvoice> invoiceItems = new List<IInvoice>();
-            foreach (var item in invoiceItems)
+
+            foreach (var item in request.InvoiceDetails)
             {
                 InvoiceDetail invoiceDetail = new InvoiceDetail();
                 invoiceDetail.IdImportInvoice = importInvoice.IdImportInvoice;
-                invoiceDetail.IdMedicine = item.IIdMedicine;
-                invoiceDetail.Quantity = item.IQuantity;
-                invoiceDetail.TotalPrice = item.IIdMedicine * item.IQuantity;
+                invoiceDetail.IdMedicine = item.MedicineId;
+                invoiceDetail.Quantity = item.Quantity;
+                invoiceDetail.TotalPrice = item.TotalPrice;
                 _context.InvoiceDetails.Add(invoiceDetail);
             }
             await _context.SaveChangesAsync();
+
             return importInvoice.IdImportInvoice;
         }
         public async Task<long> AddExportInvoice(ExportInvoiceCreateRequest request)
@@ -65,14 +66,13 @@ namespace PharmacySystem.Service
             exportInvoice.Note = request.Note;
             _context.ExportInvoices.Add(exportInvoice);
             await _context.SaveChangesAsync();
-            List<IInvoice> invoiceItems = new List<IInvoice>();
-            foreach (var item in invoiceItems)
+            foreach (var item in request.InvoiceDetails)
             {
                 InvoiceDetail invoiceDetail = new InvoiceDetail();
                 invoiceDetail.IdImportInvoice = exportInvoice.IdExportInvoice;
-                invoiceDetail.IdMedicine = item.IIdMedicine;
-                invoiceDetail.Quantity = item.IQuantity;
-                invoiceDetail.TotalPrice = item.IIdMedicine * item.IQuantity;
+                invoiceDetail.IdMedicine = item.MedicineId;
+                invoiceDetail.Quantity = item.Quantity;
+                invoiceDetail.TotalPrice = item.TotalPrice;
                 _context.InvoiceDetails.Add(invoiceDetail);
             }
             await _context.SaveChangesAsync();
@@ -129,8 +129,8 @@ namespace PharmacySystem.Service
             {
                 IdImportInvoice = x.i.IdImportInvoice,
                 UserName = x.a.UserName,
-                DateCheckIn = x.i.DateCheckIn.ToString("yyyy-MM-dd"),
-                DateCheckOut = x.i.DateCheckOut.ToString("yyyy-MM-dd"),
+                DateCheckIn = x.i.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
+                DateCheckOut = x.i.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 StatusName = x.st.StatusName,
                 StatusColor = x.st.StatusColor,
                 StatusText = x.st.StatusText,
@@ -174,8 +174,8 @@ namespace PharmacySystem.Service
             {
                 IdExportInvoice = x.e.IdExportInvoice,
                 UserName = x.a.UserName,
-                DateCheckIn = x.e.DateCheckIn.ToString("yyyy-MM-dd"),
-                DateCheckOut = x.e.DateCheckOut.ToString("yyyy-MM-dd"),
+                DateCheckIn = x.e.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
+                DateCheckOut = x.e.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 StatusName = x.st.StatusName,
                 StatusColor = x.st.StatusColor,
                 StatusText = x.st.StatusText,
@@ -205,8 +205,8 @@ namespace PharmacySystem.Service
             {
                 IdImportInvoice = invoice.i.IdImportInvoice,
                 UserName = invoice.a.UserName,
-                DateCheckIn = invoice.i.DateCheckIn.ToString("yyyy-MM-dd"),
-                DateCheckOut = invoice.i.DateCheckOut.ToString("yyyy-MM-dd"),
+                DateCheckIn = invoice.i.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
+                DateCheckOut = invoice.i.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 StatusName = invoice.st.StatusName,
                 StatusColor = invoice.st.StatusColor,
                 StatusText = invoice.st.StatusText,
@@ -231,8 +231,8 @@ namespace PharmacySystem.Service
             {
                 IdExportInvoice = invoice.i.IdExportInvoice,
                 UserName = invoice.a.UserName,
-                DateCheckIn = invoice.i.DateCheckIn.ToString("yyyy-MM-dd"),
-                DateCheckOut = invoice.i.DateCheckOut.ToString("yyyy-MM-dd"),
+                DateCheckIn = invoice.i.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
+                DateCheckOut = invoice.i.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 StatusName = invoice.st.StatusName,
                 StatusColor = invoice.st.StatusColor,
                 StatusText = invoice.st.StatusText,

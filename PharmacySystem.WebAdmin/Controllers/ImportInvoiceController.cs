@@ -21,8 +21,8 @@ namespace PharmacySystem.WebAdmin.Controllers
         {
             this._configuration = configuration;
             this._invoiceApiClient = invoiceApiClient;
-            _supplierApiClient = supplierApiClient;
-            _medicineApiClient = medicineApiClient;
+            this._supplierApiClient = supplierApiClient;
+            this._medicineApiClient = medicineApiClient;
         }
         public async Task<IActionResult> Index(DateTime? DateCheckIn, DateTime? DateCheckOut, long? IdSupplier, int? StatusID)
         {
@@ -48,6 +48,12 @@ namespace PharmacySystem.WebAdmin.Controllers
         }
         public async Task<IActionResult> Create()
         {
+            var supplierList = await _supplierApiClient.GetListSupplier();
+            ViewBag.ListOfSupplier = supplierList.Select(x => new SelectListItem()
+            {
+                Text = x.SupplierName,
+                Value = x.IdSupplier.ToString(),
+            });
             var medicineList = await _medicineApiClient.GetListMedicine();
             ViewBag.ListOfMedicine = medicineList.Select(x => new SelectListItem()
             {
@@ -57,7 +63,7 @@ namespace PharmacySystem.WebAdmin.Controllers
             return View(GetIInvoiceViewModel());
         }
         [HttpPost]
-        public async Task<IActionResult> Create(IInvoiceVM request)
+        public async Task<IActionResult> Create(ImportInvoiceCreateRequest CreateIInvoiceForm)
         {
             var model = GetIInvoiceViewModel();
             var invoiceDetails = new List<InvoiceDetailsVM>();
@@ -68,19 +74,19 @@ namespace PharmacySystem.WebAdmin.Controllers
                     MedicineId = item.IIdMedicine,
                     MedicineName = item.IMedicineName,
                     Quantity = item.IQuantity,
+                    TotalPrice = item.IQuantity * item.IPrice
                 });
             }
-
             var createRequest = new ImportInvoiceCreateRequest()
             {
                 IdAccount = 1,
                 DateCheckIn = DateTime.Now,
                 StatusID = 1,
-                Note = request.CreateIInvoiceModel.Note,
-                IdSupplier = request.CreateIInvoiceModel.IdSupplier,
+                Note = CreateIInvoiceForm.Note,
+                IdSupplier = CreateIInvoiceForm.IdSupplier,
                 InvoiceDetails = invoiceDetails
             };
-
+            await _invoiceApiClient.CreateImportInvoice(createRequest);
             return View(model);
         }
         public async Task<IActionResult> Details(long id)
@@ -105,7 +111,7 @@ namespace PharmacySystem.WebAdmin.Controllers
                 currentCart = JsonConvert.DeserializeObject<List<InvoiceDetailsVM>>(session);
             return Ok(currentCart);
         }
-        public async Task<IActionResult> AddToInvoice(long id)
+        public async Task<IActionResult> AddToInvoice(long id, int quantity)
         {
             var medicine = await _medicineApiClient.GetById(id);
             var session = HttpContext.Session.GetString(SystemConstants.IInvoice);
@@ -113,21 +119,25 @@ namespace PharmacySystem.WebAdmin.Controllers
             if (session != null)
                 currentInvoice = JsonConvert.DeserializeObject<List<IInvoice>>(session);
 
-            int quantity = 1;
-            if(currentInvoice.Any(x => x.IIdMedicine == id))
+            var existItem = currentInvoice.FirstOrDefault(x => x.IIdMedicine == id);
+            if(existItem != null)
             {
-                quantity = currentInvoice.First(x => x.IIdMedicine == id).IQuantity + 1;
+                quantity = quantity != 0 ? quantity : 1;
+                existItem.IQuantity = existItem.IQuantity + quantity;
+            } 
+            else
+            {
+                quantity = quantity != 0 ? quantity : 1;
+                var invoiceItems = new IInvoice()
+                {
+                    IIdMedicine = id,
+                    IMedicineName = medicine.MedicineName,
+                    IQuantity = quantity,
+                    IPrice = medicine.ImportPrice
+                };
+
+                currentInvoice.Add(invoiceItems);
             }
-
-            var invoiceItems = new IInvoice()
-            {
-                IIdMedicine = id,
-                IMedicineName = medicine.MedicineName,
-                IQuantity = quantity,
-                IPrice = medicine.ImportPrice
-            };
-
-            currentInvoice.Add(invoiceItems);
             HttpContext.Session.SetString(SystemConstants.IInvoice, JsonConvert.SerializeObject(currentInvoice));
             return Ok(currentInvoice);
         }
@@ -149,6 +159,21 @@ namespace PharmacySystem.WebAdmin.Controllers
                     }
                     item.IQuantity = quantity;
                 }
+            }
+
+            HttpContext.Session.SetString(SystemConstants.IInvoice, JsonConvert.SerializeObject(currentInvoice));
+            return Ok();
+        }
+        public IActionResult RemoveItemsInvoice(int id)
+        {
+            var session = HttpContext.Session.GetString(SystemConstants.IInvoice);
+            List<IInvoice> currentInvoice = new List<IInvoice>();
+            if (session != null)
+                currentInvoice = JsonConvert.DeserializeObject<List<IInvoice>>(session);
+            foreach (var item in currentInvoice.ToList())
+            {
+                if (item.IIdMedicine == id)
+                    currentInvoice.Remove(item);
             }
 
             HttpContext.Session.SetString(SystemConstants.IInvoice, JsonConvert.SerializeObject(currentInvoice));

@@ -71,7 +71,7 @@ namespace PharmacySystem.WebAdmin.Controllers
             }
             return Json(1);
         }
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Edit(long id)
         {
             var medicine = await _medicineApiClient.GetById(id);
@@ -88,7 +88,22 @@ namespace PharmacySystem.WebAdmin.Controllers
                 ImportPrice = medicine.ImportPrice,
                 IdSupplier = medicine.IdSupplier
             };
-            return View();
+
+            var medicineGroupList = await _medicineGroupApiClient.GetListMedicineGroup();
+            ViewBag.ListOfMedicineGroup = medicineGroupList.Select(x=> new SelectListItem()
+            {
+                Text = x.MedicineGroupName,
+                Value = x.IdMedicineGroup.ToString(),
+                Selected = medicine.IdMedicineGroup == x.IdMedicineGroup
+            });
+            var supplierList = await _supplierApiClient.GetListSupplier();
+            ViewBag.ListOfSupplier = supplierList.Select(x => new SelectListItem()
+            {
+                Text = x.SupplierName,
+                Value = x.IdSupplier.ToString(),
+                Selected = medicine.IdSupplier == x.IdSupplier
+            });
+            return PartialView("_Edit", details);
         }
         [HttpPut]
         public async Task<JsonResult> Edit([FromForm] MedicineUpdateRequest UpdateMedicineForm)

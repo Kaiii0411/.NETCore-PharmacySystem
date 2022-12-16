@@ -8,7 +8,7 @@
 $(document).ready(function() {
     $('#datatable').DataTable();
 
-    //Buttons examples
+    //CreateMedicine
     var table = $('#datatable-buttons').DataTable({
         lengthChange: false,
         lengthChange: false,
@@ -18,11 +18,11 @@ $(document).ready(function() {
         buttons: [
             {
                 extend: 'excelHtml5',
-                title: 'Medicines List'
+                title: 'MedicinesList'
             },
             {
                 extend: 'pdfHtml5',
-                title: 'Medicines List'
+                title: 'MedicinesList'
             },
         ]
         //buttons: ['copy', 'excel', 'pdf', 'colvis']

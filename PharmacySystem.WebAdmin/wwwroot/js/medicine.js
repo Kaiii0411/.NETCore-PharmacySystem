@@ -1,4 +1,24 @@
-﻿$(document).ready(function () {
+﻿function ShowDetails(id) {
+    var Id = id;
+    $.ajax({
+        type: "POST",
+        url: "/Medicine/Edit",
+        data: { id: Id },
+
+        success: function (response) {
+            $("#partialModal").find(".modal-body").html(response);
+            $("#partialModal").modal('show');
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        },
+        error: function (response) {
+            alert(response.responseText);
+        }
+    });
+};
+
+$(document).ready(function () {
     $('#btnSubmitCreateMedicine').click(function () {
 
         //declare

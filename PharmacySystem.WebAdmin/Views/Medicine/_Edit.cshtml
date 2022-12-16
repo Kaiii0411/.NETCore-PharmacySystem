@@ -1,0 +1,100 @@
+﻿@model PharmacySystem.Models.Request.MedicineUpdateRequest
+
+<div class="row">
+    <div class="col-12">
+        <div class="card m-b-30">
+            <div class="card-body">
+                <div class="row">
+                    <form id="medicine-create" class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <label for="MedicineId" class="col-sm-3 col-form-label">Medicine Id:</label>
+                                    <div class="col-sm-9">
+                                        <input value="@Model.IdMedicine" id="Medicine" class="form-control" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="MedicineName" class="col-sm-3 col-form-label">Medicine Name:</label>
+                                    <div class="col-sm-9">
+                                        <input value="@Model.MedicineName" id="MedicineName" class="form-control" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="ExpiryDate" class="col-sm-3 col-form-label">Expired Date:</label>
+                                    <div class="col-sm-9">
+                                        <input value="@Model.ExpiryDate.ToString("yyyy-MM-dd")" id="ExpiryDate" class="form-control" type="date" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Supplier" class="col-sm-3 col-form-label">Supplier:</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="Supplier" name="IdSupplier" asp-items="@ViewBag.ListOfSupplier" disabled>
+                                            <option value="0">Select...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <label for="MedicineGroup" class="col-sm-3 col-form-label">Medicine Group:</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="MedicineGroup" name="IdMedicineGroup" asp-items="@ViewBag.ListOfMedicineGroup" disabled>
+                                            <option value="0">Select...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Quantity" class="col-sm-3 col-form-label">Quantity:</label>
+                                    <div class="col-sm-9">
+                                        <input value="@Model.Quantity" id="Quantity" class="form-control" type="number" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Unit" class="col-sm-3 col-form-label">Unit:</label>
+                                    <div class="col-sm-9">
+                                        <input value="@Model.Unit" id="Unit" class="form-control" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="ImportPrice" class="col-sm-3 col-form-label">Import Price:</label>
+                                    <div class="col-sm-9">
+                                        <input value="@Model.ImportPrice" id="ImportPrice" class="form-control" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="SellPrice" class="col-sm-3 col-form-label">Sales Price:</label>
+                                    <div class="col-sm-9">
+                                        <input value="@Model.SellPrice" id="SellPrice" class="form-control" type="text" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="Description" class="col-form-label">Description: </label>
+                                <div>
+                                    <textarea id="Description" class="form-control" rows="3" disabled>@Model.Description</textarea>
+                                </div>
+                            </div>
+                            <div class="col-12 m-t-10">
+                                <div class="form-group right">
+                                    <div>
+                                        <button id="btnUpdateMedicine" type="button" class="btn btn-primary waves-effect waves-light" onclick="EnableUpdate()">
+                                            Update
+                                        </button>
+                                        <button id="btnConfirmUpdateMedicine" type="button" class="btn btn-primary waves-effect waves-light" style="display:none">
+                                            Confirm
+                                        </button>
+                                        <button id="btnCancelUpdateMedicine" type="button" class="btn btn-primary waves-effect waves-light" style="display:none" onclick="DisableUpdate()">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+<script src="~/js/medicine/edit.js"></script>

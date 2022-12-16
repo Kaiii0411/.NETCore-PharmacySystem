@@ -43,6 +43,29 @@
             </div>
         </div>
 
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-15">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label class="col-form-label">Supplier: </label>
+                                <select id="idSupllier" name="IdSupplier" asp-items="@ViewBag.ListOfSupplier" class="form-control">
+                                    <option>Select...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 m-t-33">
+                                <button type="submit" id="btnCreateIInvoice" class="btn btn-primary btn-lg waves-effect waves-light">
+                                    <i class="fa fa-search"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="card m-b-30">
@@ -62,10 +85,16 @@
                                     <tr>
                                         <td>@item.IMedicineName</td>
                                         <td>@item.IPrice</td>
-                                        <td>@item.IQuantity</td>
+                                        <td>
+                                            <span id="regularQuantity">@item.IQuantity</span>
+                                            <input id="newQuantity" style="display:none" type="number" value="@item.IQuantity"/>
+                                        </td>
                                         <td>@(item.IPrice * item.IQuantity)</td>
                                         <td>
-                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
+                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light" id="editButton" onclick="ShowUpdate()"><div><i class="fa fa-edit"></i></div></a>
+                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light" id="updateButton" style="display:none" onclick="UpdateInvoice()"><div><i class="fa fa-check"></i></div></a>
+                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light" id="cancelButton" style="display:none" onclick="CancelUpdate()"><div><i class="fa fa-times-circle"></i></div></a>
+                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light" id="deleteButton" onclick="DeleteItemsInvoice()"><div><i class="fa fa-trash"></i></div></a>
                                         </td>
                                     </tr>
                                 }
@@ -80,3 +109,4 @@
     </div>
 </div>
 <script src="~/js/importinvoice/create.js"></script>
+
