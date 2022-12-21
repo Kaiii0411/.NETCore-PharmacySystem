@@ -7,6 +7,8 @@ using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Models.ViewModels;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using System.Text;
+using AspNetCore.Reporting;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
@@ -16,13 +18,15 @@ namespace PharmacySystem.WebAdmin.Controllers
         private readonly IInvoiceApiClient _invoiceApiClient;
         private readonly ISupplierApiClient _supplierApiClient;
         private readonly IMedicineApiClient _medicineApiClient;
-
-        public ImportInvoiceController(IConfiguration configuration, IInvoiceApiClient invoiceApiClient, ISupplierApiClient supplierApiClient, IMedicineApiClient medicineApiClient)
+        private readonly IWebHostEnvironment _webHostEnviroment;
+        public ImportInvoiceController(IConfiguration configuration, IInvoiceApiClient invoiceApiClient, ISupplierApiClient supplierApiClient, IMedicineApiClient medicineApiClient, IWebHostEnvironment webHostEnviroment)
         {
             this._configuration = configuration;
             this._invoiceApiClient = invoiceApiClient;
             this._supplierApiClient = supplierApiClient;
             this._medicineApiClient = medicineApiClient;
+            this._webHostEnviroment = webHostEnviroment;
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
         public async Task<IActionResult> Index(DateTime? DateCheckIn, DateTime? DateCheckOut, long? IdSupplier, int? StatusID)
         {
@@ -191,6 +195,20 @@ namespace PharmacySystem.WebAdmin.Controllers
                 CreateIInvoiceModel = new ImportInvoiceCreateRequest()
             };
             return iinvoiceVM;
+        }
+        [HttpGet]
+        public async Task<IActionResult> PrintReport(long id)
+        {
+            string mimtype = "";
+            int extension = 1;
+            var path = $"{this._webHostEnviroment.WebRootPath}\\Reports\\IInvoiceReport.rdlc";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            LocalReport localReport = new LocalReport(path);
+            var detailsForm = await _invoiceApiClient.ProcGetImportInvoiceById(id);
+            localReport.AddDataSource("IInvoiceDetailsDataSet", detailsForm);
+            var result = localReport.Execute(RenderType.Pdf, extension, parameters, mimtype);
+            return File(result.MainStream, "application/pdf");
+
         }
     }
 }

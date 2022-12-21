@@ -79,10 +79,16 @@
                                     <tr>
                                         <td>@item.IMedicineName</td>
                                         <td>@item.IPrice</td>
-                                        <td>@item.IQuantity</td>
+                                        <td>
+                                            <span id="regularQuantity">@item.IQuantity</span>
+                                            <input id="newQuantity" style="display:none" type="number" value="@item.IQuantity" />
+                                        </td>
                                         <td>@(item.IPrice * item.IQuantity)</td>
                                         <td>
-                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
+                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light" id="editButton" onclick="ShowUpdate()"><div><i class="fa fa-edit"></i></div></a>
+                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light" id="updateButton" style="display:none" onclick="UpdateInvoice()"><div><i class="fa fa-check"></i></div></a>
+                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light" id="cancelButton" style="display:none" onclick="CancelUpdate()"><div><i class="fa fa-times-circle"></i></div></a>
+                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light" id="deleteButton" onclick="DeleteItemsInvoice()"><div><i class="fa fa-trash"></i></div></a>
                                         </td>
                                     </tr>
                                 }

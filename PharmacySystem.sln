@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacySystem.WebAdmin", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacySystem.APIIntergration", "PharmacySystem.APIIntergration\PharmacySystem.APIIntergration.csproj", "{708BCB04-84BF-474C-9906-460F5F90A183}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacySystem.DataAccess", "PharmacySystem.DataAccess\PharmacySystem.DataAccess.csproj", "{6F46360A-6EC1-4C50-8F87-47B85BA8FE09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacySystem.DataAccess", "PharmacySystem.DataAccess\PharmacySystem.DataAccess.csproj", "{6F46360A-6EC1-4C50-8F87-47B85BA8FE09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportDesgin", "ReportDesgin\ReportDesgin.csproj", "{DBA840B3-C8F8-4F5C-BC68-6E9CE35CAAFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{6F46360A-6EC1-4C50-8F87-47B85BA8FE09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F46360A-6EC1-4C50-8F87-47B85BA8FE09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F46360A-6EC1-4C50-8F87-47B85BA8FE09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBA840B3-C8F8-4F5C-BC68-6E9CE35CAAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBA840B3-C8F8-4F5C-BC68-6E9CE35CAAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBA840B3-C8F8-4F5C-BC68-6E9CE35CAAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBA840B3-C8F8-4F5C-BC68-6E9CE35CAAFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

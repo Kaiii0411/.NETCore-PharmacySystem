@@ -1,6 +1,11 @@
 using PharmacySystem.APIIntergration;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    EnvironmentName = Environments.Staging,
+    WebRootPath = "wwwroot"
+});
 
 
 builder.Services.AddHttpClient();
@@ -20,10 +25,15 @@ builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
 var app = builder.Build();
 
 
+app.Logger.LogInformation("ASPNETCORE_ENVIRONMENT: {env}",
+      Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
 
+app.Logger.LogInformation("app.Environment.IsDevelopment(): {env}",
+      app.Environment.IsDevelopment().ToString());
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -27,8 +27,19 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
+    <link href="~/Content/layout/assets/css/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Content/layout/assets/plugins/jquery-3.4.1.min.js"></script>
+    <script src="~/script/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui@2.15.1/lib/index.js"></script>
+    <script src="~/script/jquery-json-form-binding.js"></script>
+    <script src="~/Content/layout/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="~/script/Utils.js"></script>
+
 </head>
 <body class="fixed-left">
+    <script src="~/script/moment.js"></script>
+    <script src="https://unpkg.com/vue-currency-filter@3.2.3/dist/vue-currency-filter.iife.js"></script>
         <!-- Loader -->
         @*        
             <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
@@ -84,8 +95,16 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Import Invoice </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
-                                <li><a asp-controller="ImportInvoice" asp-action="Create">Create New Supplier</a></li>
+                                <li><a asp-controller="ImportInvoice" asp-action="Create">Create Import Invoice</a></li>
                                 <li><a asp-controller="ImportInvoice" asp-action="Index">Import Invoice List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Export Invoice </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a asp-controller="ExportInvoice" asp-action="Create">Create Export Invoice</a></li>
+                                <li><a asp-controller="ExportInvoice" asp-action="Index">Export Invoice List</a></li>
                             </ul>
                         </li>
 
@@ -244,14 +263,6 @@
 
                             </ul>
 
-@*                            <ul class="list-inline menu-left mb-0">
-                                <li class="list-inline-item">
-                                    <button type="button" class="button-menu-mobile open-left waves-effect">
-                                        <i class="ion-navicon"></i>
-                                    </button>
-                                </li>
-                            </ul>*@
-
                             <div class="clearfix"></div>
 
                         </nav>
@@ -348,7 +359,26 @@
         <!-- Plugins Init js -->
         <script src="~/assets/pages/form-advanced.js"></script>
 
+        <!-- Parsley js -->
+        <script src="~/assets/plugins/parsleyjs/parsley.min.js"></script>
+
         <!-- Select2-->
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+        <script src="~/Content/layout/assets/js/jquery-ui.min.js"></script>
+        <script src="~/Content/layout/assets/plugins/chosen/chosen.jquery.js"></script>
+        <script src="~/Content/layout/assets/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+        <script src="~/Content/layout/assets/plugins/daterangepicker/moment.js"></script>
+        <script src="~/Content/layout/assets/plugins/autosize/jquery.autosize.min.js"></script>
+        <script src="~/Content/layout/assets/plugins/jasny/js/bootstrap-inputmask.js"></script>
+        <script src="~/Content/layout/assets/js/formsInit.js"></script>
+        <script src="~/Content/layout/assets/js/notifications.js"></script>
+        <script src="~/Content/layout/assets/plugins/bootstrap3-editable-1.5.1/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+        <script src="~/Content/layout/assets/js/jquery.number.js"></script>
+        <script src="~/Content/layout/file-upload/jquery.fileupload.js"></script>
+        <script src="~/Content/layout/file-upload/jquery.fileupload-ui.js"></script>
+        <script src="~/Content/layout/file-upload/jquery.iframe-transport.js"></script>
 </body>
 </html>

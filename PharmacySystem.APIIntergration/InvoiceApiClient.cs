@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using PharmacySystem.Models.Common;
 using PharmacySystem.Models.ViewModels;
+using PharmacySystem.Models.ReportModels;
+using PharmacySystem.APIIntergration.Utilities;
 
 namespace PharmacySystem.APIIntergration
 {
@@ -22,6 +24,7 @@ namespace PharmacySystem.APIIntergration
         Task<PagedResult<ExportInvoiceVM>> GetExportInvoice(GetManageEInvoicePagingRequest request);
         Task<ImportInvoiceVM> GetImportInvoiceByID(long id);
         Task<ExportInvoiceVM> GetExportInvoiceByID(long id);
+        Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long id);
     }
     public class InvoiceApiClient: BaseApiClient,IInvoiceApiClient
     {
@@ -61,7 +64,7 @@ namespace PharmacySystem.APIIntergration
         public async Task<PagedResult<ExportInvoiceVM>> GetExportInvoice(GetManageEInvoicePagingRequest request)
         {
             var data = await GetAsync<PagedResult<ExportInvoiceVM>>(
-                $"/api/importinvoices/paging?DateCheckIn={request.DateCheckIn}&DateCheckOut={request.DateCheckOut}&StatusID={request.StatusID}");
+                $"/api/exportinvoices/paging?DateCheckIn={request.DateCheckIn}&DateCheckOut={request.DateCheckOut}&StatusID={request.StatusID}");
             return data;
         }
         public async Task<ImportInvoiceVM> GetImportInvoiceByID(long id)
@@ -73,6 +76,11 @@ namespace PharmacySystem.APIIntergration
         {
             var data = await GetAsync<ExportInvoiceVM>($"/api/exportinvoices/details/{id}");
             return data;
+        }
+        public async Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long id)
+        {
+            var body = await GetAsync<RequestResponse>($"/api/importinvoices/procdetails/{id}");
+            return OutPutApi.OutPut<IInvoiceReportModels>(body);
         }
     }
 }

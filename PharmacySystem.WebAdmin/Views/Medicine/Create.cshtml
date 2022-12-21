@@ -35,19 +35,19 @@
                                         <div class="form-group row">
                                             <label for="MedicineName" class="col-sm-3 col-form-label">Medicine Name:</label>
                                             <div class="col-sm-9">
-                                                <input asp-for="MedicineName" id="MedicineName" class="form-control" type="text" id="example-search-input">
+                                                <input asp-for="MedicineName" id="MedicineName" class="form-control" type="text" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="ExpiryDate" class="col-sm-3 col-form-label">Expired Date:</label>
                                             <div class="col-sm-9">
-                                                <input asp-for="ExpiryDate" id="ExpiryDate" class="form-control" type="date" id="example-date-input">
+                                                <input asp-for="ExpiryDate" id="ExpiryDate" class="form-control" type="date" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="Supplier" class="col-sm-3 col-form-label">Supplier:</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control" id="Supplier" name="txtSupplier" asp-for="IdSupplier" asp-items="@(new SelectList(ViewBag.ListOfSupplier,"IdSupplier", "SupplierName"))">
+                                                <select class="form-control" id="Supplier" required name="txtSupplier" asp-for="IdSupplier" asp-items="@(new SelectList(ViewBag.ListOfSupplier,"IdSupplier", "SupplierName"))">
                                                     <option value="0">Select...</option>
                                                 </select>
                                             </div>
@@ -57,25 +57,25 @@
                                         <div class="form-group row">
                                             <label for="Quantity" class="col-sm-3 col-form-label">Quantity:</label>
                                             <div class="col-sm-9">
-                                                <input asp-for="Quantity" id="Quantity" class="form-control" type="number">
+                                                <input asp-for="Quantity" id="Quantity" class="form-control" type="number" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="Unit" class="col-sm-3 col-form-label">Unit:</label>
                                             <div class="col-sm-9">
-                                                <input asp-for="Unit" id="Unit" class="form-control" type="text">
+                                                <input asp-for="Unit" id="Unit" class="form-control" type="text" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="ImportPrice" class="col-sm-3 col-form-label">Import Price:</label>
                                             <div class="col-sm-9">
-                                                <input asp-for="ImportPrice" id="ImportPrice" class="form-control" type="text">
+                                                <input asp-for="ImportPrice" id="ImportPrice" class="form-control" type="text" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="SellPrice" class="col-sm-3 col-form-label">Sales Price:</label>
                                             <div class="col-sm-9">
-                                                <input asp-for="SellPrice" id="SellPrice" class="form-control" type="text">
+                                                <input asp-for="SellPrice" id="SellPrice" class="form-control" type="text" required>
                                             </div>
                                         </div>
                                     </div>

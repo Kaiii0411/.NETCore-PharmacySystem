@@ -34,7 +34,6 @@ namespace PharmacySystem.WebAdmin.Controllers
             var data = await _invoiceApiClient.GetExportInvoice(request);
             ViewBag.DateCheckIn = DateCheckIn;
             ViewBag.DateCheckOut = DateCheckOut;
-
             return View(data);
         }
         public async Task<IActionResult> Create()
@@ -81,7 +80,7 @@ namespace PharmacySystem.WebAdmin.Controllers
         public async Task<IActionResult> AddToInvoice(long id, int quantity)
         {
             var medicine = await _medicineApiClient.GetById(id);
-            var session = HttpContext.Session.GetString(SystemConstants.IInvoice);
+            var session = HttpContext.Session.GetString(SystemConstants.EInvoice);
             List<EInvoice> currentInvoice = new List<EInvoice>();
             if (session != null)
                 currentInvoice = JsonConvert.DeserializeObject<List<EInvoice>>(session);
@@ -107,6 +106,44 @@ namespace PharmacySystem.WebAdmin.Controllers
             }
             HttpContext.Session.SetString(SystemConstants.EInvoice, JsonConvert.SerializeObject(currentInvoice));
             return Ok(currentInvoice);
+        }
+        public IActionResult UpdateInvoice(int id, int quantity)
+        {
+            var session = HttpContext.Session.GetString(SystemConstants.EInvoice);
+            List<EInvoice> currentInvoice = new List<EInvoice>();
+            if (session != null)
+                currentInvoice = JsonConvert.DeserializeObject<List<EInvoice>>(session);
+
+            foreach (var item in currentInvoice)
+            {
+                if (item.IIdMedicine == id)
+                {
+                    if (quantity == 0)
+                    {
+                        currentInvoice.Remove(item);
+                        break;
+                    }
+                    item.IQuantity = quantity;
+                }
+            }
+
+            HttpContext.Session.SetString(SystemConstants.EInvoice, JsonConvert.SerializeObject(currentInvoice));
+            return Ok();
+        }
+        public IActionResult RemoveItemsInvoice(int id)
+        {
+            var session = HttpContext.Session.GetString(SystemConstants.EInvoice);
+            List<EInvoice> currentInvoice = new List<EInvoice>();
+            if (session != null)
+                currentInvoice = JsonConvert.DeserializeObject<List<EInvoice>>(session);
+            foreach (var item in currentInvoice.ToList())
+            {
+                if (item.IIdMedicine == id)
+                    currentInvoice.Remove(item);
+            }
+
+            HttpContext.Session.SetString(SystemConstants.EInvoice, JsonConvert.SerializeObject(currentInvoice));
+            return Ok();
         }
         private EInvoiceVM GetEInvoiceViewModel()
         {

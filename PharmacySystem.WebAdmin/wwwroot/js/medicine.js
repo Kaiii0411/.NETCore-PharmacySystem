@@ -1,4 +1,5 @@
-﻿function ShowDetails(id) {
+﻿
+function ShowDetails(id) {
     var Id = id;
     $.ajax({
         type: "POST",
@@ -19,6 +20,12 @@
 };
 
 $(document).ready(function () {
+
+    table = $("#datatablemedicine").DataTable();
+    $("refreshButton").on("click", function () {
+        table.ajax.reload(null, false);
+    });
+
     $('#btnSubmitCreateMedicine').click(function () {
 
         //declare
@@ -63,5 +70,6 @@ $(document).ready(function () {
             }
         })
     });
+    $('#medicine-create').parsley();
 });
 

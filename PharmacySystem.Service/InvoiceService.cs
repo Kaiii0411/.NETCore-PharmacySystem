@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PharmacySystem.Models;
 using PharmacySystem.Models.Common;
+using PharmacySystem.Models.ReportModels;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Models.ViewModels;
 using System;
@@ -21,6 +22,7 @@ namespace PharmacySystem.Service
         Task<PagedResult<ExportInvoiceVM>> GetExportInvoice(GetManageEInvoicePagingRequest request);
         Task<ImportInvoiceVM> GetImportInvoiceByID(long IdInvoice);
         Task<ExportInvoiceVM> GetExportInvoiceByID(long IdInvoice);
+        Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long IdInvoice);
     }
     public class InvoiceService : IInvoiceService
     {
@@ -62,14 +64,14 @@ namespace PharmacySystem.Service
             exportInvoice.IdAccount = request.IdAccount;
             exportInvoice.DateCheckIn = request.DateCheckIn;
             exportInvoice.DateCheckOut = request.DateCheckOut;
-            exportInvoice.Status.StatusId = request.StatusID;
+            exportInvoice.StatusId = request.StatusID;
             exportInvoice.Note = request.Note;
             _context.ExportInvoices.Add(exportInvoice);
             await _context.SaveChangesAsync();
             foreach (var item in request.InvoiceDetails)
             {
                 InvoiceDetail invoiceDetail = new InvoiceDetail();
-                invoiceDetail.IdImportInvoice = exportInvoice.IdExportInvoice;
+                invoiceDetail.IdExportInvoice = exportInvoice.IdExportInvoice;
                 invoiceDetail.IdMedicine = item.MedicineId;
                 invoiceDetail.Quantity = item.Quantity;
                 invoiceDetail.TotalPrice = item.TotalPrice;
@@ -240,6 +242,13 @@ namespace PharmacySystem.Service
                 invoiceDetails = listdetails
             }).FirstOrDefaultAsync();
             return invoiceDetails;
+        }
+
+        //store
+        public async Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long IdInvoice)
+        {
+            string StoreProc = "exec [dbo].[GetIInoviceDetails] " + "@id = " + IdInvoice;
+            return await _context.IInvoiceReportModels.FromSqlRaw(StoreProc).ToListAsync();
         }
     }
 }

@@ -1,0 +1,277 @@
+﻿html, body {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+
+#dataTables-view tr td:hover {
+    cursor: pointer;
+}
+
+table {
+    /*display: block;*/
+    margin: 0 auto;
+    overflow-x: auto;
+    /*white-space: nowrap;*/
+}
+
+.wrapper {
+    overflow-x: auto !important;
+    width: 100% !important;
+}
+
+.form-control {
+    height:34px !important;
+    /*height: calc(1.5em + 0.2rem) !important;*/
+}
+
+.po-page {
+    max-height: 100px;
+}
+
+.my_wizardV_p {
+    left: 0px !important;
+    width: 100% !important;
+}
+
+#tb_xe th {
+    font-family: Tahoma;
+    font-size: 12px;
+    background-color: #2184BE;
+    color: white;
+    vertical-align: middle !important;
+}
+
+#tb_xe td {
+    font-family: Tahoma;
+    font-size: 11px;
+    vertical-align: middle !important;
+    padding: 3px;
+}
+
+    #tb_xe td:hover {
+        cursor: pointer;
+    }
+
+#tb_xe > thead > tr > th,
+#tb_xe > tbody > tr > th,
+#tb_xe > tfoot > tr > th,
+#tb_xe > thead > tr > td,
+#tb_xe > tbody > tr > td,
+#tb_xe > tfoot > tr > td {
+    border: 1px solid rgb(221, 221, 221);
+}
+
+#tb_premium td:hover {
+    cursor: pointer;
+}
+
+#tb_premium th {
+    font-family: Tahoma;
+    font-size: 13px;
+    vertical-align: middle !important;
+    text-align: center !important;
+    background-color: #EEEEEE;
+}
+
+#tb_premium td {
+    font-family: Tahoma;
+    font-size: 12px;
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+#tb_premium tr {
+    height: 37px;
+}
+
+    #tb_premium tr td:first-child {
+        font-weight: bold;
+        text-align: left !important;
+        background-color: #428BCA;
+        color: #fff;
+    }
+
+        #tb_premium tr td:first-child:hover {
+            background-color: #3276B1;
+        }
+
+.clsTotaltd {
+    background-color: #3276B1 !important;
+    color: #fff !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+}
+
+.clsValueText {
+    text-align: right !important;
+}
+
+#tb_premium > thead > tr > th,
+#tb_premium > tbody > tr > th,
+#tb_premium > tfoot > tr > th,
+#tb_premium > thead > tr > td,
+#tb_premium > tbody > tr > td,
+#tb_premium > tfoot > tr > td {
+    border: 1px solid rgb(221, 221, 221);
+}
+
+.clsDisable {
+    cursor: not-allowed !important;
+    background-color: #eee !important;
+}
+
+.highlighted {
+    color: #261F1D;
+    background-color: #428bca;
+}
+
+.wizard > .content {
+    min-height: 1230px; /*950px !important;*/
+    overflow: auto;
+    margin-top: 35px !important;
+}
+
+    .wizard > .content > .body {
+        padding-top: 6px !important;
+    }
+
+.wizard > .steps .number {
+    font-size: 13px !important;
+}
+
+.classbutton {
+    padding: 3px 12px;
+    font-size: 10px;
+    /*margin-right:4px;*/
+}
+
+.text_type {
+    color: blue;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+}
+
+
+
+.clsSpanText {
+    color: red;
+    font-weight: normal !important;
+}
+
+div.inner {
+    min-height: 0px !important;
+}
+
+.clsDisplayText {
+    height: 20px;
+    display: block !important;
+}
+
+.clsUnDisplayText {
+    height: 20px;
+    display: none !important;
+}
+
+#tb_where th {
+    font-family: Tahoma;
+    font-size: 12px;
+    background-color: #2184BE;
+    color: white;
+    vertical-align: middle !important;
+}
+
+#tb_where td {
+    font-family: Tahoma;
+    font-size: 11px;
+    vertical-align: middle !important;
+    padding: 3px;
+}
+
+    #tb_where td:hover {
+        cursor: pointer;
+    }
+
+#tb_where > thead > tr > th,
+#tb_where > tbody > tr > th,
+#tb_where > tfoot > tr > th,
+#tb_where > thead > tr > td,
+#tb_where > tbody > tr > td,
+#tb_where > tfoot > tr > td {
+    border: 1px solid rgb(221, 221, 221);
+}
+
+
+
+#tb_import th {
+    font-family: Tahoma;
+    font-size: 12px;
+    background-color: #2184BE;
+    color: white;
+    vertical-align: middle !important;
+}
+
+#tb_import td {
+    font-family: Tahoma;
+    font-size: 11px;
+    vertical-align: middle !important;
+    padding: 3px;
+}
+
+    #tb_import td:hover {
+        cursor: pointer;
+    }
+
+#tb_import > thead > tr > th,
+#tb_import > tbody > tr > th,
+#tb_import > tfoot > tr > th,
+#tb_import > thead > tr > td,
+#tb_import > tbody > tr > td,
+#tb_import > tfoot > tr > td {
+    border: 1px solid rgb(221, 221, 221);
+    height: 23px !important;
+}
+
+#tb_import.table-hover > tbody > tr:hover > td,
+#tb_import.table-hover > tbody > tr:hover > th {
+    background-color: #E6F2FB !important;
+    color: #261F1D;
+}
+
+.clsHeighttd {
+    height: 23px;
+}
+
+.clsoverflow {
+    overflow: auto;
+    height: 390px;
+}
+
+.clsUnDisplayInput {
+    display: none !important;
+}
+
+.clsDisplayInput {
+    display: normal !important;
+}
+
+.select2-selection__rendered {
+    line-height: 31px !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 35px !important;
+}
+
+.select2-selection__arrow {
+    height: 34px !important;
+}
+
+.datepicker {
+    margin-top: 0px !important;
+}
+
+.tab-content {
+    border: 0px;
+}

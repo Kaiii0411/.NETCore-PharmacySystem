@@ -1,4 +1,9 @@
-﻿function EnableUpdate() {
+﻿function Refresh() {
+    table = $("#datatablemedicine").DataTable();
+    table.ajax.reload(null, false);
+};
+
+function EnableUpdate() {
     document.getElementById("MedicineGroup").disabled = false;
     document.getElementById("MedicineName").disabled = false;
     document.getElementById("ExpiryDate").disabled = false;
@@ -31,6 +36,8 @@ function DisableUpdate() {
 }
 
 $(document).ready(function () {
+
+
     $('#btnConfirmUpdateMedicine').click(function () {
 
         //declare
@@ -67,7 +74,6 @@ $(document).ready(function () {
                 if (rs == 0) {
                     alertify.success("Done!");
                     DisableUpdate();
-                    $("#datatablemedicine").load(window.location + " #datatablemedicine");
                 }
                 else {
                     alertify.error("Error!");

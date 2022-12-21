@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PharmacySystem.Models;
+using PharmacySystem.Models.ReportModels;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Models.ViewModels;
 using PharmacySystem.Service;
@@ -70,6 +72,36 @@ namespace PharmacySystem.WebAPI.Controllers
             if (invoice == null)
                 return BadRequest("Cannot find invoice");
             return Ok(invoice);
+        }
+        [HttpGet("procdetails/{invoiceId}")]
+        public async Task<RequestResponse> GetListIInvoiceDetails(long invoiceId)
+        {
+            try
+            {
+                List<IInvoiceReportModels> iinvocieDetails = await _InvoiceService.ProcGetImportInvoiceById(invoiceId);
+                if (iinvocieDetails != null && iinvocieDetails.Any())
+                {
+                    return new RequestResponse
+                    {
+                        StatusCode = Code.Success,
+                        Content = JsonConvert.SerializeObject(iinvocieDetails)
+                    };
+                }
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = string.Empty
+                };
+            }
+            catch (Exception ex)
+            {
+                string errorDetail = ex.InnerException != null ? ex.InnerException.ToString() : ex.Message.ToString();
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = errorDetail
+                };
+            }
         }
     }
 }

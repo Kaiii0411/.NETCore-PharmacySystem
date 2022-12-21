@@ -72,7 +72,7 @@
                                         <td>@item.UserName</td>
                                         <td>@item.Note</td>
                                         <td>
-                                            <a asp-controller="ImportInvoice" asp-action="Details" asp-route-id="@item.IdExportInvoice" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
+                                            <a asp-controller="ExportInvoice" asp-action="Details" asp-route-id="@item.IdExportInvoice" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
                                             <a asp-controller="Medicine" asp-action="Delete" asp-route-id="@item.IdExportInvoice" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></a>
                                         </td>
                                     </tr>

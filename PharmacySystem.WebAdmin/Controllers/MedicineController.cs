@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PharmacySystem.APIIntergration;
+using PharmacySystem.Models;
+using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
+using PharmacySystem.Models.ViewModels;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
@@ -129,6 +132,12 @@ namespace PharmacySystem.WebAdmin.Controllers
                 }
             }
             return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public async Task<List<Medicine>> GetList()
+        {
+            var data = await _medicineApiClient.GetListMedicine();
+            return data;
         }
     }
 }

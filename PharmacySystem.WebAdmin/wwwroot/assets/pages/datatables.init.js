@@ -30,4 +30,26 @@ $(document).ready(function() {
 
     table.buttons().container()
         .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+
+    var tablemedicine = $('#datatablemedicine').DataTable({
+        dom: 'Bfrtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true,
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'MedicinesList',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'MedicinesList',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+        ]
+        //buttons: ['copy', 'excel', 'pdf', 'colvis']
+    });
 } );

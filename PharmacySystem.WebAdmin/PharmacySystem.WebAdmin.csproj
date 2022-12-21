@@ -7,12 +7,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Reports\IInvoiceReport.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Reports\IInvoiceReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+    <PackageReference Include="AspNetCore.ReportViewer" Version="3.0.0.200103" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.WebForms" Version="150.1537.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PharmacySystem.APIIntergration\PharmacySystem.APIIntergration.csproj" />
     <ProjectReference Include="..\PharmacySystem.Models\PharmacySystem.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Reports\IInvoiceReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
