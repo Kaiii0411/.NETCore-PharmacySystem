@@ -105,5 +105,13 @@ namespace PharmacySystem.WebAPI.Controllers
             var supplierGroups = await _SupplierGroupService.Get(request);
             return Ok(supplierGroups);
         }
+        [HttpGet("details/{supplierGroupId}")]
+        public async Task<IActionResult> GetById(int supplierGroupId)
+        {
+            var supllierGroup = await _SupplierGroupService.GetByID(supplierGroupId);
+            if (supllierGroup == null)
+                return BadRequest("Cannot find supplier group");
+            return Ok(supllierGroup);
+        }
     }
 }

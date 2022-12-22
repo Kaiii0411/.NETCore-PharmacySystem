@@ -14,6 +14,6 @@ namespace PharmacySystem.Models
 
         public virtual ExportInvoice? IdExportInvoiceNavigation { get; set; }
         public virtual ImportInvoice? IdImportInvoiceNavigation { get; set; }
-        public virtual Medicine? IdMedicineNavigation { get; set; }
+        public virtual Medicine IdMedicineNavigation { get; set; } = null!;
     }
 }

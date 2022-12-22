@@ -17,7 +17,7 @@ namespace PharmacySystem.Models
         public int StatusId { get; set; }
         public string? Note { get; set; }
 
-        public virtual Account IdAccountNavigation { get; set; } = null!;
+        public virtual User IdAccountNavigation { get; set; } = null!;
         public virtual Status Status { get; set; } = null!;
         public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }
     }

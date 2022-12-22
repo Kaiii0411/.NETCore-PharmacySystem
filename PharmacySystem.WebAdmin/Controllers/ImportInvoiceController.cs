@@ -85,6 +85,7 @@ namespace PharmacySystem.WebAdmin.Controllers
             {
                 IdAccount = 1,
                 DateCheckIn = DateTime.Now,
+                DateCheckOut = null,
                 StatusID = 1,
                 Note = CreateIInvoiceForm.Note,
                 IdSupplier = CreateIInvoiceForm.IdSupplier,

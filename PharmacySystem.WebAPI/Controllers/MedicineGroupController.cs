@@ -105,6 +105,13 @@ namespace PharmacySystem.WebAPI.Controllers
             var medicineGroups = await _MedicineGroupService.Get(request);
             return Ok(medicineGroups);
         }
-
+        [HttpGet("details/{medicineGroupId}")]
+        public async Task<IActionResult> GetById(int medicineGroupId)
+        {
+            var medicineGroup = await _MedicineGroupService.GetByID(medicineGroupId);
+            if (medicineGroup == null)
+                return BadRequest("Cannot find medicine group");
+            return Ok(medicineGroup);
+        }
     }
 }

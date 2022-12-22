@@ -25,13 +25,12 @@ $(document).ready(function() {
                 title: 'MedicinesList'
             },
         ]
-        //buttons: ['copy', 'excel', 'pdf', 'colvis']
     });
 
     table.buttons().container()
         .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 
-    var tablemedicine = $('#datatablemedicine').DataTable({
+    $('#datatablemedicine').DataTable({
         dom: 'Bfrtip',
         lengthChange: false,
         searching: false,
@@ -41,15 +40,95 @@ $(document).ready(function() {
         buttons: [
             {
                 extend: 'excelHtml5',
-                title: 'MedicinesList',
+                title: 'Medicines-List',
                 className: 'btn btn-primary btn-lg waves-effect waves-light'
             },
             {
                 extend: 'pdfHtml5',
-                title: 'MedicinesList',
+                title: 'Medicines-List',
                 className: 'btn btn-primary btn-lg waves-effect waves-light'
             },
         ]
-        //buttons: ['copy', 'excel', 'pdf', 'colvis']
+    });
+
+    $('#datatablesupplier').DataTable({
+        dom: 'Bfrtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true,
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Supplier-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Supplier-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+        ]
+    });
+
+    $('#datatablesuppliergroup').DataTable({
+        dom: 'frtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true
+    });
+
+    $('#datatablemedicinegroup').DataTable({
+        dom: 'frtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true
+    });
+
+    $('#datatableimportinvoice').DataTable({
+        dom: 'Bfrtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true,
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'ImportInvoice-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'ImportInvoice-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+        ]
+    });
+
+    $('#datatableexportinvoice').DataTable({
+        dom: 'Bfrtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true,
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'ExportInvoice-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'ExportInvoice-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+        ]
     });
 } );

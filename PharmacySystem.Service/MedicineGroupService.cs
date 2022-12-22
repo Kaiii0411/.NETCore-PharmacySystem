@@ -20,6 +20,7 @@ namespace PharmacySystem.Service
         Task<long> Delete(long medicineGroupId);
         Task<IEnumerable<MedicineGroup>> GetListMedicineGroup();
         Task<PagedResult<MedicineGroup>> Get(GetManageKeywordPagingRequest request);
+        Task<MedicineGroup> GetByID(long MedicineGroupId);
     }
     public class MedicineGroupService : IMedicineGroupService
     {
@@ -90,6 +91,17 @@ namespace PharmacySystem.Service
                 Items = data
             };
             return pagedResult;
+        }
+        public async Task<MedicineGroup> GetByID(long MedicineGroupId)
+        {
+            var medicineGroup = await _context.MedicineGroups.FindAsync(MedicineGroupId);
+            var medicineGroupDetails = new MedicineGroup()
+            {
+                IdMedicineGroup = MedicineGroupId,
+                MedicineGroupName = medicineGroup.MedicineGroupName,
+                Note = medicineGroup.Note
+            };
+            return medicineGroupDetails;
         }
     }
 }

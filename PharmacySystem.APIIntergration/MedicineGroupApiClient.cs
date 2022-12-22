@@ -20,6 +20,7 @@ namespace PharmacySystem.APIIntergration
         Task<int> UpdateMedicineGroup(MedicineGroupUpdateRequest request);
         Task<bool> DeleteMedicineGroup(long id);
         Task<PagedResult<MedicineGroupVM>> Get(GetManageKeywordPagingRequest request);
+        Task<MedicineGroup> GetById(long id);
     }
     public class MedicineGroupApiClient: BaseApiClient, IMedicineGroupApiClient
     {
@@ -49,6 +50,11 @@ namespace PharmacySystem.APIIntergration
         {
             var data = await GetAsync<PagedResult<MedicineGroupVM>>(
                 $"/api/medicinegroup/paging?Keyword={request.Keyword}");
+            return data;
+        }
+        public async Task<MedicineGroup> GetById(long id)
+        {
+            var data = await GetAsync<MedicineGroup>($"/api/medicinegroup/details/{id}");
             return data;
         }
     }

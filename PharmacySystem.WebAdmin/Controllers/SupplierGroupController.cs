@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PharmacySystem.APIIntergration;
+using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
 
 namespace PharmacySystem.WebAdmin.Controllers
@@ -35,6 +36,53 @@ namespace PharmacySystem.WebAdmin.Controllers
                 }
             }
             return Json(1);
+        }
+        public async Task<IActionResult> Edit(long id)
+        {
+            var supplierGroup = await _supplierGroupApiClient.GetById(id);
+            var details = new SupplierGroupUpdateRequest()
+            {
+                IdSupplierGroup = supplierGroup.IdSupplierGroup,
+                SupplierGroupName = supplierGroup.SupplierGroupName,
+                Note = supplierGroup.Note
+            };
+            return View(details);
+        }
+        [HttpPut]
+        public async Task<JsonResult> Edit([FromForm] SupplierGroupUpdateRequest UpdateSupplierGroupForm)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _supplierGroupApiClient.UpdateSupplierGroup(UpdateSupplierGroupForm);
+                if (result == 0)
+                {
+                    return Json(0);
+                }
+            }
+            return Json(1);
+        }
+        public async Task<IActionResult> Delete(long id)
+        {
+            var supplierGroup = await _supplierGroupApiClient.GetById(id);
+            return View(new SupplierGroupDeleteRequest()
+            {
+                IdSupplierGroup = supplierGroup.IdSupplierGroup,
+                SupplierGroupName = supplierGroup.SupplierGroupName,
+            });
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(SupplierGroupDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _supplierGroupApiClient.DeleteSupplierGroup(request.IdSupplierGroup);
+
+            if (result)
+            {
+                return Json(new { result = "Redirect", url = Url.Action("Index", "SupplierGroup") });
+            }
+            return View(request);
         }
     }
 }

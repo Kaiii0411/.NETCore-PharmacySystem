@@ -19,6 +19,7 @@ namespace PharmacySystem.Service
         Task<long> Delete(long supplierGroupId);
         Task<IEnumerable<SupplierGroup>> GetListSupplierGroup();
         Task<PagedResult<SupplierGroup>> Get(GetManageKeywordPagingRequest request);
+        Task<SupplierGroup> GetByID(long SupplierGroupId);
     }
     public class SupplierGroupService : ISupplierGroupService
     {
@@ -89,6 +90,16 @@ namespace PharmacySystem.Service
             };
             return pagedResult;
         }
-
+        public async Task<SupplierGroup> GetByID(long SupplierGroupId)
+        {
+            var supllierGroup = await _context.SupplierGroups.FindAsync(SupplierGroupId);
+            var supllierGroupDetails = new SupplierGroup()
+            {
+                IdSupplierGroup = SupplierGroupId,
+                SupplierGroupName = supllierGroup.SupplierGroupName,
+                Note = supllierGroup.Note
+            };
+            return supllierGroupDetails;
+        }
     }
 }

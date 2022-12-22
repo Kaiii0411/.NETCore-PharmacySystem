@@ -7,7 +7,7 @@ namespace PharmacySystem.Models
     {
         public staff()
         {
-            Accounts = new HashSet<Account>();
+            Users = new HashSet<User>();
         }
 
         public long IdStaff { get; set; }
@@ -19,6 +19,6 @@ namespace PharmacySystem.Models
         public long? IdStore { get; set; }
 
         public virtual Store? IdStoreNavigation { get; set; }
-        public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

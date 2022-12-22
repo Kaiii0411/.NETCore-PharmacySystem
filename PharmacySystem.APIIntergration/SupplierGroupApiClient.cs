@@ -20,6 +20,7 @@ namespace PharmacySystem.APIIntergration
         Task<bool> DeleteSupplierGroup(long id);
         Task<List<SupplierGroup>> GetListSupplierGroup();
         Task<PagedResult<SupplierGroupVM>> Get(GetManageKeywordPagingRequest request);
+        Task<SupplierGroup> GetById(long id);
     }
     public class SupplierGroupApiClient: BaseApiClient, ISupplierGroupApiClient
     {
@@ -49,6 +50,11 @@ namespace PharmacySystem.APIIntergration
         {
             var data = await GetAsync<PagedResult<SupplierGroupVM>>(
                 $"/api/suppliergroup/paging?Keyword={request.Keyword}");
+            return data;
+        }
+        public async Task<SupplierGroup> GetById(long id)
+        {
+            var data = await GetAsync<SupplierGroup>($"/api/suppliergroup/details/{id}");
             return data;
         }
     }

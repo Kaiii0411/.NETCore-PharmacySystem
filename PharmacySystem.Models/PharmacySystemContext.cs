@@ -17,17 +17,23 @@ namespace PharmacySystem.Models
         {
         }
 
-        public virtual DbSet<Account> Accounts { get; set; } = null!;
         public virtual DbSet<ExportInvoice> ExportInvoices { get; set; } = null!;
         public virtual DbSet<ImportInvoice> ImportInvoices { get; set; } = null!;
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; } = null!;
         public virtual DbSet<Medicine> Medicines { get; set; } = null!;
         public virtual DbSet<MedicineGroup> MedicineGroups { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<RoleClaim> RoleClaims { get; set; } = null!;
         public virtual DbSet<Status> Statuses { get; set; } = null!;
         public virtual DbSet<Store> Stores { get; set; } = null!;
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;
         public virtual DbSet<SupplierGroup> SupplierGroups { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<UserClaim> UserClaims { get; set; } = null!;
+        public virtual DbSet<UserLogin> UserLogins { get; set; } = null!;
+        public virtual DbSet<UserToken> UserTokens { get; set; } = null!;
         public virtual DbSet<staff> staff { get; set; } = null!;
+
 
         //
         public virtual DbSet<IInvoiceReportModels> IInvoiceReportModels { get; set; } = null!;
@@ -36,28 +42,13 @@ namespace PharmacySystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-O9JPNLU\\SQLEXPRESS;Database=PharmacySystem;User Id=sa;Password=0411;Trusted_Connection=True;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=PharmacySystem;Trusted_Connection=True;Integrated Security=True;MultipleActiveResultSets=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Account>(entity =>
-            {
-                entity.HasKey(e => e.IdAccount);
-
-                entity.ToTable("Account");
-
-                entity.Property(e => e.Password).HasMaxLength(1000);
-
-                entity.Property(e => e.UserName).HasMaxLength(100);
-
-                entity.HasOne(d => d.IdStaffNavigation)
-                    .WithMany(p => p.Accounts)
-                    .HasForeignKey(d => d.IdStaff)
-                    .HasConstraintName("FK_Account_Staff");
-            });
-
             modelBuilder.Entity<ExportInvoice>(entity =>
             {
                 entity.HasKey(e => e.IdExportInvoice);
@@ -76,7 +67,7 @@ namespace PharmacySystem.Models
                     .WithMany(p => p.ExportInvoices)
                     .HasForeignKey(d => d.IdAccount)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ExportInvoice_Account");
+                    .HasConstraintName("FK_ExportInvoice_Users");
 
                 entity.HasOne(d => d.Status)
                     .WithMany(p => p.ExportInvoices)
@@ -103,7 +94,7 @@ namespace PharmacySystem.Models
                     .WithMany(p => p.ImportInvoices)
                     .HasForeignKey(d => d.IdAccount)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ImportInvoice_Account");
+                    .HasConstraintName("FK_ImportInvoice_Users");
 
                 entity.HasOne(d => d.IdSupplierNavigation)
                     .WithMany(p => p.ImportInvoices)
@@ -135,6 +126,7 @@ namespace PharmacySystem.Models
                 entity.HasOne(d => d.IdMedicineNavigation)
                     .WithMany(p => p.InvoiceDetails)
                     .HasForeignKey(d => d.IdMedicine)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_InvoiceDetails_Medicine");
             });
 
@@ -174,6 +166,28 @@ namespace PharmacySystem.Models
                 entity.Property(e => e.MedicineGroupName).HasMaxLength(200);
 
                 entity.Property(e => e.Note).HasMaxLength(300);
+            });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
+                    .IsUnique()
+                    .HasFilter("([NormalizedName] IS NOT NULL)");
+
+                entity.Property(e => e.Description).HasMaxLength(300);
+
+                entity.Property(e => e.Name).HasMaxLength(256);
+
+                entity.Property(e => e.NormalizedName).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<RoleClaim>(entity =>
+            {
+                entity.HasIndex(e => e.RoleId, "IX_RoleClaims_RoleId");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.RoleClaims)
+                    .HasForeignKey(d => d.RoleId);
             });
 
             modelBuilder.Entity<Status>(entity =>
@@ -242,6 +256,73 @@ namespace PharmacySystem.Models
                 entity.Property(e => e.Note).HasMaxLength(300);
 
                 entity.Property(e => e.SupplierGroupName).HasMaxLength(200);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
+
+                entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
+                    .IsUnique()
+                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
+
+                entity.Property(e => e.Email).HasMaxLength(256);
+
+                entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
+
+                entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
+
+                entity.Property(e => e.UserName).HasMaxLength(256);
+
+                entity.HasOne(d => d.IdStaffNavigation)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.IdStaff)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Users_Staff1");
+
+                entity.HasMany(d => d.Roles)
+                    .WithMany(p => p.Users)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "UserRole",
+                        l => l.HasOne<Role>().WithMany().HasForeignKey("RoleId"),
+                        r => r.HasOne<User>().WithMany().HasForeignKey("UserId"),
+                        j =>
+                        {
+                            j.HasKey("UserId", "RoleId");
+
+                            j.ToTable("UserRoles");
+
+                            j.HasIndex(new[] { "RoleId" }, "IX_UserRoles_RoleId");
+                        });
+            });
+
+            modelBuilder.Entity<UserClaim>(entity =>
+            {
+                entity.HasIndex(e => e.UserId, "IX_UserClaims_UserId");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserClaims)
+                    .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<UserLogin>(entity =>
+            {
+                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+
+                entity.HasIndex(e => e.UserId, "IX_UserLogins_UserId");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserLogins)
+                    .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<UserToken>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserTokens)
+                    .HasForeignKey(d => d.UserId);
             });
 
             modelBuilder.Entity<staff>(entity =>

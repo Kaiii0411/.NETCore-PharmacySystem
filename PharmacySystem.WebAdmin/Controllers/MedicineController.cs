@@ -5,6 +5,7 @@ using PharmacySystem.Models;
 using PharmacySystem.Models.Common;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Models.ViewModels;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
@@ -74,7 +75,6 @@ namespace PharmacySystem.WebAdmin.Controllers
             }
             return Json(1);
         }
-        [HttpPost]
         public async Task<IActionResult> Edit(long id)
         {
             var medicine = await _medicineApiClient.GetById(id);
@@ -106,7 +106,7 @@ namespace PharmacySystem.WebAdmin.Controllers
                 Value = x.IdSupplier.ToString(),
                 Selected = medicine.IdSupplier == x.IdSupplier
             });
-            return PartialView("_Edit", details);
+            return View(details);
         }
         [HttpPut]
         public async Task<JsonResult> Edit([FromForm] MedicineUpdateRequest UpdateMedicineForm)
@@ -123,15 +123,45 @@ namespace PharmacySystem.WebAdmin.Controllers
         }
         public async Task<IActionResult> Delete(long id)
         {
-            if(ModelState.IsValid)
+            var medicine = await _medicineApiClient.GetById(id);
+            var medicineGroupList = await _medicineGroupApiClient.GetListMedicineGroup();
+            ViewBag.ListOfMedicineGroup = medicineGroupList.Select(x => new SelectListItem()
             {
-                var result = await _medicineApiClient.DeleteMedicine(id);
-                if(result == true)
-                {
-                    return RedirectToAction(nameof(Index));
-                }
+                Text = x.MedicineGroupName,
+                Value = x.IdMedicineGroup.ToString(),
+                Selected = medicine.IdMedicineGroup == x.IdMedicineGroup
+            });
+            var supplierList = await _supplierApiClient.GetListSupplier();
+            ViewBag.ListOfSupplier = supplierList.Select(x => new SelectListItem()
+            {
+                Text = x.SupplierName,
+                Value = x.IdSupplier.ToString(),
+                Selected = medicine.IdSupplier == x.IdSupplier
+            });
+            return View( new MedicineDeleteRequest() 
+            {
+                IdMedicine = medicine.IdMedicine,
+                MedicineName = medicine.MedicineName,
+                IdMedicineGroup = medicine.IdMedicineGroup,
+                Unit = medicine.Unit,
+                SellPrice = medicine.SellPrice,
+                ImportPrice = medicine.ImportPrice,
+                IdSupplier = medicine.IdSupplier
+            });
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(MedicineDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _medicineApiClient.DeleteMedicine(request.IdMedicine);
+
+            if (result)
+            {
+                return Json(new { result = "Redirect", url = Url.Action("Index", "Medicine") });
             }
-            return RedirectToAction(nameof(Index));
+            return View(request);
         }
         [HttpGet]
         public async Task<List<Medicine>> GetList()

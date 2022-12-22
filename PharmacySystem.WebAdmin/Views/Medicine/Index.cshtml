@@ -3,7 +3,6 @@
 <div class="page-content-wrapper ">
 
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-sm-12">
                 <div class="float-right page-breadcrumb">
@@ -43,11 +42,6 @@
                                 <div class="col-md-2 m-t-33">
                                     <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">
                                         <i class="fa fa-search"></i> Search</button>
-                                </div>
-                                <div class="col-md-2 m-t-33">
-                                    <button id="refreshButton" class="btn btn-primary btn-lg waves-effect waves-light">
-                                        <i class="fa fa-search"></i> Refesh
-                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -90,7 +84,7 @@
                                         <td>@item.SellPrice</td>
                                         <td>@item.Description</td>
                                         <td>
-                                            <button href="javascript:;" class="details btn btn-primary waves-effect waves-light" onclick="ShowDetails(@item.IdMedicine)"><div><i class="fa fa-eye"></i></div></button>
+                                            <a asp-controller="Medicine" asp-action="Edit" asp-route-id="@item.IdMedicine" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
                                             <a asp-controller="Medicine" asp-action="Delete" asp-route-id="@item.IdMedicine" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></a>
                                         </td>
                                     </tr>
@@ -127,3 +121,5 @@
 
 </div> <!-- Page content Wrapper -->
 <script src="~/js/medicine.js"></script>
+<script src="~/js/medicine/list.js"></script>
+

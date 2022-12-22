@@ -102,7 +102,7 @@ namespace PharmacySystem.Service
         {
             var query = from i in _context.ImportInvoices
                         join id in _context.InvoiceDetails on i.IdImportInvoice equals id.IdImportInvoice
-                        join a in _context.Accounts on i.IdAccount equals a.IdAccount
+                        join a in _context.Users on i.IdAccount equals a.Id
                         join s in _context.Suppliers on i.IdSupplier equals s.IdSupplier
                         join st in _context.Statuses on i.StatusId equals st.StatusId
                         select new { i, id, s, st ,a};
@@ -152,7 +152,7 @@ namespace PharmacySystem.Service
         {
             var query = from e in _context.ExportInvoices
                         join id in _context.InvoiceDetails on e.IdExportInvoice equals id.IdExportInvoice
-                        join a in _context.Accounts on e.IdAccount equals a.IdAccount
+                        join a in _context.Users on e.IdAccount equals a.Id
                         join st in _context.Statuses on e.StatusId equals st.StatusId
                         select new { e, id, st, a };
 
@@ -196,7 +196,7 @@ namespace PharmacySystem.Service
         {
             var query = from i in _context.ImportInvoices
                         join id in _context.InvoiceDetails on i.IdImportInvoice equals id.IdImportInvoice
-                        join a in _context.Accounts on i.IdAccount equals a.IdAccount
+                        join a in _context.Users on i.IdAccount equals a.Id
                         join s in _context.Suppliers on i.IdSupplier equals s.IdSupplier
                         join st in _context.Statuses on i.StatusId equals st.StatusId
                         select new { i, id, s, st, a };
@@ -223,7 +223,7 @@ namespace PharmacySystem.Service
         {
             var query = from i in _context.ExportInvoices
                         join id in _context.InvoiceDetails on i.IdExportInvoice equals id.IdExportInvoice
-                        join a in _context.Accounts on i.IdAccount equals a.IdAccount
+                        join a in _context.Users on i.IdAccount equals a.Id
                         join st in _context.Statuses on i.StatusId equals st.StatusId
                         select new { i, id, st, a };
 

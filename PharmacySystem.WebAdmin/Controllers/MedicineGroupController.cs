@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PharmacySystem.APIIntergration;
+using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
+using PharmacySystem.Models.ViewModels;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
@@ -35,6 +37,53 @@ namespace PharmacySystem.WebAdmin.Controllers
                 }
             }
             return Json(1);
+        }
+        public async Task<IActionResult> Edit(long id)
+        {
+            var medicineGroup = await _medicineGroupApiClient.GetById(id);
+            var details = new MedicineGroupUpdateRequest()
+            {
+                IdMedicineGroup = medicineGroup.IdMedicineGroup,
+                MedicineGroupName = medicineGroup.MedicineGroupName,
+                Note = medicineGroup.Note
+            };
+            return View(details);
+        }
+        [HttpPut]
+        public async Task<JsonResult> Edit([FromForm] MedicineGroupUpdateRequest UpdateMedicineGroupForm)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _medicineGroupApiClient.UpdateMedicineGroup(UpdateMedicineGroupForm);
+                if (result == 0)
+                {
+                    return Json(0);
+                }
+            }
+            return Json(1);
+        }
+        public async Task<IActionResult> Delete(long id)
+        {
+            var medicineGroup = await _medicineGroupApiClient.GetById(id);
+            return View(new MedicineGroupDeleteRequest()
+            {
+                IdMedicineGroup = medicineGroup.IdMedicineGroup,
+                MedicineGroupName = medicineGroup.MedicineGroupName
+            });
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(MedicineGroupDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _medicineGroupApiClient.DeleteMedicineGroup(request.IdMedicineGroup);
+
+            if (result)
+            {
+                return Json(new { result = "Redirect", url = Url.Action("Index", "MedicineGroup") });
+            }
+            return View(request);
         }
     }
 }

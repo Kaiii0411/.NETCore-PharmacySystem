@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PharmacySystem.DataAccess.Repositorys;
 using PharmacySystem.Models;
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PharmacySystemContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PharmacySystemDB")));
 
+
 //Service
 #region Services
 builder.Services.AddHttpClient();
@@ -19,6 +21,7 @@ builder.Services.AddTransient<IMedicineGroupService, MedicineGroupService>();
 builder.Services.AddTransient<IStoreService, StoreService>();
 builder.Services.AddTransient<ISupplierService, SupplierService>();
 builder.Services.AddTransient<ISupplierGroupService, SupplierGroupService>();
+builder.Services.AddTransient<IStaffService, StaffService>();
 builder.Services.AddTransient<IInvoiceService, InvoiceService>();
 builder.Services.AddTransient<IInvoiceDetailsService, InvoiceDetailsService>();
 #endregion
@@ -29,6 +32,9 @@ builder.Services.AddTransient<IMedicineRepo, MedicineRepo>();
 builder.Services.AddTransient<IMedicineGroupRepo, MedicineGroupRepo>();
 builder.Services.AddTransient<ISupplierRepo, SupplierRepo>();
 builder.Services.AddTransient<ISupplierGroupRepo, SupplierGroupRepo>();
+builder.Services.AddTransient<IStoreRepo, StoreRepo>();
+builder.Services.AddTransient<IStaffRepo, StaffRepo>();
+
 builder.Services.AddTransient<IImportInvoiceRepo, ImportInvoiceRepo>();
 builder.Services.AddTransient<IExportInvoiceRepo, ExportInvoiceRepo>();
 
@@ -51,6 +57,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
