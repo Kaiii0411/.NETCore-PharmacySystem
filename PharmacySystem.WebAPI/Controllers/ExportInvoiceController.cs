@@ -2,6 +2,7 @@
 using PharmacySystem.Models.Request;
 using PharmacySystem.Models;
 using PharmacySystem.Service;
+using PharmacySystem.WebAPI.Models;
 
 namespace PharmacySystem.WebAPI.Controllers
 {

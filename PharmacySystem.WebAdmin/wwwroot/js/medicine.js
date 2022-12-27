@@ -42,10 +42,6 @@ $(document).ready(function () {
         ]
     });
 
-    $("refreshButton").on("click", function () {
-        table.ajax.reload(null, false);
-    });
-
     $('#btnSubmitCreateMedicine').click(function () {
 
         //declare

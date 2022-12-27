@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,10 +55,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IInvoiceDetailsDataSet.Designer.cs">
+    <Compile Include="GetIInoviceDetails_Result.cs">
+      <DependentUpon>ModelTest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IInvoiceDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IInvoiceDetailsDataSet.xsd</DependentUpon>
+      <DependentUpon>IInvoiceDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ModelTest.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTest.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelTest.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelTest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTest.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,17 +90,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="IInvoiceDetailsDataSet.xsc">
-      <DependentUpon>IInvoiceDetailsDataSet.xsd</DependentUpon>
+    <None Include="IInvoiceDataSet.xsc">
+      <DependentUpon>IInvoiceDataSet.xsd</DependentUpon>
     </None>
-    <None Include="IInvoiceDetailsDataSet.xsd">
+    <None Include="IInvoiceDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>IInvoiceDetailsDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>IInvoiceDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="IInvoiceDetailsDataSet.xss">
-      <DependentUpon>IInvoiceDetailsDataSet.xsd</DependentUpon>
+    <None Include="IInvoiceDataSet.xss">
+      <DependentUpon>IInvoiceDataSet.xsd</DependentUpon>
     </None>
+    <EntityDeploy Include="ModelTest.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelTest.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelTest.edmx.diagram">
+      <DependentUpon>ModelTest.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -86,6 +121,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelTest.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelTest.Context.cs</LastGenOutput>
+      <DependentUpon>ModelTest.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModelTest.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTest.edmx</DependentUpon>
+      <LastGenOutput>ModelTest.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

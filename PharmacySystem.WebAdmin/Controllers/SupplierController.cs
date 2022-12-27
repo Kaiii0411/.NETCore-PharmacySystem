@@ -5,7 +5,7 @@ using PharmacySystem.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PharmacySystem.Models.ViewModels;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
-using System.Web.Helpers;
+using PharmacySystem.Models.Common;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
@@ -14,14 +14,17 @@ namespace PharmacySystem.WebAdmin.Controllers
         private readonly ISupplierApiClient _supplierApiClient;
         private readonly ISupplierGroupApiClient _supplierGroupApiClient;
         private readonly IConfiguration _configuration;
+        private readonly IInvoiceApiClient _invoiceApiClient;
 
         public SupplierController(ISupplierApiClient supplierApiClient
             , IConfiguration configuration
-            , ISupplierGroupApiClient supplierGroupApiClient)
+            , ISupplierGroupApiClient supplierGroupApiClient
+            , IInvoiceApiClient invoiceApiClient)
         {
             this._supplierApiClient = supplierApiClient;
             this._configuration = configuration;
             this._supplierGroupApiClient = supplierGroupApiClient;
+            this._invoiceApiClient = invoiceApiClient;
         }
         //Index
         public async Task<IActionResult> Index(string? Keyword, long? IdSupplierGroup)
@@ -77,7 +80,7 @@ namespace PharmacySystem.WebAdmin.Controllers
                 IdSupplierGroup = supplier.IdSupplierGroup
             };
             var supplierGroupList = await _supplierGroupApiClient.GetListSupplierGroup();
-            ViewBag.ListOfSupplier = supplierGroupList.Select(x => new SelectListItem()
+            ViewBag.ListOfSupplierGroup = supplierGroupList.Select(x => new SelectListItem()
             {
                 Text = x.SupplierGroupName,
                 Value = x.IdSupplierGroup.ToString(),
@@ -102,7 +105,7 @@ namespace PharmacySystem.WebAdmin.Controllers
         {
             var supplier = await _supplierApiClient.GetById(id);
             var supplierGroupList = await _supplierGroupApiClient.GetListSupplierGroup();
-            ViewBag.ListOfSupplier = supplierGroupList.Select(x => new SelectListItem()
+            ViewBag.ListOfSupplierGroup = supplierGroupList.Select(x => new SelectListItem()
             {
                 Text = x.SupplierGroupName,
                 Value = x.IdSupplierGroup.ToString(),
@@ -131,6 +134,81 @@ namespace PharmacySystem.WebAdmin.Controllers
                 return Json(new { result = "Redirect", url = Url.Action("Index", "Supplier") });
             }
             return View(request);
+        }
+        public async Task<IActionResult> InvoiceIndex(DateTime? DateCheckIn, DateTime? DateCheckOut, long? IdSupplier, int? StatusID)
+        {
+            var request = new GetManageIInvoicePagingRequest()
+            {
+                DateCheckIn = DateCheckIn,
+                DateCheckOut = DateCheckOut,
+                IdSupplier = IdSupplier,
+                StatusID = StatusID
+            };
+            var data = await _invoiceApiClient.GetImportInvoiceForSupplier(request);
+            ViewBag.DateCheckIn = DateCheckIn;
+            ViewBag.DateCheckOut = DateCheckOut;
+
+            var supplierList = await _supplierApiClient.GetListSupplier();
+            ViewBag.ListOfSupplier = supplierList.Select(x => new SelectListItem()
+            {
+                Text = x.SupplierName,
+                Value = x.IdSupplier.ToString(),
+                Selected = IdSupplier.HasValue && IdSupplier.Value == x.IdSupplier
+            });
+            return View(data);
+        }
+        public async Task<IActionResult> IInvoiceDetails(long id)
+        {
+            var details = await _invoiceApiClient.GetImportInvoiceByID(id);
+
+            var supplierList = await _supplierApiClient.GetListSupplier();
+            ViewBag.ListOfSupplier = supplierList.Select(x => new SelectListItem()
+            {
+                Text = x.SupplierName,
+                Value = x.IdSupplier.ToString(),
+                Selected = details.IdSupllier.HasValue && details.IdSupllier.Value == x.IdSupplier
+            });
+            return View(details);
+        }
+        [HttpPut]
+        public async Task<JsonResult> UpdateProcess([FromForm] ProcessRequest ProcessForm)
+        {
+            int StatusID = ConvertStatus(ProcessForm.Status);
+            if (ModelState.IsValid && StatusID == 4)
+            {
+                var result = await _invoiceApiClient.ProcessApproved(ProcessForm);
+                if (result == 0)
+                {
+                    return Json(0);
+                }
+            }
+            return Json(1);
+        }
+        private int ConvertStatus(string StatusName)
+        {
+            int StatusID = 8;
+            switch (StatusName)
+            {
+                case "New":
+                    StatusID = (int)EStatus.NEW;
+                    break;
+                case "Approved":
+                    StatusID = (int)EStatus.APPROVED;
+                    break;
+                case "Rejected":
+                    StatusID = (int)EStatus.REJECTED;
+                    break;
+                case "Done":
+                    StatusID = (int)EStatus.DONE;
+                    break;
+                case "Received":
+                    StatusID = (int)EStatus.RECEIVED;
+                    break;
+                case "Error":
+                    StatusID = (int)EStatus.ERROR;
+                    break;
+            }
+            return StatusID;
         }
     }
 }

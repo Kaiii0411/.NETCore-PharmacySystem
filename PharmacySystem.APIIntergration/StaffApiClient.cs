@@ -16,7 +16,7 @@ namespace PharmacySystem.APIIntergration
     public interface IStaffApiClient
     {
         Task<int> CreateStaff(StaffCreateRequest request);
-        Task<int> UpdateStore(StaffUpdateRequest request);
+        Task<int> UpdateStaff(StaffUpdateRequest request);
         Task<PagedResult<StaffVM>> Get(GetManageStaffPagingRequest request);
         Task<staff> GetById(long id);
         Task<bool> DeleteStaff(long id);
@@ -38,7 +38,7 @@ namespace PharmacySystem.APIIntergration
             var body = await AddAsync<RequestResponse, StaffCreateRequest>($"/api/staff/create", request);
             return (int)body.StatusCode;
         }
-        public async Task<int> UpdateStore(StaffUpdateRequest request)
+        public async Task<int> UpdateStaff(StaffUpdateRequest request)
         {
             var body = await PutAsync<RequestResponse, StaffUpdateRequest>($"/api/staff/update", request);
             return (int)body.StatusCode;
@@ -46,7 +46,7 @@ namespace PharmacySystem.APIIntergration
         public async Task<PagedResult<StaffVM>> Get(GetManageStaffPagingRequest request)
         {
             var data = await GetAsync<PagedResult<StaffVM>>(
-                $"/api/medicines/paging?StaffName={request.StaffName}&IdStaff={request.IdStaff}");
+                $"/api/staff/paging?StaffName={request.StaffName}&IdStaff={request.IdStaff}");
             return data;
         }
         public async Task<staff> GetById(long id)

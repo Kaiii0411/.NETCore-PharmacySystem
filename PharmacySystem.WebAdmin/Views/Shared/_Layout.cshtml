@@ -108,6 +108,37 @@
                             </ul>
                         </li>
 
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Store </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a asp-controller="Store" asp-action="Create">Create New Store</a></li>
+                                <li><a asp-controller="Store" asp-action="Index">Store List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Staff </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a asp-controller="Staff" asp-action="Create">Create New Staff</a></li>
+                                <li><a asp-controller="Staff" asp-action="Index">Staff List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Invoice </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a asp-controller="MainInvoice" asp-action="IInvoiceIndex">Import Invoice List</a></li>
+                                <li><a asp-controller="MainInvoice" asp-action="EInvoiceIndex">Export Invoice List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Invoice (Supplier) </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a asp-controller="Supplier" asp-action="InvoiceIndex">Import Invoice List</a></li>
+                            </ul>
+                        </li>
+
                         </ul>
                     </div>
                     <div class="clearfix"></div>

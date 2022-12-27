@@ -1,0 +1,94 @@
+﻿@model PharmacySystem.Models.Request.SupplierUpdateRequest
+
+<div class="page-content-wrapper ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="float-right page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Drixo</a></li>
+                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                        <li class="breadcrumb-item active">Form Elements</li>
+                    </ol>
+                </div>
+                <h5 class="page-title">Form Elements</h5>
+            </div>
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="row">
+                            <form id="medicine-create" class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="SupplierName" class="col-sm-3 col-form-label">Supplier Id:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.IdSupplier" id="Supplier" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="SupplierName" class="col-sm-3 col-form-label">Supplier Name:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.SupplierName" id="SupplierName" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="SupplierGroup" class="col-sm-3 col-form-label">Supplier Group:</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="SupplierGroup" name="IdSupplierGroup" asp-items="@ViewBag.ListOfSupplierGroup" disabled>
+                                                    <option value="0">Select...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="Phone" class="col-sm-3 col-form-label">Phone:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.Phone" id="Phone" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Email" class="col-sm-3 col-form-label">Email:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.Email" id="Email" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="Address" class="col-form-label">Address: </label>
+                                        <div>
+                                            <textarea id="Address" class="form-control" rows="5" disabled>@Model.Address</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 m-t-10">
+                                        <div class="form-group right">
+                                            <div>
+                                                <button id="btnUpdateSupplier" type="button" class="btn btn-primary waves-effect waves-light" onclick="EnableUpdate()">
+                                                    Update
+                                                </button>
+                                                <button id="btnConfirmUpdateSupplier" type="button" class="btn btn-primary waves-effect waves-light" style="display:none">
+                                                    Confirm
+                                                </button>
+                                                <button id="btnCancelUpdateSupplier" type="button" class="btn btn-primary waves-effect waves-light" style="display:none" onclick="DisableUpdate()">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+    </div>
+</div>
+
+<script src="~/js/supplier.js"></script>
+

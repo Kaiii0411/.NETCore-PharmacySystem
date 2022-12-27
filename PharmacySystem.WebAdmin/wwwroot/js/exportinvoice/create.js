@@ -87,4 +87,17 @@ $(document).ready(function () {
             }
         })
     });
+
+    $('#btnCheckOutEInvoice').click(function () {
+        $.ajax({
+            url: "/ExportInvoice/CheckOut",
+            type: 'POST',
+            success: function (res) {
+                alertify.success("Done!");
+            },
+            error: function (err) {
+                alertify.error("Not receiving data!");
+            }
+        })
+    });
 });

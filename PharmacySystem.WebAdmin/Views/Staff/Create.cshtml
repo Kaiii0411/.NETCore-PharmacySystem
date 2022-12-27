@@ -1,0 +1,86 @@
+﻿@model PharmacySystem.Models.Request.StaffCreateRequest
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="float-right page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Drixo</a></li>
+                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                        <li class="breadcrumb-item active">Form Elements</li>
+                    </ol>
+                </div>
+                <h5 class="page-title">Form Elements</h5>
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="row">
+                            <form id="staff-create" class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="MedicineName" class="col-sm-3 col-form-label">Staff Name:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="StaffName" id="StaffName" class="form-control" type="text" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="ExpiryDate" class="col-sm-3 col-form-label">Date Of Birth:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="DateOfBirth" id="DateOfBirth" class="form-control" type="date" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="Supplier" class="col-sm-3 col-form-label">Store:</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="Store" required name="txtStore" asp-for="IdStore" asp-items="@(new SelectList(ViewBag.ListOfStore,"IdStore", "StoreName"))">
+                                                    <option value="0">Select...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="ImportPrice" class="col-sm-3 col-form-label">Phone:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="Phone" id="Phone" class="form-control" type="text" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="SellPrice" class="col-sm-3 col-form-label">Email:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="Email" id="Email" class="form-control" type="text" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 m-t-10">
+                                        <div class="form-group right">
+                                            <div>
+                                                <button id="btnSubmitCreateStaff" type="button" class="btn btn-primary waves-effect waves-light">
+                                                    Submit
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary waves-effect m-l-5">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->
+<script src="~/js/staff.js"></script>
+

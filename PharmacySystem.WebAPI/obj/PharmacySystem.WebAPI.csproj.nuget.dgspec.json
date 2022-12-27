@@ -151,9 +151,9 @@
               "target": "Package",
               "version": "[6.0.12, )"
             },
-            "Microsoft.AspNetCore.Identity": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[6.0.11, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
@@ -330,6 +330,10 @@
               "version": "[6.0.12, )"
             },
             "Microsoft.AspNetCore.Authentication.OAuth": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Html.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
             },

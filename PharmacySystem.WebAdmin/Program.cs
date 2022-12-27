@@ -3,7 +3,7 @@ using PharmacySystem.APIIntergration;
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
-    EnvironmentName = Environments.Staging,
+    //EnvironmentName = Environments.Staging,
     WebRootPath = "wwwroot"
 });
 
@@ -14,6 +14,8 @@ builder.Services.AddTransient<IMedicineGroupApiClient, MedicineGroupApiClient>()
 builder.Services.AddTransient<ISupplierApiClient, SupplierApiClient>();
 builder.Services.AddTransient<ISupplierGroupApiClient, SupplierGroupApiClient>();
 builder.Services.AddTransient<IInvoiceApiClient, InvoiceApiClient>();
+builder.Services.AddTransient<IStaffApiClient, StaffApiClient>();
+builder.Services.AddTransient<IStoreApiClient, StoreApiClient>();
 
 builder.Services.AddSession(options =>
 {
@@ -29,11 +31,11 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 
-app.Logger.LogInformation("ASPNETCORE_ENVIRONMENT: {env}",
-      Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+//app.Logger.LogInformation("ASPNETCORE_ENVIRONMENT: {env}",
+//      Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
 
-app.Logger.LogInformation("app.Environment.IsDevelopment(): {env}",
-      app.Environment.IsDevelopment().ToString());
+//app.Logger.LogInformation("app.Environment.IsDevelopment(): {env}",
+//      app.Environment.IsDevelopment().ToString());
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

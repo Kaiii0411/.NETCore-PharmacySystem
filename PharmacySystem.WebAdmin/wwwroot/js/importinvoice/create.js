@@ -26,7 +26,7 @@ function UpdateInvoice() {
         data: { id: idmedicine, quantity: quantity },
         success: function (res) {
             alertify.success("Done!");
-            $("#datatable-buttons").load(window.location + " #datatable-buttons");
+            $("#datatablecreateiinvoice").load(window.location + " #datatablecreateiinvoice");
         },
         error: function (err) {
             alertify.error("Not receiving data!");
@@ -43,7 +43,7 @@ function DeleteItemsInvoice() {
         data: { id: idmedicine},
         success: function (res) {
             alertify.success("Done!");
-            $("#datatable-buttons").load(window.location + " #datatable-buttons");
+            $("#datatablecreateiinvoice").load(window.location + " #datatablecreateiinvoice");
         },
         error: function (err) {
             alertify.error("Not receiving data!");
@@ -63,7 +63,7 @@ $(document).ready(function () {
             data: { id: idmedicine, quantity: quantity },
             success: function (res) {
                 alertify.success("Done!");
-                $("#datatable-buttons").load(window.location + " #datatable-buttons");
+                $("#datatablecreateiinvoice").load(window.location + " #datatablecreateiinvoice");
             },
             error: function (err) {
                 alertify.error("Not receiving data!");
@@ -95,4 +95,25 @@ $(document).ready(function () {
             }
         })
     });
+
+    $("#idSupllier").on("change", function () {
+        $.ajax({
+            type: "POST",
+            url: "/ImportInvoice/GetListMedicineByGroupId",
+            data: { idSupplier: $("#idSupllier").val() },
+            success: function (d) {
+                var items = "";
+                $(d).each(function () {
+                    items += "<option value=" + this.value + ">" + this.text + "</option>";
+                })
+                $("#idMedicine").html(items);
+            },
+            failure: function (d) {
+                alert(d.responseText);
+            },
+            error: function (d) {
+                alert(d.responseText);
+            }
+        });
+    })
 });

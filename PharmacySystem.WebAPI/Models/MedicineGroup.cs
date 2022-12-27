@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace PharmacySystem.WebAPI.Models
+{
+    public partial class MedicineGroup
+    {
+        public MedicineGroup()
+        {
+            Medicines = new HashSet<Medicine>();
+        }
+
+        public long IdMedicineGroup { get; set; }
+        public string MedicineGroupName { get; set; } = null!;
+        public string? Note { get; set; }
+
+        public virtual ICollection<Medicine> Medicines { get; set; }
+    }
+}

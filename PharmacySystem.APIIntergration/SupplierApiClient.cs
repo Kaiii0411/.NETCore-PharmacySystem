@@ -39,7 +39,7 @@ namespace PharmacySystem.APIIntergration
         }
         public async Task<int> UpdateSupplier(SupplierUpdateRequest request)
         {
-            var body = await PutAsync<RequestResponse, SupplierUpdateRequest>($"/api/supplier/update/" + request.IdSupplier, request);
+            var body = await PutAsync<RequestResponse, SupplierUpdateRequest>($"/api/supplier/update", request);
             return (int)body.StatusCode;
         }
         public async Task<bool> DeleteSupplier(long id)

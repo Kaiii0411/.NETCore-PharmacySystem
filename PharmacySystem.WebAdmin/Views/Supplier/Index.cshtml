@@ -72,7 +72,7 @@
                                         <td>@item.Email</td>
                                         <td>@item.SupplierGroupName</td>
                                         <td>
-                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
+                                            <a asp-controller="Supplier" asp-action="Edit" asp-route-id="@item.IdSupplier" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
                                             <a asp-controller="Supplier" asp-action="Delete" asp-route-id="@item.IdSupplier" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></a>
                                         </td>
                                     </tr>

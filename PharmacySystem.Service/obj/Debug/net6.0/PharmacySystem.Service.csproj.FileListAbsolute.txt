@@ -14,9 +14,12 @@ D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Service\obj\Debug\n
 D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\PharmacySystem.Service.pdb
 D:\GraduationThesis\SourceCode\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\ref\PharmacySystem.Service.dll
 D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.Service.deps.json
+D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.Service.runtimeconfig.json
 D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.Service.dll
 D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.Service.pdb
+D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.DataAccess.dll
 D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.Models.dll
+D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.DataAccess.pdb
 D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.Models.pdb
 D:\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\PharmacySystem.Service.csproj.AssemblyReference.cache
 D:\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\PharmacySystem.Service.GeneratedMSBuildEditorConfig.editorconfig
@@ -27,8 +30,5 @@ D:\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\PharmacySystem.Service
 D:\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\PharmacySystem.Service.dll
 D:\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\refint\PharmacySystem.Service.dll
 D:\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\PharmacySystem.Service.pdb
-D:\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\ref\PharmacySystem.Service.dll
-D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.DataAccess.dll
-D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.DataAccess.pdb
-D:\PharmacySystem\PharmacySystem.Service\bin\Debug\net6.0\PharmacySystem.Service.runtimeconfig.json
 D:\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\PharmacySystem.Service.genruntimeconfig.cache
+D:\PharmacySystem\PharmacySystem.Service\obj\Debug\net6.0\ref\PharmacySystem.Service.dll

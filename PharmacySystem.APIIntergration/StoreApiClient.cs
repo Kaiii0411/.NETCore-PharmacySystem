@@ -46,7 +46,7 @@ namespace PharmacySystem.APIIntergration
         public async Task<PagedResult<Store>> Get(GetManageStorePagingRequest request)
         {
             var data = await GetAsync<PagedResult<Store>>(
-                $"/api/medicines/paging?StoreName={request.StoreName}&IdStore={request.IdStore}");
+                $"/api/store/paging?StoreName={request.StoreName}&IdStore={request.IdStore}");
             return data;
         }
         public async Task<Store> GetById(long id)

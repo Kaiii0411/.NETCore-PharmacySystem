@@ -41,7 +41,6 @@ namespace PharmacySystem.Service
                 DateOfBirth = request.DateOfBirth,
                 Phone = request.Phone,
                 Email = request.Email,
-                Status = request.Status,
                 IdStore = request.IdStore
             };
             _context.staff.Add(staff);
@@ -57,7 +56,6 @@ namespace PharmacySystem.Service
             staff.DateOfBirth = request.DateOfBirth;
             staff.Phone = request.Phone;
             staff.Email = request.Email;
-            staff.Status = request.Status;
             staff.IdStore = request.IdStore;
             _context.staff.Update(staff);
             await _context.SaveChangesAsync();
@@ -84,16 +82,20 @@ namespace PharmacySystem.Service
             {
                 query = query.Where(x => x.s.IdStaff== request.IdStaff);
             }
+            if (request.IdStore != null && request.IdStore != 0)
+            {
+                query = query.Where(x => x.s.IdStore == request.IdStore);
+            }
 
             //list
             int totalRow = await query.CountAsync();
             var data = await query.Select(x => new StaffVM()
             {
+                IdStaff = x.s.IdStaff,
                 StaffName = x.s.StaffName,
                 DateOfBirth = x.s.DateOfBirth,
                 Phone = x.s.Phone,
                 Email = x.s.Email,
-                Status = x.s.Status,
                 StoreName = x.st.StoreName
             }).ToListAsync();
             //data
@@ -115,7 +117,6 @@ namespace PharmacySystem.Service
                 DateOfBirth = staff.DateOfBirth,
                 Phone = staff.Phone,
                 Email = staff.Email,
-                Status = staff.Status,
                 IdStore = staff.IdStore,
             };
             return staffDetails;

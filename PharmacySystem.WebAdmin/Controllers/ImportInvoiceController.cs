@@ -59,12 +59,29 @@ namespace PharmacySystem.WebAdmin.Controllers
                 Value = x.IdSupplier.ToString(),
             });
             var medicineList = await _medicineApiClient.GetListMedicine();
+            var test = supplierList.Select(x => new SelectListItem()
+            {
+                Text = x.SupplierName,
+                Value = x.IdSupplier.ToString(),
+            });
             ViewBag.ListOfMedicine = medicineList.Select(x => new SelectListItem()
             {
                 Text = x.MedicineName,
                 Value = x.IdMedicine.ToString(),
             });
             return View(GetIInvoiceViewModel());
+        }
+        [HttpPost]
+        public async Task<JsonResult> GetListMedicineByGroupId(long idSupplier)
+        {
+            var medicineList = await _medicineApiClient.GetListMedicine();
+            List<Medicine> selectList = medicineList.Where(x => x.IdSupplier == idSupplier).ToList();
+            List<SelectListItem> list = new List<SelectListItem>();
+            foreach(var item in selectList)
+            {
+                list.Add(new SelectListItem {Text = item.MedicineName, Value = item.IdMedicine.ToString() });
+            }
+            return Json(list);
         }
         [HttpPost]
         public async Task<IActionResult> Create(ImportInvoiceCreateRequest CreateIInvoiceForm)
@@ -83,7 +100,7 @@ namespace PharmacySystem.WebAdmin.Controllers
             }
             var createRequest = new ImportInvoiceCreateRequest()
             {
-                IdAccount = 1,
+                IdStaff = 1,
                 DateCheckIn = DateTime.Now,
                 DateCheckOut = null,
                 StatusID = 1,
@@ -206,10 +223,9 @@ namespace PharmacySystem.WebAdmin.Controllers
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             LocalReport localReport = new LocalReport(path);
             var detailsForm = await _invoiceApiClient.ProcGetImportInvoiceById(id);
-            localReport.AddDataSource("IInvoiceDetailsDataSet", detailsForm);
+            localReport.AddDataSource("IInvoiceDataSet", detailsForm);
             var result = localReport.Execute(RenderType.Pdf, extension, parameters, mimtype);
             return File(result.MainStream, "application/pdf");
-
         }
     }
 }

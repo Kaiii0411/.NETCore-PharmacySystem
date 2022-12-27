@@ -1,0 +1,110 @@
+﻿@using PharmacySystem.Models.ViewModels
+@model EInvoiceVM
+
+
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+
+        <div class="row d-print-none">
+            <div class="col-sm-12">
+                <div class="float-right page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Drixo</a></li>
+                        <li class="breadcrumb-item"><a href="#">Extras</a></li>
+                        <li class="breadcrumb-item active">Invoice</li>
+                    </ol>
+                </div>
+                <h5 class="page-title">Invoice</h5>
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="invoice-title">
+                                    <h4 class="float-right font-16"><strong>Order #</strong></h4>
+                                    <h3 class="m-t-0">
+                                        <img src="~/assets/images/logo-dark.png" alt="logo" height="22" />
+                                    </h3>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 m-t-30">
+                                    </div>
+                                    <div class="col-6 m-t-30 text-right">
+                                        <address>
+                                            <strong>Order Date:</strong><br>
+                                            @DateTime.Now<br><br>
+                                        </address>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="panel panel-default">
+                                    <div class="p-2">
+                                        <h3 class="panel-title font-20"><strong>Order summary</strong></h3>
+                                    </div>
+                                    <div class="">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <td><strong>Item</strong></td>
+                                                        <td class="text-center"><strong>Price</strong></td>
+                                                        <td class="text-center">
+                                                            <strong>Quantity</strong>
+                                                        </td>
+                                                        <td class="text-right"><strong>Totals</strong></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach(var item in Model.EInvoiceItems)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.IMedicineName</td>
+                                                            <td class="text-center">@item.IPrice</td>
+                                                            <td class="text-center">@item.IQuantity</td>
+                                                            <td class="text-right">@(item.IPrice * item.IQuantity)</td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td class="no-line"></td>
+                                                        <td class="no-line"></td>
+                                                        <td class="no-line text-center">
+                                                            <strong>Total</strong>
+                                                        </td>
+                                                        <td class="no-line text-right"><h4 class="m-0">@Model.EInvoiceItems.Sum(x => x.IQuantity * x.IPrice)</h4></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="d-print-none mo-mt-2">
+                                            <div class="float-right">
+                                                <a asp-controller="ExportInvoice" asp-action="CreateConfirm" class="btn btn-primary waves-effect waves-light">Confirm</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> <!-- end row -->
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->

@@ -20,9 +20,9 @@ namespace ReportDesgin {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("IInvoiceDetailsDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("IInvoiceDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class IInvoiceDetailsDataSet : global::System.Data.DataSet {
+    public partial class IInvoiceDataSet : global::System.Data.DataSet {
         
         private GetIInoviceDetailsDataTable tableGetIInoviceDetails;
         
@@ -30,7 +30,7 @@ namespace ReportDesgin {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public IInvoiceDetailsDataSet() {
+        public IInvoiceDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace ReportDesgin {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected IInvoiceDetailsDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected IInvoiceDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace ReportDesgin {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            IInvoiceDetailsDataSet cln = ((IInvoiceDetailsDataSet)(base.Clone()));
+            IInvoiceDataSet cln = ((IInvoiceDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace ReportDesgin {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "IInvoiceDetailsDataSet";
+            this.DataSetName = "IInvoiceDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/IInvoiceDetailsDataSet.xsd";
+            this.Namespace = "http://tempuri.org/IInvoiceDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableGetIInoviceDetails = new GetIInoviceDetailsDataTable();
@@ -225,7 +225,7 @@ namespace ReportDesgin {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            IInvoiceDetailsDataSet ds = new IInvoiceDetailsDataSet();
+            IInvoiceDataSet ds = new IInvoiceDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -287,11 +287,29 @@ namespace ReportDesgin {
             
             private global::System.Data.DataColumn columnSupplierName;
             
+            private global::System.Data.DataColumn columnSupllierAddress;
+            
+            private global::System.Data.DataColumn columnSupplierPhone;
+            
             private global::System.Data.DataColumn columnMedicineName;
+            
+            private global::System.Data.DataColumn columnImportPrice;
+            
+            private global::System.Data.DataColumn columnUnit;
             
             private global::System.Data.DataColumn columnQuantity;
             
             private global::System.Data.DataColumn columnTotalPrice;
+            
+            private global::System.Data.DataColumn columnStaffName;
+            
+            private global::System.Data.DataColumn columnStoreName;
+            
+            private global::System.Data.DataColumn columnStoreAddress;
+            
+            private global::System.Data.DataColumn columnStorePhone;
+            
+            private global::System.Data.DataColumn columnStoreOwner;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -360,9 +378,41 @@ namespace ReportDesgin {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SupllierAddressColumn {
+                get {
+                    return this.columnSupllierAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SupplierPhoneColumn {
+                get {
+                    return this.columnSupplierPhone;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn MedicineNameColumn {
                 get {
                     return this.columnMedicineName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ImportPriceColumn {
+                get {
+                    return this.columnImportPrice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn UnitColumn {
+                get {
+                    return this.columnUnit;
                 }
             }
             
@@ -379,6 +429,46 @@ namespace ReportDesgin {
             public global::System.Data.DataColumn TotalPriceColumn {
                 get {
                     return this.columnTotalPrice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StaffNameColumn {
+                get {
+                    return this.columnStaffName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StoreNameColumn {
+                get {
+                    return this.columnStoreName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StoreAddressColumn {
+                get {
+                    return this.columnStoreAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StorePhoneColumn {
+                get {
+                    return this.columnStorePhone;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StoreOwnerColumn {
+                get {
+                    return this.columnStoreOwner;
                 }
             }
             
@@ -419,16 +509,25 @@ namespace ReportDesgin {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public GetIInoviceDetailsRow AddGetIInoviceDetailsRow(System.DateTime DateCheckIn, System.DateTime DateCheckOut, string SupplierName, string MedicineName, int Quantity, double TotalPrice) {
+            public GetIInoviceDetailsRow AddGetIInoviceDetailsRow(System.DateTime DateCheckIn, System.DateTime DateCheckOut, string SupplierName, string SupllierAddress, string SupplierPhone, string MedicineName, double ImportPrice, string Unit, int Quantity, double TotalPrice, string StaffName, string StoreName, string StoreAddress, string StorePhone, string StoreOwner) {
                 GetIInoviceDetailsRow rowGetIInoviceDetailsRow = ((GetIInoviceDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         DateCheckIn,
                         DateCheckOut,
                         SupplierName,
+                        SupllierAddress,
+                        SupplierPhone,
                         MedicineName,
+                        ImportPrice,
+                        Unit,
                         Quantity,
-                        TotalPrice};
+                        TotalPrice,
+                        StaffName,
+                        StoreName,
+                        StoreAddress,
+                        StorePhone,
+                        StoreOwner};
                 rowGetIInoviceDetailsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetIInoviceDetailsRow);
                 return rowGetIInoviceDetailsRow;
@@ -462,9 +561,18 @@ namespace ReportDesgin {
                 this.columnDateCheckIn = base.Columns["DateCheckIn"];
                 this.columnDateCheckOut = base.Columns["DateCheckOut"];
                 this.columnSupplierName = base.Columns["SupplierName"];
+                this.columnSupllierAddress = base.Columns["SupllierAddress"];
+                this.columnSupplierPhone = base.Columns["SupplierPhone"];
                 this.columnMedicineName = base.Columns["MedicineName"];
+                this.columnImportPrice = base.Columns["ImportPrice"];
+                this.columnUnit = base.Columns["Unit"];
                 this.columnQuantity = base.Columns["Quantity"];
                 this.columnTotalPrice = base.Columns["TotalPrice"];
+                this.columnStaffName = base.Columns["StaffName"];
+                this.columnStoreName = base.Columns["StoreName"];
+                this.columnStoreAddress = base.Columns["StoreAddress"];
+                this.columnStorePhone = base.Columns["StorePhone"];
+                this.columnStoreOwner = base.Columns["StoreOwner"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -478,24 +586,46 @@ namespace ReportDesgin {
                 base.Columns.Add(this.columnDateCheckOut);
                 this.columnSupplierName = new global::System.Data.DataColumn("SupplierName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSupplierName);
+                this.columnSupllierAddress = new global::System.Data.DataColumn("SupllierAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSupllierAddress);
+                this.columnSupplierPhone = new global::System.Data.DataColumn("SupplierPhone", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSupplierPhone);
                 this.columnMedicineName = new global::System.Data.DataColumn("MedicineName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMedicineName);
+                this.columnImportPrice = new global::System.Data.DataColumn("ImportPrice", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImportPrice);
+                this.columnUnit = new global::System.Data.DataColumn("Unit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUnit);
                 this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuantity);
                 this.columnTotalPrice = new global::System.Data.DataColumn("TotalPrice", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalPrice);
+                this.columnStaffName = new global::System.Data.DataColumn("StaffName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStaffName);
+                this.columnStoreName = new global::System.Data.DataColumn("StoreName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStoreName);
+                this.columnStoreAddress = new global::System.Data.DataColumn("StoreAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStoreAddress);
+                this.columnStorePhone = new global::System.Data.DataColumn("StorePhone", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStorePhone);
+                this.columnStoreOwner = new global::System.Data.DataColumn("StoreOwner", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStoreOwner);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdImportInvoice}, true));
                 this.columnIdImportInvoice.AutoIncrement = true;
                 this.columnIdImportInvoice.AllowDBNull = false;
                 this.columnIdImportInvoice.ReadOnly = true;
                 this.columnIdImportInvoice.Unique = true;
-                this.columnSupplierName.AllowDBNull = false;
                 this.columnSupplierName.MaxLength = 200;
-                this.columnMedicineName.AllowDBNull = false;
+                this.columnSupllierAddress.MaxLength = 200;
+                this.columnSupplierPhone.MaxLength = 15;
                 this.columnMedicineName.MaxLength = 200;
-                this.columnQuantity.AllowDBNull = false;
-                this.columnTotalPrice.AllowDBNull = false;
+                this.columnUnit.MaxLength = 50;
+                this.columnStaffName.MaxLength = 100;
+                this.columnStoreName.MaxLength = 200;
+                this.columnStoreAddress.MaxLength = 200;
+                this.columnStorePhone.MaxLength = 15;
+                this.columnStoreOwner.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -563,7 +693,7 @@ namespace ReportDesgin {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                IInvoiceDetailsDataSet ds = new IInvoiceDetailsDataSet();
+                IInvoiceDataSet ds = new IInvoiceDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -683,7 +813,12 @@ namespace ReportDesgin {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string SupplierName {
                 get {
-                    return ((string)(this[this.tableGetIInoviceDetails.SupplierNameColumn]));
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.SupplierNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SupplierName\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableGetIInoviceDetails.SupplierNameColumn] = value;
@@ -692,9 +827,46 @@ namespace ReportDesgin {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string SupllierAddress {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.SupllierAddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SupllierAddress\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetIInoviceDetails.SupllierAddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string SupplierPhone {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.SupplierPhoneColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SupplierPhone\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetIInoviceDetails.SupplierPhoneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string MedicineName {
                 get {
-                    return ((string)(this[this.tableGetIInoviceDetails.MedicineNameColumn]));
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.MedicineNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MedicineName\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableGetIInoviceDetails.MedicineNameColumn] = value;
@@ -703,9 +875,46 @@ namespace ReportDesgin {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public double ImportPrice {
+                get {
+                    try {
+                        return ((double)(this[this.tableGetIInoviceDetails.ImportPriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ImportPrice\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetIInoviceDetails.ImportPriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Unit {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.UnitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Unit\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetIInoviceDetails.UnitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int Quantity {
                 get {
-                    return ((int)(this[this.tableGetIInoviceDetails.QuantityColumn]));
+                    try {
+                        return ((int)(this[this.tableGetIInoviceDetails.QuantityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Quantity\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableGetIInoviceDetails.QuantityColumn] = value;
@@ -716,10 +925,95 @@ namespace ReportDesgin {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public double TotalPrice {
                 get {
-                    return ((double)(this[this.tableGetIInoviceDetails.TotalPriceColumn]));
+                    try {
+                        return ((double)(this[this.tableGetIInoviceDetails.TotalPriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalPrice\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableGetIInoviceDetails.TotalPriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string StaffName {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.StaffNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StaffName\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetIInoviceDetails.StaffNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string StoreName {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.StoreNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StoreName\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetIInoviceDetails.StoreNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string StoreAddress {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.StoreAddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StoreAddress\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetIInoviceDetails.StoreAddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string StorePhone {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.StorePhoneColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StorePhone\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetIInoviceDetails.StorePhoneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string StoreOwner {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetIInoviceDetails.StoreOwnerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StoreOwner\' in table \'GetIInoviceDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetIInoviceDetails.StoreOwnerColumn] = value;
                 }
             }
             
@@ -745,6 +1039,162 @@ namespace ReportDesgin {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetDateCheckOutNull() {
                 this[this.tableGetIInoviceDetails.DateCheckOutColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSupplierNameNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.SupplierNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSupplierNameNull() {
+                this[this.tableGetIInoviceDetails.SupplierNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSupllierAddressNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.SupllierAddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSupllierAddressNull() {
+                this[this.tableGetIInoviceDetails.SupllierAddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSupplierPhoneNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.SupplierPhoneColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSupplierPhoneNull() {
+                this[this.tableGetIInoviceDetails.SupplierPhoneColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMedicineNameNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.MedicineNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMedicineNameNull() {
+                this[this.tableGetIInoviceDetails.MedicineNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsImportPriceNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.ImportPriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetImportPriceNull() {
+                this[this.tableGetIInoviceDetails.ImportPriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsUnitNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.UnitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetUnitNull() {
+                this[this.tableGetIInoviceDetails.UnitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsQuantityNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.QuantityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetQuantityNull() {
+                this[this.tableGetIInoviceDetails.QuantityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTotalPriceNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.TotalPriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetTotalPriceNull() {
+                this[this.tableGetIInoviceDetails.TotalPriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStaffNameNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.StaffNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStaffNameNull() {
+                this[this.tableGetIInoviceDetails.StaffNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStoreNameNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.StoreNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStoreNameNull() {
+                this[this.tableGetIInoviceDetails.StoreNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStoreAddressNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.StoreAddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStoreAddressNull() {
+                this[this.tableGetIInoviceDetails.StoreAddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStorePhoneNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.StorePhoneColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStorePhoneNull() {
+                this[this.tableGetIInoviceDetails.StorePhoneColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStoreOwnerNull() {
+                return this.IsNull(this.tableGetIInoviceDetails.StoreOwnerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStoreOwnerNull() {
+                this[this.tableGetIInoviceDetails.StoreOwnerColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -783,7 +1233,7 @@ namespace ReportDesgin {
         }
     }
 }
-namespace ReportDesgin.IInvoiceDetailsDataSetTableAdapters {
+namespace ReportDesgin.IInvoiceDataSetTableAdapters {
     
     
     /// <summary>
@@ -911,9 +1361,18 @@ namespace ReportDesgin.IInvoiceDetailsDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("DateCheckIn", "DateCheckIn");
             tableMapping.ColumnMappings.Add("DateCheckOut", "DateCheckOut");
             tableMapping.ColumnMappings.Add("SupplierName", "SupplierName");
+            tableMapping.ColumnMappings.Add("SupllierAddress", "SupllierAddress");
+            tableMapping.ColumnMappings.Add("SupplierPhone", "SupplierPhone");
             tableMapping.ColumnMappings.Add("MedicineName", "MedicineName");
+            tableMapping.ColumnMappings.Add("ImportPrice", "ImportPrice");
+            tableMapping.ColumnMappings.Add("Unit", "Unit");
             tableMapping.ColumnMappings.Add("Quantity", "Quantity");
             tableMapping.ColumnMappings.Add("TotalPrice", "TotalPrice");
+            tableMapping.ColumnMappings.Add("StaffName", "StaffName");
+            tableMapping.ColumnMappings.Add("StoreName", "StoreName");
+            tableMapping.ColumnMappings.Add("StoreAddress", "StoreAddress");
+            tableMapping.ColumnMappings.Add("StorePhone", "StorePhone");
+            tableMapping.ColumnMappings.Add("StoreOwner", "StoreOwner");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -940,7 +1399,7 @@ namespace ReportDesgin.IInvoiceDetailsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(IInvoiceDetailsDataSet.GetIInoviceDetailsDataTable dataTable, global::System.Nullable<long> id) {
+        public virtual int Fill(IInvoiceDataSet.GetIInoviceDetailsDataTable dataTable, global::System.Nullable<long> id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((long)(id.Value));
@@ -959,7 +1418,7 @@ namespace ReportDesgin.IInvoiceDetailsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual IInvoiceDetailsDataSet.GetIInoviceDetailsDataTable GetData(global::System.Nullable<long> id) {
+        public virtual IInvoiceDataSet.GetIInoviceDetailsDataTable GetData(global::System.Nullable<long> id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((long)(id.Value));
@@ -967,7 +1426,7 @@ namespace ReportDesgin.IInvoiceDetailsDataSetTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            IInvoiceDetailsDataSet.GetIInoviceDetailsDataTable dataTable = new IInvoiceDetailsDataSet.GetIInoviceDetailsDataTable();
+            IInvoiceDataSet.GetIInoviceDetailsDataTable dataTable = new IInvoiceDataSet.GetIInoviceDetailsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1041,7 +1500,7 @@ namespace ReportDesgin.IInvoiceDetailsDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateUpdatedRows(IInvoiceDetailsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(IInvoiceDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1051,7 +1510,7 @@ namespace ReportDesgin.IInvoiceDetailsDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateInsertedRows(IInvoiceDetailsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(IInvoiceDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1061,7 +1520,7 @@ namespace ReportDesgin.IInvoiceDetailsDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateDeletedRows(IInvoiceDetailsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(IInvoiceDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -1095,7 +1554,7 @@ namespace ReportDesgin.IInvoiceDetailsDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public virtual int UpdateAll(IInvoiceDetailsDataSet dataSet) {
+        public virtual int UpdateAll(IInvoiceDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

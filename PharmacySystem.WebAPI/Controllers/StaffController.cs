@@ -76,9 +76,9 @@ namespace PharmacySystem.WebAPI.Controllers
             return Ok(staff);
         }
         [HttpGet("details/{staffId}")]
-        public async Task<IActionResult> GetById(int storeId)
+        public async Task<IActionResult> GetById(int staffId)
         {
-            var staff = await _StaffService.GetByID(storeId);
+            var staff = await _StaffService.GetByID(staffId);
             if (staff== null)
                 return BadRequest("Cannot find staff");
             return Ok(staff);

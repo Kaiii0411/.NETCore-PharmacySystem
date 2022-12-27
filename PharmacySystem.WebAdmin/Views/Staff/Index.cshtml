@@ -1,0 +1,99 @@
+﻿@using PharmacySystem.Models.Common;
+@model PagedResult<PharmacySystem.Models.ViewModels.StaffVM>
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="float-right page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Drixo</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                        <li class="breadcrumb-item active">Datatable</li>
+                    </ol>
+                </div>
+                <h5 class="page-title">Datatable</h5>
+            </div>
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-15">
+                    <div class="card-body">
+                        <form id="searchForm" asp-controller="Staff" asp-action="Index" method="get">
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label class="col-form-label">Staff Id: </label>
+                                    <input type="text" value="@ViewBag.IdStaff" name="storeid" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label">Staff Name: </label>
+                                    <input type="text" value="@ViewBag.StaffName" name="storename" class="form-control" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label">Store: </label>
+                                    <select name="IdSupplier" asp-items="@ViewBag.ListOfStore" class="form-control">
+                                        <option>Select...</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 m-t-33">
+                                    <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+
+                        <table id="datatablestaff" class="table table-striped table-bordered dt-responsive nowrap m-t-10" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Bithday</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Store</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr>
+                                        <td>@item.IdStaff</td>
+                                        <td>@item.StaffName</td>
+                                        <td>@string.Format("{0:dd/MM/yyyy}", @item.DateOfBirth)</td>
+                                        <td>@item.Phone</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.Status</td>
+                                        <td>@item.StoreName</td>
+                                        <td>
+                                            <a asp-controller="Staff" asp-action="Edit" asp-route-id="@item.IdStaff" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
+                                            <a asp-controller="Staff" asp-action="Delete" asp-route-id="@item.IdStaff" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->
+<script src="~/js/store.js"></script>
+

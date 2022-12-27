@@ -10,5 +10,6 @@ namespace PharmacySystem.Models.Request
     {
         public long? IdStaff { get; set; }
         public string? StaffName { get; set; }
+        public long? IdStore { get; set; }
     }
 }

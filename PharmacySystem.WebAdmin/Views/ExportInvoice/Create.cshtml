@@ -43,28 +43,11 @@
             </div>
         </div>
 
-
-        <div class="row">
-            <div class="col-12">
-                <div class="card m-b-15">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="col-md-2 m-t-33">
-                                <button type="submit" id="btnCreateEInvoice" class="btn btn-primary btn-lg waves-effect waves-light">
-                                    <i class="fa fa-search"></i> Add
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-12">
                 <div class="card m-b-30">
                     <div class="card-body">
-                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <table id="datatablecreateeinvoice" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Medicine Name</th>
@@ -99,6 +82,22 @@
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-15">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-12 m-t-33">
+                                <a asp-controller="ExportInvoice" asp-action="CheckOut" class="btn btn-primary btn-lg waves-effect waves-light right">
+                                    <i class="fa fa-search"></i> Check Out
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>

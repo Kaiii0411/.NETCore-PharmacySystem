@@ -5,18 +5,9 @@ namespace PharmacySystem.Models
 {
     public partial class User
     {
-        public User()
-        {
-            ExportInvoices = new HashSet<ExportInvoice>();
-            ImportInvoices = new HashSet<ImportInvoice>();
-            UserClaims = new HashSet<UserClaim>();
-            UserLogins = new HashSet<UserLogin>();
-            UserTokens = new HashSet<UserToken>();
-            Roles = new HashSet<Role>();
-        }
-
-        public long Id { get; set; }
+        public Guid Id { get; set; }
         public long IdStaff { get; set; }
+        public long IdAccount { get; set; }
         public string? UserName { get; set; }
         public string? NormalizedUserName { get; set; }
         public string? Email { get; set; }
@@ -31,14 +22,5 @@ namespace PharmacySystem.Models
         public DateTimeOffset? LockoutEnd { get; set; }
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
-
-        public virtual staff IdStaffNavigation { get; set; } = null!;
-        public virtual ICollection<ExportInvoice> ExportInvoices { get; set; }
-        public virtual ICollection<ImportInvoice> ImportInvoices { get; set; }
-        public virtual ICollection<UserClaim> UserClaims { get; set; }
-        public virtual ICollection<UserLogin> UserLogins { get; set; }
-        public virtual ICollection<UserToken> UserTokens { get; set; }
-
-        public virtual ICollection<Role> Roles { get; set; }
     }
 }

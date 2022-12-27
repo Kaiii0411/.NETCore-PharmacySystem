@@ -22,9 +22,11 @@ namespace PharmacySystem.APIIntergration
         Task<bool> DeleteExportInvoice(long id);
         Task<PagedResult<ImportInvoiceVM>> GetImportInvoice(GetManageIInvoicePagingRequest request);
         Task<PagedResult<ExportInvoiceVM>> GetExportInvoice(GetManageEInvoicePagingRequest request);
+        Task<PagedResult<ImportInvoiceVM>> GetImportInvoiceForSupplier(GetManageIInvoicePagingRequest request);
         Task<ImportInvoiceVM> GetImportInvoiceByID(long id);
         Task<ExportInvoiceVM> GetExportInvoiceByID(long id);
         Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long id);
+        Task<int> ProcessApproved(ProcessRequest request);
     }
     public class InvoiceApiClient: BaseApiClient,IInvoiceApiClient
     {
@@ -61,6 +63,12 @@ namespace PharmacySystem.APIIntergration
                 $"/api/importinvoices/paging?DateCheckIn={request.DateCheckIn}&DateCheckOut={request.DateCheckOut}&StatusID={request.StatusID}&IdSupplier={request.IdSupplier}");
             return data;
         }
+        public async Task<PagedResult<ImportInvoiceVM>> GetImportInvoiceForSupplier(GetManageIInvoicePagingRequest request)
+        {
+            var data = await GetAsync<PagedResult<ImportInvoiceVM>>(
+                $"/api/importinvoices/pagingforsupplier?DateCheckIn={request.DateCheckIn}&DateCheckOut={request.DateCheckOut}&StatusID={request.StatusID}&IdSupplier={request.IdSupplier}");
+            return data;
+        }
         public async Task<PagedResult<ExportInvoiceVM>> GetExportInvoice(GetManageEInvoicePagingRequest request)
         {
             var data = await GetAsync<PagedResult<ExportInvoiceVM>>(
@@ -77,10 +85,16 @@ namespace PharmacySystem.APIIntergration
             var data = await GetAsync<ExportInvoiceVM>($"/api/exportinvoices/details/{id}");
             return data;
         }
+        public async Task<int> ProcessApproved(ProcessRequest request)
+        {
+            var body = await PutAsync<RequestResponse, ProcessRequest>($"/api/importinvoices/process", request);
+            return (int)body.StatusCode;
+        }
         public async Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long id)
         {
             var body = await GetAsync<RequestResponse>($"/api/importinvoices/procdetails/{id}");
             return OutPutApi.OutPut<IInvoiceReportModels>(body);
         }
+
     }
 }

@@ -131,4 +131,72 @@ $(document).ready(function() {
             },
         ]
     });
+
+    $('#datatablestore').DataTable({
+        dom: 'Bfrtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true,
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Store-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Store-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+        ]
+    });
+
+    $('#datatablestaff').DataTable({
+        dom: 'Bfrtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true,
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Staff-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Staff-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+        ]
+    });
+
+    $('#datatablecreateiinvoice').DataTable({
+        dom: 'frtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true
+    });
+
+    $('#datatableinvoicedetails').DataTable({
+        dom: 'frtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true
+    });
+    $('#datatablecreateeinvoice').DataTable({
+        dom: 'frtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true
+    });
 } );

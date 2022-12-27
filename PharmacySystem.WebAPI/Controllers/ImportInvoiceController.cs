@@ -8,6 +8,7 @@ using PharmacySystem.Models.ReportModels;
 using PharmacySystem.Models.Request;
 using PharmacySystem.Models.ViewModels;
 using PharmacySystem.Service;
+using PharmacySystem.WebAPI.Models;
 
 namespace PharmacySystem.WebAPI.Controllers
 {
@@ -65,6 +66,12 @@ namespace PharmacySystem.WebAPI.Controllers
             var invoices = await _InvoiceService.GetImportInvoice(request);
             return Ok(invoices);
         }
+        [HttpGet("pagingforsupplier")]
+        public async Task<IActionResult> GetForSupplier([FromQuery] GetManageIInvoicePagingRequest request)
+        {
+            var invoices = await _InvoiceService.GetImportInvoiceForSupplier(request);
+            return Ok(invoices);
+        }
         [HttpGet("details/{invoiceId}")]
         public async Task<IActionResult> GetImportInvoiceById(long invoiceId)
         {
@@ -78,7 +85,7 @@ namespace PharmacySystem.WebAPI.Controllers
         {
             try
             {
-                List<IInvoiceReportModels> iinvocieDetails = await _InvoiceService.ProcGetImportInvoiceById(invoiceId);
+                List<IInvoiceReportModels> iinvocieDetails = await _InvoiceService.GetListImportInvoiceById(invoiceId);
                 if (iinvocieDetails != null && iinvocieDetails.Any())
                 {
                     return new RequestResponse
@@ -103,5 +110,24 @@ namespace PharmacySystem.WebAPI.Controllers
                 };
             }
         }
+        [HttpPut("process")]
+        public async Task<RequestResponse> Update(ProcessRequest request)
+        {
+            var InvoiceId = await _InvoiceService.ProcessApprove(request);
+            if (InvoiceId == 0)
+            {
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Message = "Update Failed!"
+                };
+            }
+            return new RequestResponse
+            {
+                StatusCode = Code.Success,
+                Message = "Update sucess!"
+            };
+        }
+
     }
 }

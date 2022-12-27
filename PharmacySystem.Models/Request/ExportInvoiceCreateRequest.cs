@@ -9,7 +9,7 @@ namespace PharmacySystem.Models.Request
 {
     public class ExportInvoiceCreateRequest
     {
-        public long IdAccount { get; set; }
+        public long IdStaff { get; set; }
         public DateTime? DateCheckIn { get; set; }
         public DateTime? DateCheckOut { get; set; }
         public int StatusID { get; set; }

@@ -68,7 +68,7 @@
                                         <td>@item.SupplierGroupName</td>
                                         <td>@item.Note</td>
                                         <td>
-                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
+                                            <a asp-controller="SupplierGroup" asp-action="Edit" asp-route-id="@item.IdSupplierGroup" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
                                             <a asp-controller="SupplierGroup" asp-action="Delete" asp-route-id="@item.IdSupplierGroup" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></a>
                                         </td>
                                     </tr>

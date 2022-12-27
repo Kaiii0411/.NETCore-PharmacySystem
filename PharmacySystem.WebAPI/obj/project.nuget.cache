@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "N0kkODXsP+RQWErBg98o+hoeqIJk/hZCg5GYcxCHkQPYyXJnckIccH+k+Tk6UquyPDrS+BO3xWovNTrvKjKk8Q==",
+  "dgSpecHash": "5LDjLNDL+fX/1Y5VYX0tWjEna66IJ9pgiVg2LGWni2ZsYDjyyw2/JET6ELVQ9Rh69l98NHAETSvIWW24InV9BQ==",
   "success": true,
   "projectFilePath": "D:\\PharmacySystem\\PharmacySystem.WebAPI\\PharmacySystem.WebAPI.csproj",
   "expectedPackageFiles": [
@@ -20,6 +20,7 @@
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\2.2.0\\microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.http\\2.2.0\\microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",

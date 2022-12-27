@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using PharmacySystem.Models.Identity;
 using PharmacySystem.Models.ReportModels;
+using PharmacySystem.WebAPI.Configurations;
 
 namespace PharmacySystem.Models
 {
-    public partial class PharmacySystemContext : DbContext
+    public partial class PharmacySystemContext : IdentityDbContext<Users, Roles, Guid>
     {
         public PharmacySystemContext()
         {
@@ -22,28 +26,19 @@ namespace PharmacySystem.Models
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; } = null!;
         public virtual DbSet<Medicine> Medicines { get; set; } = null!;
         public virtual DbSet<MedicineGroup> MedicineGroups { get; set; } = null!;
-        public virtual DbSet<Role> Roles { get; set; } = null!;
-        public virtual DbSet<RoleClaim> RoleClaims { get; set; } = null!;
         public virtual DbSet<Status> Statuses { get; set; } = null!;
         public virtual DbSet<Store> Stores { get; set; } = null!;
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;
         public virtual DbSet<SupplierGroup> SupplierGroups { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
-        public virtual DbSet<UserClaim> UserClaims { get; set; } = null!;
-        public virtual DbSet<UserLogin> UserLogins { get; set; } = null!;
-        public virtual DbSet<UserToken> UserTokens { get; set; } = null!;
         public virtual DbSet<staff> staff { get; set; } = null!;
-
-
         //
         public virtual DbSet<IInvoiceReportModels> IInvoiceReportModels { get; set; } = null!;
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=PharmacySystem;Trusted_Connection=True;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-O9JPNLU\\SQLEXPRESS;Database=PharmacySystem;User Id=sa;Password=0411;Trusted_Connection=True;");
             }
         }
 
@@ -62,12 +57,6 @@ namespace PharmacySystem.Models
                 entity.Property(e => e.Note).HasMaxLength(300);
 
                 entity.Property(e => e.StatusId).HasColumnName("StatusID");
-
-                entity.HasOne(d => d.IdAccountNavigation)
-                    .WithMany(p => p.ExportInvoices)
-                    .HasForeignKey(d => d.IdAccount)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ExportInvoice_Users");
 
                 entity.HasOne(d => d.Status)
                     .WithMany(p => p.ExportInvoices)
@@ -89,12 +78,6 @@ namespace PharmacySystem.Models
                 entity.Property(e => e.Note).HasMaxLength(300);
 
                 entity.Property(e => e.StatusId).HasColumnName("StatusID");
-
-                entity.HasOne(d => d.IdAccountNavigation)
-                    .WithMany(p => p.ImportInvoices)
-                    .HasForeignKey(d => d.IdAccount)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ImportInvoice_Users");
 
                 entity.HasOne(d => d.IdSupplierNavigation)
                     .WithMany(p => p.ImportInvoices)
@@ -170,24 +153,14 @@ namespace PharmacySystem.Models
 
             modelBuilder.Entity<Role>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedName] IS NOT NULL)");
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Description).HasMaxLength(300);
-
-                entity.Property(e => e.Name).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedName).HasMaxLength(256);
+                entity.Property(e => e.Description).HasMaxLength(250);
             });
 
             modelBuilder.Entity<RoleClaim>(entity =>
             {
                 entity.HasIndex(e => e.RoleId, "IX_RoleClaims_RoleId");
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.RoleClaims)
-                    .HasForeignKey(d => d.RoleId);
             });
 
             modelBuilder.Entity<Status>(entity =>
@@ -260,69 +233,35 @@ namespace PharmacySystem.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
-
-                entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
-                entity.Property(e => e.Email).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
-
-                entity.Property(e => e.UserName).HasMaxLength(256);
-
-                entity.HasOne(d => d.IdStaffNavigation)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.IdStaff)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Users_Staff1");
-
-                entity.HasMany(d => d.Roles)
-                    .WithMany(p => p.Users)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "UserRole",
-                        l => l.HasOne<Role>().WithMany().HasForeignKey("RoleId"),
-                        r => r.HasOne<User>().WithMany().HasForeignKey("UserId"),
-                        j =>
-                        {
-                            j.HasKey("UserId", "RoleId");
-
-                            j.ToTable("UserRoles");
-
-                            j.HasIndex(new[] { "RoleId" }, "IX_UserRoles_RoleId");
-                        });
+                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<UserClaim>(entity =>
             {
                 entity.HasIndex(e => e.UserId, "IX_UserClaims_UserId");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserClaims)
-                    .HasForeignKey(d => d.UserId);
             });
 
             modelBuilder.Entity<UserLogin>(entity =>
             {
-                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+                entity.HasKey(e => e.UserId);
 
                 entity.HasIndex(e => e.UserId, "IX_UserLogins_UserId");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserLogins)
-                    .HasForeignKey(d => d.UserId);
+                entity.Property(e => e.UserId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.RoleId });
+
+                entity.HasIndex(e => e.UserId, "IX_UserRoles_UsersId");
             });
 
             modelBuilder.Entity<UserToken>(entity =>
             {
-                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
+                entity.HasKey(e => e.UserId);
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserTokens)
-                    .HasForeignKey(d => d.UserId);
+                entity.Property(e => e.UserId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<staff>(entity =>
@@ -339,14 +278,20 @@ namespace PharmacySystem.Models
 
                 entity.Property(e => e.StaffName).HasMaxLength(100);
 
-                entity.Property(e => e.Status).HasMaxLength(50);
-
                 entity.HasOne(d => d.IdStoreNavigation)
                     .WithMany(p => p.staff)
                     .HasForeignKey(d => d.IdStore)
                     .HasConstraintName("FK_Staff_Store");
             });
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
 
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogins").HasKey(x => x.UserId);
+
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokens").HasKey(x => x.UserId);
             OnModelCreatingPartial(modelBuilder);
         }
 

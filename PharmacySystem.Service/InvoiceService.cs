@@ -7,6 +7,7 @@ using PharmacySystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,9 +21,12 @@ namespace PharmacySystem.Service
         Task<long> DeleteExportInvoice(long IdInvoice);
         Task<PagedResult<ImportInvoiceVM>> GetImportInvoice(GetManageIInvoicePagingRequest request);
         Task<PagedResult<ExportInvoiceVM>> GetExportInvoice(GetManageEInvoicePagingRequest request);
+        Task<PagedResult<ImportInvoiceVM>> GetImportInvoiceForSupplier(GetManageIInvoicePagingRequest request);
         Task<ImportInvoiceVM> GetImportInvoiceByID(long IdInvoice);
         Task<ExportInvoiceVM> GetExportInvoiceByID(long IdInvoice);
         Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long IdInvoice);
+        Task<long> ProcessApprove(ProcessRequest request);
+        Task<List<IInvoiceReportModels>> GetListImportInvoiceById(long IdInvoice);
     }
     public class InvoiceService : IInvoiceService
     {
@@ -36,7 +40,7 @@ namespace PharmacySystem.Service
         public async Task<long> AddImportInvoice(ImportInvoiceCreateRequest request)
         {
             ImportInvoice importInvoice = new ImportInvoice();
-            importInvoice.IdAccount = request.IdAccount;
+            importInvoice.IdStaff = request.IdStaff;
             importInvoice.DateCheckIn = request.DateCheckIn;
             importInvoice.DateCheckOut = request.DateCheckOut;
             importInvoice.StatusId = request.StatusID;
@@ -61,7 +65,7 @@ namespace PharmacySystem.Service
         public async Task<long> AddExportInvoice(ExportInvoiceCreateRequest request)
         {
             ExportInvoice exportInvoice = new ExportInvoice();
-            exportInvoice.IdAccount = request.IdAccount;
+            exportInvoice.IdStaff = request.IdStaff;
             exportInvoice.DateCheckIn = request.DateCheckIn;
             exportInvoice.DateCheckOut = request.DateCheckOut;
             exportInvoice.StatusId = request.StatusID;
@@ -101,11 +105,10 @@ namespace PharmacySystem.Service
         public async Task<PagedResult<ImportInvoiceVM>> GetImportInvoice(GetManageIInvoicePagingRequest request)
         {
             var query = from i in _context.ImportInvoices
-                        join id in _context.InvoiceDetails on i.IdImportInvoice equals id.IdImportInvoice
-                        join a in _context.Users on i.IdAccount equals a.Id
+                        join a in _context.staff on i.IdStaff equals a.IdStaff
                         join s in _context.Suppliers on i.IdSupplier equals s.IdSupplier
                         join st in _context.Statuses on i.StatusId equals st.StatusId
-                        select new { i, id, s, st ,a};
+                        select new { i, s, st ,a};
 
             //search
             if (request.IdSupplier != null && request.IdSupplier != 0)
@@ -130,7 +133,7 @@ namespace PharmacySystem.Service
             var data = await query.Select(x => new ImportInvoiceVM()
             {
                 IdImportInvoice = x.i.IdImportInvoice,
-                UserName = x.a.UserName,
+                UserName = x.a.StaffName,
                 DateCheckIn = x.i.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 DateCheckOut = x.i.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 StatusName = x.st.StatusName,
@@ -151,10 +154,9 @@ namespace PharmacySystem.Service
         public async Task<PagedResult<ExportInvoiceVM>> GetExportInvoice(GetManageEInvoicePagingRequest request)
         {
             var query = from e in _context.ExportInvoices
-                        join id in _context.InvoiceDetails on e.IdExportInvoice equals id.IdExportInvoice
-                        join a in _context.Users on e.IdAccount equals a.Id
+                        join a in _context.staff on e.IdStaff equals a.IdStaff
                         join st in _context.Statuses on e.StatusId equals st.StatusId
-                        select new { e, id, st, a };
+                        select new { e, st, a };
 
             //search
             if (request.StatusID != null && request.StatusID != 0)
@@ -175,7 +177,7 @@ namespace PharmacySystem.Service
             var data = await query.Select(x => new ExportInvoiceVM()
             {
                 IdExportInvoice = x.e.IdExportInvoice,
-                UserName = x.a.UserName,
+                UserName = x.a.StaffName,
                 DateCheckIn = x.e.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 DateCheckOut = x.e.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 StatusName = x.st.StatusName,
@@ -196,7 +198,7 @@ namespace PharmacySystem.Service
         {
             var query = from i in _context.ImportInvoices
                         join id in _context.InvoiceDetails on i.IdImportInvoice equals id.IdImportInvoice
-                        join a in _context.Users on i.IdAccount equals a.Id
+                        join a in _context.staff on i.IdStaff equals a.IdStaff
                         join s in _context.Suppliers on i.IdSupplier equals s.IdSupplier
                         join st in _context.Statuses on i.StatusId equals st.StatusId
                         select new { i, id, s, st, a };
@@ -206,7 +208,7 @@ namespace PharmacySystem.Service
             var invoiceDetails = await query.Where(x =>x.i.IdImportInvoice == IdInvoice).Select(invoice =>  new ImportInvoiceVM()
             {
                 IdImportInvoice = invoice.i.IdImportInvoice,
-                UserName = invoice.a.UserName,
+                UserName = invoice.a.StaffName,
                 DateCheckIn = invoice.i.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 DateCheckOut = invoice.i.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 StatusName = invoice.st.StatusName,
@@ -223,7 +225,7 @@ namespace PharmacySystem.Service
         {
             var query = from i in _context.ExportInvoices
                         join id in _context.InvoiceDetails on i.IdExportInvoice equals id.IdExportInvoice
-                        join a in _context.Users on i.IdAccount equals a.Id
+                        join a in _context.staff on i.IdStaff equals a.IdStaff
                         join st in _context.Statuses on i.StatusId equals st.StatusId
                         select new { i, id, st, a };
 
@@ -232,7 +234,7 @@ namespace PharmacySystem.Service
             var invoiceDetails = await query.Where(x => x.i.IdExportInvoice == IdInvoice).Select(invoice => new ExportInvoiceVM()
             {
                 IdExportInvoice = invoice.i.IdExportInvoice,
-                UserName = invoice.a.UserName,
+                UserName = invoice.a.StaffName,
                 DateCheckIn = invoice.i.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 DateCheckOut = invoice.i.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 StatusName = invoice.st.StatusName,
@@ -243,12 +245,151 @@ namespace PharmacySystem.Service
             }).FirstOrDefaultAsync();
             return invoiceDetails;
         }
+        public int CheckStatus(int StatusId)
+        {
+            int UpdatedStatus = (int)EStatus.DONE;
+            switch (StatusId)
+            {
+                case (int)EStatus.NEW:
+                    UpdatedStatus = (int)EStatus.APPROVED;
+                    break;
+                case (int)EStatus.REJECTED:
+                    UpdatedStatus = (int)EStatus.NEW;
+                    break;
+                case (int)EStatus.APPROVED:
+                    UpdatedStatus = (int)EStatus.RECEIVED;
+                    break;
+                case (int)EStatus.RECEIVED:
+                    UpdatedStatus = (int)EStatus.DONE;
+                    break;
+            }
+            return UpdatedStatus;
+        }
+        public async Task<long> ProcessApprove(ProcessRequest request)
+        {
+            int StatusId = ConvertStatus(request.Status);
+            var Invoice = await _context.ImportInvoices.FindAsync(request.IdInvoice);
+            if (Invoice == null)
+                return 0;
+            Invoice.StatusId = CheckStatus(Invoice.StatusId);
+            if(StatusId == (int)EStatus.RECEIVED)
+                Invoice.DateCheckOut = DateTime.Now;
+            _context.ImportInvoices.Update(Invoice);
+            await _context.SaveChangesAsync();
+            return Invoice.IdImportInvoice;
+        }
+        private int ConvertStatus(string StatusName)
+        {
+            int StatusID = 8;
+            switch (StatusName)
+            {
+                case "New":
+                    StatusID = (int)EStatus.NEW;
+                    break;
+                case "Approved":
+                    StatusID = (int)EStatus.APPROVED;
+                    break;
+                case "Rejected":
+                    StatusID = (int)EStatus.REJECTED;
+                    break;
+                case "Done":
+                    StatusID = (int)EStatus.DONE;
+                    break;
+                case "Received":
+                    StatusID = (int)EStatus.RECEIVED;
+                    break;
+                case "Error":
+                    StatusID = (int)EStatus.ERROR;
+                    break;
+            }
+            return StatusID;
+        }
+        public async Task<List<IInvoiceReportModels>> GetListImportInvoiceById(long IdInvoice)
+        {
+            var query = from i in _context.ImportInvoices
+                        join id in _context.InvoiceDetails on i.IdImportInvoice equals id.IdImportInvoice
+                        join s in _context.Suppliers on i.IdSupplier equals s.IdSupplier
+                        join m in _context.Medicines on id.IdMedicine equals m.IdMedicine
+                        join st in _context.staff on i.IdStaff equals st.IdStaff
+                        join sto in _context.Stores on st.IdStore equals sto.IdStore
+                        select new { i, id, s, m, st, sto };
 
+            var invoiceDetails = await query.Where(x => x.i.IdImportInvoice == IdInvoice).Select(invoice => new IInvoiceReportModels()
+            {
+                IdImportInvoice = invoice.i.IdImportInvoice,
+                DateCheckIn = invoice.i.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
+                DateCheckOut = invoice.i.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
+                SupplierName =  invoice.s.SupplierName,
+                SupllierAddress = invoice.s.Address,
+                SupplierPhone = invoice.s.Phone,
+                MedicineName = invoice.m.MedicineName,
+                ImportPrice =invoice.m.ImportPrice,
+                Unit = invoice.m.Unit,
+                Quantity = invoice.id.Quantity,
+                TotalPrice = invoice.id.TotalPrice,
+                StaffName = invoice.st.StaffName,
+                StoreName = invoice.sto.StoreName,
+                StoreAddress = invoice.sto.Address,
+                StorePhone = invoice.sto.Phone,
+                StoreOwner = invoice.sto.StoreOwner
+            }).ToListAsync();
+            return invoiceDetails;
+        }
         //store
         public async Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long IdInvoice)
         {
             string StoreProc = "exec [dbo].[GetIInoviceDetails] " + "@id = " + IdInvoice;
-            return await _context.IInvoiceReportModels.FromSqlRaw(StoreProc).ToListAsync();
+            List<IInvoiceReportModels> list = await _context.IInvoiceReportModels.FromSqlRaw(StoreProc).ToListAsync();
+            return list;
+        }
+        public async Task<PagedResult<ImportInvoiceVM>> GetImportInvoiceForSupplier(GetManageIInvoicePagingRequest request)
+        {
+            var query = from i in _context.ImportInvoices
+                        join a in _context.staff on i.IdStaff equals a.IdStaff
+                        join s in _context.Suppliers on i.IdSupplier equals s.IdSupplier
+                        join st in _context.Statuses on i.StatusId equals st.StatusId
+                        select new { i, s, st, a };
+
+            //search
+            if (request.IdSupplier != null && request.IdSupplier != 0)
+            {
+                query = query.Where(x => x.s.IdSupplier == request.IdSupplier);
+            }
+            if (request.StatusID != null && request.StatusID != 0)
+            {
+                query = query.Where(x => x.i.StatusId == request.StatusID);
+            }
+            if (!string.IsNullOrEmpty(request.DateCheckIn.ToString()))
+            {
+                query = query.Where(x => x.i.DateCheckIn == request.DateCheckIn);
+            }
+            if (!string.IsNullOrEmpty(request.DateCheckOut.ToString()))
+            {
+                query = query.Where(x => x.i.DateCheckOut == request.DateCheckOut);
+            }
+
+            //list
+            int totalRow = await query.CountAsync();
+            var data = await query.Select(x => new ImportInvoiceVM()
+            {
+                IdImportInvoice = x.i.IdImportInvoice,
+                UserName = x.a.StaffName,
+                DateCheckIn = x.i.DateCheckIn.GetValueOrDefault().ToString("yyyy-MM-dd"),
+                DateCheckOut = x.i.DateCheckOut.GetValueOrDefault().ToString("yyyy-MM-dd"),
+                StatusName = x.st.StatusName,
+                StatusColor = x.st.StatusColor,
+                StatusText = x.st.StatusText,
+                Note = x.i.Note,
+                Supplier = x.s.SupplierName,
+            }).Where(x => x.StatusName == "Approved").ToListAsync();
+
+            //data
+            var pagedResult = new PagedResult<ImportInvoiceVM>()
+            {
+                TotalRecords = totalRow,
+                Items = data,
+            };
+            return pagedResult;
         }
     }
 }

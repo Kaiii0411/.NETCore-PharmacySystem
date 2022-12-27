@@ -1,0 +1,85 @@
+﻿@model PharmacySystem.Models.Request.StoreDeleteRequest
+
+<div class="page-content-wrapper ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="float-right page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Drixo</a></li>
+                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                        <li class="breadcrumb-item active">Form Elements</li>
+                    </ol>
+                </div>
+                <h5 class="page-title">Form Elements</h5>
+            </div>
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="row">
+                            <form id="store-create" class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="StoreName" class="col-sm-3 col-form-label">Store Id:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.IdStore" id="Store" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="StoreName" class="col-sm-3 col-form-label">Store Name:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.StoreName" id="StoreName" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="Owner" class="col-sm-3 col-form-label">Owner:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.StoreOwner" id="Owner" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Phone" class="col-sm-3 col-form-label">Phone:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.Phone" id="Phone" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="Description" class="col-form-label">Address: </label>
+                                        <div>
+                                            <textarea id="Address" class="form-control" rows="5" disabled>@Model.Address</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 m-t-10">
+                                        <div class="form-group right">
+                                            <div>
+                                                <div>
+                                                    <button id="btnConfirmDeleteStore" type="button" class="btn btn-primary waves-effect waves-light">
+                                                        Confirm
+                                                    </button>
+                                                    <a asp-action="Index" asp-controller="Store" class="btn btn-primary waves-effect waves-light">
+                                                        Cancel
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+    </div>
+</div>
+
+<script src="~/js/store.js"></script>
+

@@ -68,7 +68,7 @@
                                         <td>@item.MedicineGroupName</td>
                                         <td>@item.Note</td>
                                         <td>
-                                            <a href="javascript:;" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
+                                            <a asp-controller="MedicineGroup" asp-action="Edit" asp-route-id="@item.IdMedicineGroup" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
                                             <a asp-controller="MedicineGroup" asp-action="Delete" asp-route-id="@item.IdMedicineGroup" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></a>
                                         </td>
                                     </tr>

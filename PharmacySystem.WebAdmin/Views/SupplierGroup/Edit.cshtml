@@ -1,0 +1,74 @@
+﻿@model PharmacySystem.Models.Request.SupplierGroupUpdateRequest
+
+
+<div class="page-content-wrapper ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="float-right page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Drixo</a></li>
+                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                        <li class="breadcrumb-item active">Form Elements</li>
+                    </ol>
+                </div>
+                <h5 class="page-title">Form Elements</h5>
+            </div>
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="row">
+                            <form id="medicine-create" class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="MedicineId" class="col-sm-3 col-form-label">Supplier Group Id:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.IdSupplierGroup" id="SupplierGroup" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="Unit" class="col-sm-3 col-form-label">Supplier Group Name:</label>
+                                            <div class="col-sm-9">
+                                                <input value="@Model.SupplierGroupName" id="SupplierGroupName" class="form-control" type="text" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="Note" class="col-form-label">Note: </label>
+                                        <div>
+                                            <textarea id="Note" class="form-control" rows="3" disabled>@Model.Note</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 m-t-10">
+                                        <div class="form-group right">
+                                            <div>
+                                                <button id="btnUpdateSupplierGroup" type="button" class="btn btn-primary waves-effect waves-light" onclick="EnableUpdate()">
+                                                    Update
+                                                </button>
+                                                <button id="btnConfirmUpdateSupplierGroup" type="button" class="btn btn-primary waves-effect waves-light" style="display:none">
+                                                    Confirm
+                                                </button>
+                                                <button id="btnCancelUpdateSupplierGroup" type="button" class="btn btn-primary waves-effect waves-light" style="display:none" onclick="DisableUpdate()">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+    </div>
+</div>
+
+<script src="~/js/suppliergroup.js"></script>

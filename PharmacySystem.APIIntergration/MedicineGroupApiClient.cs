@@ -39,7 +39,7 @@ namespace PharmacySystem.APIIntergration
         }
         public async Task<int> UpdateMedicineGroup(MedicineGroupUpdateRequest request)
         {
-            var body = await PutAsync<RequestResponse, MedicineGroupUpdateRequest>($"/api/medicinegroup/update/" + request.IdMedicineGroup, request);
+            var body = await PutAsync<RequestResponse, MedicineGroupUpdateRequest>($"/api/medicinegroup/update", request);
             return (int)body.StatusCode;
         }
         public async Task<bool> DeleteMedicineGroup(long id)

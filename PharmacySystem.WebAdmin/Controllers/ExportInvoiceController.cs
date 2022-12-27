@@ -46,8 +46,7 @@ namespace PharmacySystem.WebAdmin.Controllers
             });
             return View(GetEInvoiceViewModel());
         }
-        [HttpPost]
-        public async Task<IActionResult> Create(ExportInvoiceCreateRequest CreateEInvoiceForm)
+        public async Task<IActionResult> CreateConfirm(ExportInvoiceCreateRequest CreateEInvoiceForm)
         {
             var model = GetEInvoiceViewModel();
             var invoiceDetails = new List<InvoiceDetailsVM>();
@@ -63,14 +62,15 @@ namespace PharmacySystem.WebAdmin.Controllers
             }
             var createRequest = new ExportInvoiceCreateRequest()
             {
-                IdAccount = 1,
+                IdStaff = 1,
                 DateCheckIn = DateTime.Now,
+                DateCheckOut = DateTime.Now,
                 StatusID = 1,
                 Note = CreateEInvoiceForm.Note,
                 InvoiceDetails = invoiceDetails
             };
             await _invoiceApiClient.CreateExportInvoice(createRequest);
-            return View(model);
+            return RedirectToAction("Index", "ExportInvoice");
         }
         public async Task<IActionResult> Details(long id)
         {
@@ -158,6 +158,30 @@ namespace PharmacySystem.WebAdmin.Controllers
             };
             return einvoiceVM;
         }
-
+        public IActionResult CheckOut(ExportInvoiceCreateRequest CreateEInvoiceForm)
+        {
+            var model = GetEInvoiceViewModel();
+            var invoiceDetails = new List<InvoiceDetailsVM>();
+            foreach (var item in model.EInvoiceItems)
+            {
+                invoiceDetails.Add(new InvoiceDetailsVM()
+                {
+                    MedicineId = item.IIdMedicine,
+                    MedicineName = item.IMedicineName,
+                    Quantity = item.IQuantity,
+                    TotalPrice = item.IQuantity * item.IPrice
+                });
+            }
+            var createRequest = new ExportInvoiceCreateRequest()
+            {
+                IdStaff = 1,
+                DateCheckIn = DateTime.Now,
+                DateCheckOut = DateTime.Now,
+                StatusID = 1,
+                Note = CreateEInvoiceForm.Note,
+                InvoiceDetails = invoiceDetails
+            };
+            return View(model);
+        }
     }
 }
