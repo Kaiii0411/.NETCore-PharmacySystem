@@ -1,4 +1,7 @@
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using PharmacySystem.APIIntergration;
+using PharmacySystem.Models.Validation;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -9,6 +12,14 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 
 
 builder.Services.AddHttpClient();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/Index";
+        options.AccessDeniedPath = "/User/Forbidden/";
+    });
+
 builder.Services.AddTransient<IMedicineApiClient, MedicineApiClient>();
 builder.Services.AddTransient<IMedicineGroupApiClient, MedicineGroupApiClient>();
 builder.Services.AddTransient<ISupplierApiClient, SupplierApiClient>();
@@ -16,6 +27,11 @@ builder.Services.AddTransient<ISupplierGroupApiClient, SupplierGroupApiClient>()
 builder.Services.AddTransient<IInvoiceApiClient, InvoiceApiClient>();
 builder.Services.AddTransient<IStaffApiClient, StaffApiClient>();
 builder.Services.AddTransient<IStoreApiClient, StoreApiClient>();
+builder.Services.AddTransient<IUserApiClient, UserApiClient>();
+builder.Services.AddTransient<IRolesApiClient, RolesApiClient>();
+
+builder.Services.AddControllersWithViews()
+         .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
 builder.Services.AddSession(options =>
 {
@@ -25,7 +41,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+
 
 
 var app = builder.Build();
@@ -47,7 +63,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseAuthentication();
 app.UseRouting();
 
 app.UseAuthorization();

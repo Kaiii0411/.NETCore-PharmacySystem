@@ -9,7 +9,7 @@ using PharmacySystem.Models.Common;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
-    public class SupplierController : Controller
+    public class SupplierController : BaseController
     {
         private readonly ISupplierApiClient _supplierApiClient;
         private readonly ISupplierGroupApiClient _supplierGroupApiClient;

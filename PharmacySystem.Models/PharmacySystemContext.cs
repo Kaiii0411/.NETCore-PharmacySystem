@@ -10,7 +10,7 @@ using PharmacySystem.WebAPI.Configurations;
 
 namespace PharmacySystem.Models
 {
-    public partial class PharmacySystemContext : IdentityDbContext<Users, Roles, Guid>
+    public partial class PharmacySystemContext : IdentityDbContext<PharmacySystem.Models.Identity.Users, Roles, Guid>
     {
         public PharmacySystemContext()
         {

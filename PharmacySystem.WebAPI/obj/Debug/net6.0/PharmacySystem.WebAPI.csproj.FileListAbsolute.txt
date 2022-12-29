@@ -215,3 +215,4 @@ D:\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\refint\PharmacySystem.W
 D:\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.pdb
 D:\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.genruntimeconfig.cache
 D:\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\ref\PharmacySystem.WebAPI.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\FluentValidation.dll

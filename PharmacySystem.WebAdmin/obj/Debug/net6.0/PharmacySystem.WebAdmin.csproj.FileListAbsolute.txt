@@ -394,3 +394,6 @@ D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\Microsoft.Extensions.
 D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
 D:\PharmacySystem\PharmacySystem.WebAdmin\obj\Debug\net6.0\PharmacySystem.WebAdmin.MvcApplicationPartsAssemblyInfo.cs
 D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\FluentValidation.dll
+D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll

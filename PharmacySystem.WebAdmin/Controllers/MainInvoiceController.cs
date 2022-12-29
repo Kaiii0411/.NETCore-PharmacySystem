@@ -8,7 +8,7 @@ using PharmacySystem.Models.Common;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
-    public class MainInvoiceController : Controller
+    public class MainInvoiceController : BaseController
     {
         private readonly IConfiguration _configuration;
         private readonly IInvoiceApiClient _invoiceApiClient;

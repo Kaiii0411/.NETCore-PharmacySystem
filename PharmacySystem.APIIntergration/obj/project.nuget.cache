@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "A3hJvLXr4bAcwLZDFohv/xsLSy7/m8bcm5czYrWN5MdaNmXApGTPnmK+RtXTDN+a6qqzE9GlPlJo9F2bJ9a22w==",
+  "dgSpecHash": "uvQ4npuKx++2rYHyXNlbXyh0haHnjMOo06FEStrzO794FxuAiZ5Xva8jVtZ7ALqELWvBIjMqe9MI6LJT6ObELQ==",
   "success": true,
   "projectFilePath": "D:\\PharmacySystem\\PharmacySystem.APIIntergration\\PharmacySystem.APIIntergration.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ADMIN\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",

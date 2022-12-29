@@ -199,4 +199,25 @@ $(document).ready(function() {
         "info": false,
         "bDestroy": true
     });
+
+    $('#datatableusers').DataTable({
+        dom: 'Bfrtip',
+        lengthChange: false,
+        searching: false,
+        "showNEntries": true,
+        "info": false,
+        "bDestroy": true,
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Users-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Users-List',
+                className: 'btn btn-primary btn-lg waves-effect waves-light'
+            },
+        ]
+    });
 } );

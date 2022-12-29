@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "d4sqqxczu2rJzrU8VdW+YHGnlOwP7Kf+h0oEVO6oh2voSbEBqqAEwk2Q9Ty/5kmXn9CzndTLZ/R3EFvEYv4dvg==",
+  "dgSpecHash": "6Q8oKobJlqZpOpBHE7KgDEFMWx5P/Bokzli2ERMqNbBxwCxukmNKQZIh5X68tBNS7yWVetKjFBO2mdNrBhhq8A==",
   "success": true,
   "projectFilePath": "D:\\PharmacySystem\\PharmacySystem.DataAccess\\PharmacySystem.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

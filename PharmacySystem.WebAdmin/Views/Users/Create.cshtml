@@ -1,0 +1,88 @@
+﻿@model PharmacySystem.Models.Request.RegisterRequest
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="float-right page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Drixo</a></li>
+                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                        <li class="breadcrumb-item active">Form Elements</li>
+                    </ol>
+                </div>
+                <h5 class="page-title">Form Elements</h5>
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="row">
+                            <form id="users-create" class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="MedicineName" class="col-sm-3 col-form-label">User Name:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="UserName" id="UserName" class="form-control" type="text" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="MedicineName" class="col-sm-3 col-form-label">Password:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="Password" id="Password" class="form-control" type="password" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="MedicineName" class="col-sm-3 col-form-label">Confrim Password:</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="ConfirmPassword" id="ConfirmPassword" class="form-control" type="password" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label for="MedicineGroup" class="col-sm-3 col-form-label">Staff:</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="IdStaff" asp-for="IdStaff" asp-items="@(new SelectList(ViewBag.ListOfStaff,"IdStaff", "StaffName"))">
+                                                    <option>Select...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="MedicineGroup" class="col-sm-3 col-form-label">Account: </label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="IdAccount" asp-for="IdAccount" asp-items="@(new SelectList(ViewBag.ListAccounts,"IdAccount", "Description"))">
+                                                    <option>Select...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 m-t-10">
+                                        <div class="form-group right">
+                                            <div>
+                                                <button id="btnSubmitCreateUser" type="button" class="btn btn-primary waves-effect waves-light">
+                                                    Submit
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary waves-effect m-l-5">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->
+<script src="~/js/users.js"></script>
+

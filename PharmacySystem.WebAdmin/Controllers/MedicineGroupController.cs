@@ -6,7 +6,7 @@ using PharmacySystem.Models.ViewModels;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
-    public class MedicineGroupController : Controller
+    public class MedicineGroupController : BaseController
     {
         private readonly IMedicineGroupApiClient _medicineGroupApiClient;
         private readonly IConfiguration _configuration;

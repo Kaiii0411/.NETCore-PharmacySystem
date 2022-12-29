@@ -9,7 +9,7 @@ using PharmacySystem.Models.ViewModels;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
-    public class ExportInvoiceController : Controller
+    public class ExportInvoiceController : BaseController
     {
         private readonly IConfiguration _configuration;
         private readonly IInvoiceApiClient _invoiceApiClient;

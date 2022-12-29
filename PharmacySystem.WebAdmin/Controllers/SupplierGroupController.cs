@@ -5,7 +5,7 @@ using PharmacySystem.Models.Request;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
-    public class SupplierGroupController : Controller
+    public class SupplierGroupController : BaseController
     {
         private readonly ISupplierGroupApiClient _supplierGroupApiClient;
         private readonly IConfiguration _configuration;

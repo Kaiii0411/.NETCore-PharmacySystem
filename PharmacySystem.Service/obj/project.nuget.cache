@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "0JnixrXvT0MYgWkQwOxmAgiboWVTl4eToBJ8GI2sUX4oXEmG9PcvijkQzBid2JFuGe99yNbF640OvdiBg89mwQ==",
+  "dgSpecHash": "RoskDf4pmkpubNMx1aok5+CF8g6hKN2Y9TY+YMoXneXCDoI1Eh7uOU5WDCFD5T1qWlICeiEUBg4/I4fWUhSWKg==",
   "success": true,
   "projectFilePath": "D:\\PharmacySystem\\PharmacySystem.Service\\PharmacySystem.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",

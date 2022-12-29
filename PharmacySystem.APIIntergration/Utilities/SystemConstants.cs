@@ -10,5 +10,11 @@ namespace PharmacySystem.APIIntergration.Utilities
     {
         public const string IInvoice = "IInvoiceSession";
         public const string EInvoice = "EInvoiceSession";
+        public class AppSettings
+        {
+            public const string Token = "Token";
+            public const string BaseAddress = "BaseAddress";
+        }
     }
+
 }

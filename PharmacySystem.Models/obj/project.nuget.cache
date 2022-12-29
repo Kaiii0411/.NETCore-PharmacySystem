@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Rd4sZRadZo3TFPc2CgbDKqca8vtwCeZpClwI5uaN7Y+GxIJMbgONFXrvkAHRkkGgb+ziS0AsEGhKd/IDFvkxIg==",
+  "dgSpecHash": "4JASMl9z/dBQBJLGD4QDl2/xAKY4ByX6IiHln4GDU1I/qKe+xRdX8X4vkfo6yBEO0/NswjCHD+S6Y9k9ejlHzQ==",
   "success": true,
   "projectFilePath": "D:\\PharmacySystem\\PharmacySystem.Models\\PharmacySystem.Models.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ADMIN\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

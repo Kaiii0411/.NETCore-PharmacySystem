@@ -9,7 +9,7 @@ using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
-    public class MedicineController : Controller
+    public class MedicineController : BaseController
     {
         private readonly IMedicineApiClient _medicineApiClient;
         private readonly IMedicineGroupApiClient _medicineGroupApiClient;

@@ -12,7 +12,7 @@ using AspNetCore.Reporting;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
-    public class ImportInvoiceController : Controller
+    public class ImportInvoiceController : BaseController
     {
         private readonly IConfiguration _configuration;
         private readonly IInvoiceApiClient _invoiceApiClient;

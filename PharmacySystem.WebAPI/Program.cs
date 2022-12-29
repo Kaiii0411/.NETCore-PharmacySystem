@@ -34,6 +34,7 @@ builder.Services.AddTransient<IStaffService, StaffService>();
 builder.Services.AddTransient<IInvoiceService, InvoiceService>();
 builder.Services.AddTransient<IInvoiceDetailsService, InvoiceDetailsService>();
 builder.Services.AddTransient<IUsersService, UsersService>();
+builder.Services.AddTransient<IRolesService, RolesService>();
 #endregion
 
 //Repositories

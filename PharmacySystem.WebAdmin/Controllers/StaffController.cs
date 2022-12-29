@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
-    public class StaffController : Controller
+    public class StaffController : BaseController
     {
         private readonly IConfiguration _configuration;
         private readonly IStaffApiClient _staffApiClient;

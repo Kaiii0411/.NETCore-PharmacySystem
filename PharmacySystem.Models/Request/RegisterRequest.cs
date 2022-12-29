@@ -12,5 +12,6 @@ namespace PharmacySystem.Models.Request
         public string? Password { get; set; }
         public string? ConfirmPassword { get; set; }
         public long IdStaff { get; set; }
+        public long IdAccount { get; set; }
     }
 }

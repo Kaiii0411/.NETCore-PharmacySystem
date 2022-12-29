@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dvnQ/ACzpNecEqi8DX8X5XOXrOVL4K+VSEk8iSrH0ZXhCEl74MbRHUO1QrWwNyOQL2BuQV4EKbD4KqWrIirBfA==",
+  "dgSpecHash": "vVV1jBXVKHYAY2E7A2qJwJqL3cSiox5vKwa4uAr90q6Sy24TealQVC/oMBD8kQNoPaYHaRHS3Z7Mh7aeSAXaHQ==",
   "success": true,
   "projectFilePath": "D:\\PharmacySystem\\PharmacySystem.WebAdmin\\PharmacySystem.WebAdmin.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,9 @@
     "C:\\Users\\ADMIN\\.nuget\\packages\\aspnetcore.reportingservices\\2.1.0\\aspnetcore.reportingservices.2.1.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\aspnetcore.reportviewer\\3.0.0.200103\\aspnetcore.reportviewer.3.0.0.200103.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

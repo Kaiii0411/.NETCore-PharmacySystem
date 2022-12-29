@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
-    public class StoreController : Controller
+    public class StoreController : BaseController
     {
         private readonly IConfiguration _configuration;
         private readonly IStoreApiClient _storeApiClient;
