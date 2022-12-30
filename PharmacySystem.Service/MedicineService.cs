@@ -123,7 +123,7 @@ namespace PharmacySystem.Service
         }
         public async Task<Medicine> GetByID(long MedicineId)
         {
-            var medicine = await _context.Medicines.FindAsync(MedicineId);
+            var medicine = await _context.Medicines.AsNoTracking().FirstOrDefaultAsync( x => x.IdMedicine == MedicineId);
 
             var medicineDetails = new Medicine()
             {

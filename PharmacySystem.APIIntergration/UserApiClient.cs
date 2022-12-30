@@ -24,6 +24,7 @@ namespace PharmacySystem.APIIntergration
         Task<PagedResult<UsersVM>> Get(GetUsersPagingRequest request);
         Task<ApiResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
         Task<ApiResult<bool>> UpdateUser(Guid id, UserUpdateRequest request);
+        Task<ApiResult<UsersVM>> GetByName(string name);
     }
     public class UserApiClient : IUserApiClient
     {
@@ -90,6 +91,19 @@ namespace PharmacySystem.APIIntergration
             client.BaseAddress = new Uri(_Address);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
             var response = await client.GetAsync($"/api/users/details/{id}");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<UsersVM>>(body);
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<UsersVM>>(body);
+        }
+        public async Task<ApiResult<UsersVM>> GetByName(string name)
+        {
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_Address);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.GetAsync($"/api/users/detailsbyname/{name}");
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<UsersVM>>(body);

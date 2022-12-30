@@ -71,5 +71,6 @@ namespace PharmacySystem.WebAdmin.Controllers
 
             return principal;
         }
+
     }
 }

@@ -32,10 +32,12 @@ namespace PharmacySystem.Service
     {
         private readonly PharmacySystemContext _context;
         private readonly IInvoiceDetailsService _invoiceDetailsService;
-        public InvoiceService(PharmacySystemContext context, IInvoiceDetailsService invoiceDetailsService)
+        private readonly IMedicineService _medicineService;
+        public InvoiceService(PharmacySystemContext context, IInvoiceDetailsService invoiceDetailsService, IMedicineService medicineService)
         {
             this._context = context;
             this._invoiceDetailsService = invoiceDetailsService;
+            _medicineService = medicineService;
         }
         public async Task<long> AddImportInvoice(ImportInvoiceCreateRequest request)
         {
@@ -80,6 +82,10 @@ namespace PharmacySystem.Service
                 invoiceDetail.Quantity = item.Quantity;
                 invoiceDetail.TotalPrice = item.TotalPrice;
                 _context.InvoiceDetails.Add(invoiceDetail);
+
+                var medicine = await _medicineService.GetByID(item.MedicineId);
+                medicine.Quantity = medicine.Quantity - (long)item.Quantity;
+                _context.Medicines.Update(medicine);
             }
             await _context.SaveChangesAsync();
             return exportInvoice.IdExportInvoice;

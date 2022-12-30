@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\Reports\IInvoiceReport.rdlc" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="wwwroot\Reports\IInvoiceReport.rdlc" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
     <PackageReference Include="AspNetCore.ReportViewer" Version="3.0.0.200103" />
     <PackageReference Include="Dapper" Version="2.0.123" />
@@ -37,6 +29,12 @@
   <ItemGroup>
     <ProjectReference Include="..\PharmacySystem.APIIntergration\PharmacySystem.APIIntergration.csproj" />
     <ProjectReference Include="..\PharmacySystem.Models\PharmacySystem.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Reports\IInvoiceReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

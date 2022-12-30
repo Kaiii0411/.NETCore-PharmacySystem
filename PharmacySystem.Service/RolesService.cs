@@ -178,7 +178,7 @@ namespace PharmacySystem.Service
                         return new ApiSuccessResult<bool>();
                 }
             }
-            return new ApiErrorResult<bool>("Update failed!");
+            return new ApiSuccessResult<bool>();
         }
     }
 }

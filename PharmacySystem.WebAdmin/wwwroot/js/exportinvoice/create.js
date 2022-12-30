@@ -26,7 +26,7 @@ function UpdateInvoice() {
         data: { id: idmedicine, quantity: quantity },
         success: function (res) {
             alertify.success("Done!");
-            $("#datatable-buttons").load(window.location + " #datatable-buttons");
+            $("#datatablecreateeinvoice").load(window.location + " #datatablecreateeinvoice");
         },
         error: function (err) {
             alertify.error("Not receiving data!");
@@ -43,7 +43,7 @@ function DeleteItemsInvoice() {
         data: { id: idmedicine },
         success: function (res) {
             alertify.success("Done!");
-            $("#datatable-buttons").load(window.location + " #datatable-buttons");
+            $("#datatablecreateeinvoice").load(window.location + " #datatablecreateeinvoice");
         },
         error: function (err) {
             alertify.error("Not receiving data!");
@@ -63,7 +63,7 @@ $(document).ready(function () {
             data: { id: idmedicine, quantity: quantity },
             success: function (res) {
                 alertify.success("Done!");
-                $("#datatable-buttons").load(window.location + " #datatable-buttons");
+                $("#datatablecreateeinvoice").load(window.location + " #datatablecreateeinvoice");
             },
             error: function (err) {
                 alertify.error("Not receiving data!");

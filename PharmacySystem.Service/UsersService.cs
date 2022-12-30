@@ -29,6 +29,7 @@ namespace PharmacySystem.Service
         Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request);
         Task<ApiResult<bool>> Delete(Guid id);
         Task<List<UsersVM>> GetAll();
+        Task<ApiResult<UsersVM>> GetByName(string name);
     }
     public class UsersService : IUsersService
     {
@@ -143,6 +144,24 @@ namespace PharmacySystem.Service
         public async Task<ApiResult<UsersVM>> GetById(Guid id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<UsersVM>("User does not exist!");
+            }
+            var roles = await _userManager.GetRolesAsync(user);
+            var userVm = new UsersVM()
+            {
+                Id = user.Id,
+                IdAccount = user.IdAccount,
+                IdStaff = user.IdStaff,
+                UserName = user.UserName,
+                Roles = roles
+            };
+            return new ApiSuccessResult<UsersVM>(userVm);
+        }
+        public async Task<ApiResult<UsersVM>> GetByName(string name)
+        {
+            var user = await _userManager.FindByNameAsync(name);
             if (user == null)
             {
                 return new ApiErrorResult<UsersVM>("User does not exist!");

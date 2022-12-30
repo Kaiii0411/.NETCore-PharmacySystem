@@ -65,7 +65,7 @@ namespace PharmacySystem.WebAdmin.Controllers
                 IdStaff = 1,
                 DateCheckIn = DateTime.Now,
                 DateCheckOut = DateTime.Now,
-                StatusID = 1,
+                StatusID = 6,
                 Note = CreateEInvoiceForm.Note,
                 InvoiceDetails = invoiceDetails
             };
@@ -172,15 +172,6 @@ namespace PharmacySystem.WebAdmin.Controllers
                     TotalPrice = item.IQuantity * item.IPrice
                 });
             }
-            var createRequest = new ExportInvoiceCreateRequest()
-            {
-                IdStaff = 1,
-                DateCheckIn = DateTime.Now,
-                DateCheckOut = DateTime.Now,
-                StatusID = 1,
-                Note = CreateEInvoiceForm.Note,
-                InvoiceDetails = invoiceDetails
-            };
             return View(model);
         }
     }

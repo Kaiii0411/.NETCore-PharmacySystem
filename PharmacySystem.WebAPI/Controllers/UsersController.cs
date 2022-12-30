@@ -88,6 +88,12 @@ namespace PharmacySystem.WebAPI.Controllers
             var user = await _userService.GetById(id);
             return Ok(user);
         }
+        [HttpGet("detailsbyname/{name}")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            var user = await _userService.GetByName(name);
+            return Ok(user);
+        }
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

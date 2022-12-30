@@ -96,6 +96,7 @@ function EnableUpdate() {
     document.getElementById("btnConfirmUpdateMedicineGroup").style.display = 'inline-block';
     document.getElementById("btnCancelUpdateMedicineGroup").style.display = 'inline-block';
     document.getElementById("btnUpdateMedicineGroup").style.display = 'none';
+    document.getElementById("btnBackToList").style.display = 'none';
 }
 
 function DisableUpdate() {
@@ -105,4 +106,5 @@ function DisableUpdate() {
     document.getElementById("btnConfirmUpdateMedicineGroup").style.display = 'none';
     document.getElementById("btnCancelUpdateMedicineGroup").style.display = 'none';
     document.getElementById("btnUpdateMedicineGroup").style.display = 'inline-block';
+    document.getElementById("btnBackToList").style.display = 'inline-block';
 }

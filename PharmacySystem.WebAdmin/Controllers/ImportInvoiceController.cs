@@ -9,6 +9,9 @@ using PharmacySystem.Models.ViewModels;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using System.Text;
 using AspNetCore.Reporting;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Reflection;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
@@ -219,9 +222,12 @@ namespace PharmacySystem.WebAdmin.Controllers
         {
             string mimtype = "";
             int extension = 1;
+            var imagePath = $"{this._webHostEnviroment.WebRootPath}\\assests\\images\\logo-dark.png";
             var path = $"{this._webHostEnviroment.WebRootPath}\\Reports\\IInvoiceReport.rdlc";
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             LocalReport localReport = new LocalReport(path);
+            
+            //addvalue
             var detailsForm = await _invoiceApiClient.ProcGetImportInvoiceById(id);
             localReport.AddDataSource("IInvoiceDataSet", detailsForm);
             var result = localReport.Execute(RenderType.Pdf, extension, parameters, mimtype);

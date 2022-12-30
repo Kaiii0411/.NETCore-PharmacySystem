@@ -397,3 +397,4 @@ D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\Microsoft.EntityFrame
 D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\FluentValidation.dll
 D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\PharmacySystem\PharmacySystem.WebAdmin\bin\Debug\net6.0\wwwroot\Reports\IInvoiceReport.rdlc
