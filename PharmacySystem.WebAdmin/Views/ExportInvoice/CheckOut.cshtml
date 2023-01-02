@@ -34,9 +34,24 @@
                                 </div>
                                 <hr>
                                 <div class="row">
+                                    <div class="col-6">
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <address>
+                                            <strong>Store Info:</strong><br>
+                                            @ViewBag.StoreName<br>
+                                            @ViewBag.StorePhone<br>
+                                            @ViewBag.StoreAddress
+                                        </address>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6 m-t-30">
+                                        <address>
+                                            <strong>CreatedBy:</strong><br>
+                                            @ViewBag.StaffName - @ViewBag.UserName<br>
+                                            @ViewBag.StaffEmail
+                                        </address>
                                     </div>
                                     <div class="col-6 m-t-30 text-right">
                                         <address>

@@ -40,13 +40,12 @@
                                     @for (var i = 0; i < Model.Users.Count; i++)
                                     {
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" asp-for="Users[i].Selected" class="custom-control-input" id="customCheck1" data-parsley-multiple="groups"
-                                               data-parsley-mincheck="2" />
-                                            <label class="custom-control-label" for="customCheck1">
+                                            <input type="checkbox" asp-for="Users[i].Selected" />
+                                            <label>
                                                 @Model.Users[i].Name
+                                                <input type="hidden" asp-for="Users[i].Id" />
+                                                <input type="hidden" asp-for="Users[i].Name" />
                                             </label>
-                                            <input type="hidden" asp-for="Users[i].Id" />
-                                            <input type="hidden" asp-for="Users[i].Name" />
                                         </div>
                                     }
                                 </div>
@@ -56,9 +55,9 @@
                                     <button type="submit" class="btn btn-primary waves-effect waves-light">
                                         Submit
                                     </button>
-                                    <button type="reset" class="btn btn-secondary waves-effect m-l-5">
+                                    <a asp-controller="Roles" asp-action="Index"  class="btn btn-secondary waves-effect m-l-5">
                                         Cancel
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </form>

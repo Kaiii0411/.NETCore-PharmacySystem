@@ -36,13 +36,12 @@
                                     @for (var i = 0; i < Model.Roles.Count; i++)
                                     {
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" asp-for="Roles[i].Selected" class="custom-control-input" id="customCheck1" data-parsley-multiple="groups"
-                                               data-parsley-mincheck="2" />
-                                            <label class="custom-control-label" for="customCheck1">
+                                            <input type="checkbox" asp-for="Roles[i].Selected" />
+                                            <label>
                                                 @Model.Roles[i].Name
+                                                <input type="hidden" asp-for="Roles[i].Id" />
+                                                <input type="hidden" asp-for="Roles[i].Name" />
                                             </label>
-                                            <input type="hidden" asp-for="Roles[i].Id" />
-                                            <input type="hidden" asp-for="Roles[i].Name" />
                                         </div>
                                     }
                                 </div>

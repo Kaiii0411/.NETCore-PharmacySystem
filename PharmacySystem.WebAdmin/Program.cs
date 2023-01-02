@@ -1,6 +1,10 @@
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using PharmacySystem.APIIntergration;
+using PharmacySystem.Models;
+using PharmacySystem.Models.Identity;
 using PharmacySystem.Models.Validation;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
@@ -10,14 +14,19 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     WebRootPath = "wwwroot"
 });
 
+builder.Services.AddDbContext<PharmacySystemContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PharmacySystemDB")));
 
+builder.Services.AddDefaultIdentity<Users>()
+                    .AddRoles<Roles>()
+                    .AddEntityFrameworkStores<PharmacySystemContext>().AddDefaultTokenProviders().AddDefaultUI();
 builder.Services.AddHttpClient();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
         options.LoginPath = "/Login/Index";
-        options.AccessDeniedPath = "/User/Forbidden/";
+        options.AccessDeniedPath = "/User/Forbidden";
     });
 
 builder.Services.AddTransient<IMedicineApiClient, MedicineApiClient>();

@@ -27,7 +27,7 @@
                                     <label class="col-form-label">Medicine Name: </label>
                                     <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label class="col-form-label">Medicine Group: </label>
                                     <select name="IdMedicineGroup" asp-items="@ViewBag.ListOfMedicineGroup" class="form-control">
                                         <option>Select...</option>
@@ -39,9 +39,12 @@
                                         <option>Select...</option>
                                     </select>
                                 </div>
-                                <div class="col-md-2 m-t-33">
+                                <div class="col-md-3 m-t-33">
                                     <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">
                                         <i class="fa fa-search"></i> Search</button>
+                                    <button type="button" class="btn btn-primary btn-lg waves-effect waves-light" onclick="ShowImport()">
+                                        <i class="fa fa-search"></i> Import
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -49,6 +52,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="row">
             <div class="col-12">
@@ -103,7 +107,7 @@
                 <div class="modal-dialog  modal-max">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title mt-0">Details</h5>
+                            <h5 class="modal-title mt-0">SELECT FILE NEED TO IMPORT:</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

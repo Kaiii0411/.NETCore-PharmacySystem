@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PharmacySystem.APIIntergration;
 using PharmacySystem.Models;
 using PharmacySystem.Models.Request;
@@ -6,6 +7,7 @@ using PharmacySystem.Models.ViewModels;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Admin,StoreOwner,Staff")]
     public class MedicineGroupController : BaseController
     {
         private readonly IMedicineGroupApiClient _medicineGroupApiClient;

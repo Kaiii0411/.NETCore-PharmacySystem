@@ -68,12 +68,15 @@
                                         <td>@item.IdExportInvoice</td>
                                         <td>@string.Format("{0:dd/MM/yyyy}", @item.DateCheckIn)</td>
                                         <td>@string.Format("{0:dd/MM/yyyy}", @item.DateCheckOut)</td>
-                                        <td>@item.StatusName</td>
+                                        <td>
+                                            <div style="background: @item.StatusColor; color: @item.StatusText;border-radius:10px;text-align:center;">
+                                                @item.StatusName
+                                            </div>
+                                        </td>
                                         <td>@item.UserName</td>
                                         <td>@item.Note</td>
                                         <td>
                                             <a asp-controller="ExportInvoice" asp-action="Details" asp-route-id="@item.IdExportInvoice" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
-                                            <a asp-controller="Medicine" asp-action="Delete" asp-route-id="@item.IdExportInvoice" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></a>
                                         </td>
                                     </tr>
                                 }

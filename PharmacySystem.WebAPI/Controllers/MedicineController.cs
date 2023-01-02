@@ -113,5 +113,34 @@ namespace PharmacySystem.WebAPI.Controllers
                 };
             }
         }
+        [HttpGet("listbymedicinegroupid/{IdMedicineGroup}")]
+        public async Task<IActionResult> GetByIdMedicine(long IdMedicineGroup)
+        {
+            var list = await _MedicineService.GetListMedicineByMecicineGroup(IdMedicineGroup);
+            if (list == null)
+                return BadRequest("Cannot find details");
+            return Ok(list);
+        }
+        [HttpGet("paging/outstock")]
+        public async Task<IActionResult> GetListOutOfStock([FromQuery] GetManageMedicinePagingRequest request)
+        {
+            var medicines = await _MedicineService.GetListOutOfStock(request);
+            return Ok(medicines);
+        }
+        [HttpGet("paging/outdate")]
+        public async Task<IActionResult> GetListOutOfDate([FromQuery] GetManageMedicinePagingRequest request)
+        {
+            var medicines = await _MedicineService.GetListOutOfDate(request);
+            return Ok(medicines);
+        }
+        [HttpPost("import")]
+        public async Task<bool> ImportMedicinesByExcel(IFormFile file)
+        {
+            if(await _MedicineService.ImportMedicineByExcel(file))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

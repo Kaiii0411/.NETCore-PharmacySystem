@@ -113,6 +113,7 @@ function EnableUpdate() {
     document.getElementById("btnConfirmUpdateStore").style.display = 'inline-block';
     document.getElementById("btnCancelUpdateStore").style.display = 'inline-block';
     document.getElementById("btnUpdateStore").style.display = 'none';
+    document.getElementById("btnBackToList").style.display = 'none';
 }
 
 function DisableUpdate() {
@@ -124,4 +125,5 @@ function DisableUpdate() {
     document.getElementById("btnConfirmUpdateStore").style.display = 'none';
     document.getElementById("btnCancelUpdateStore").style.display = 'none';
     document.getElementById("btnUpdateStore").style.display = 'inline-block';
+    document.getElementById("btnBackToList").style.display = 'inline-block';
 }

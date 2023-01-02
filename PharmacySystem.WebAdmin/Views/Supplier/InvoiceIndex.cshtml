@@ -22,7 +22,7 @@
             <div class="col-12">
                 <div class="card m-b-15">
                     <div class="card-body">
-                        <form id="searchForm" asp-controller="ImportInvoice" asp-action="Index" method="get">
+                        <form id="searchForm" asp-controller="Supplier" asp-action="InvoiceIndex" method="get">
                             <div class="form-group row">
                                 <div class="col-sm-2">
                                     <label for="example-text-input" class="col-form-label">Date Check In: </label>
@@ -75,7 +75,11 @@
                                         <td>@item.IdImportInvoice</td>
                                         <td>@string.Format("{0:dd/MM/yyyy}", @item.DateCheckIn)</td>
                                         <td>@string.Format("{0:dd/MM/yyyy}", @item.DateCheckOut)</td>
-                                        <td>@item.StatusName</td>
+                                        <td>
+                                            <div style="background: @item.StatusColor; color: @item.StatusText;border-radius:10px;text-align:center;">
+                                                @item.StatusName
+                                            </div>
+                                        </td>
                                         <td>@item.Supplier</td>
                                         <td>@item.UserName</td>
                                         <td>@item.Note</td>

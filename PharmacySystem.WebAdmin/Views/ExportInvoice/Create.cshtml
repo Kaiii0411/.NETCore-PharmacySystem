@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-md-2 m-t-33">
                                 <button type="submit" id="btnAddEInvoiceItems" class="btn btn-primary btn-lg waves-effect waves-light">
-                                    <i class="fa fa-search"></i> Add
+                                    <i class="fa fa-plus"></i> Add
                                 </button>
                             </div>
                         </div>
@@ -89,8 +89,11 @@
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-md-12 m-t-33">
-                                <a asp-controller="ExportInvoice" asp-action="CheckOut" class="btn btn-primary btn-lg waves-effect waves-light right">
-                                    <i class="fa fa-search"></i> Check Out
+                                <a asp-controller="ExportInvoice" asp-action="CheckOut" class="btn btn-primary btn-lg waves-effect waves-light m-l-15 right">
+                                    <i class="fa fa-paper-plane"></i> Check Out
+                                </a>
+                                <a id="btnBackToList" asp-controller="ExportInvoice" asp-action="Index" class="btn btn-secondary btn-lg waves-effect m-l-5 right">
+                                    Cancel
                                 </a>
                             </div>
                         </div>

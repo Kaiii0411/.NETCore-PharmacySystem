@@ -96,6 +96,7 @@ function EnableUpdate() {
     document.getElementById("btnConfirmUpdateSupplierGroup").style.display = 'inline-block';
     document.getElementById("btnCancelUpdateSupplierGroup").style.display = 'inline-block';
     document.getElementById("btnUpdateSupplierGroup").style.display = 'none';
+    document.getElementById("btnBackToList").style.display = 'none';
 }
 
 function DisableUpdate() {
@@ -105,4 +106,5 @@ function DisableUpdate() {
     document.getElementById("btnConfirmUpdateSupplierGroup").style.display = 'none';
     document.getElementById("btnCancelUpdateSupplierGroup").style.display = 'none';
     document.getElementById("btnUpdateSupplierGroup").style.display = 'inline-block';
+    document.getElementById("btnBackToList").style.display = 'inline-block';
 }

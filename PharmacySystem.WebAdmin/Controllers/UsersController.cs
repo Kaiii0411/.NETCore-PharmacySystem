@@ -48,6 +48,10 @@ namespace PharmacySystem.WebAdmin.Controllers
             }
             return View(data);
         }
+        public IActionResult Forbidden()
+        {
+            return View();
+        }
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
@@ -57,7 +61,7 @@ namespace PharmacySystem.WebAdmin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var staffList = await _staffApiClient.GetListStaff();
+            var staffList = await _staffApiClient.GetListNewStaff();
             List<ListAccountVM> listAccounts = new List<ListAccountVM>
             {
                 new ListAccountVM {IdAccount = 1, Description = "Admin"},

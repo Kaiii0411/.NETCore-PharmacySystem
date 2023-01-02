@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
 using PharmacySystem.APIIntergration;
 using PharmacySystem.Models;
@@ -7,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StoreController : BaseController
     {
         private readonly IConfiguration _configuration;

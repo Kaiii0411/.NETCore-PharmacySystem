@@ -118,6 +118,7 @@ function EnableUpdate() {
     document.getElementById("btnConfirmUpdateStaff").style.display = 'inline-block';
     document.getElementById("btnCancelUpdateStaff").style.display = 'inline-block';
     document.getElementById("btnUpdateStaff").style.display = 'none';
+    document.getElementById("btnBackToList").style.display = 'none';
 }
 
 function DisableUpdate() {
@@ -130,4 +131,5 @@ function DisableUpdate() {
     document.getElementById("btnConfirmUpdateStaff").style.display = 'none';
     document.getElementById("btnCancelUpdateStaff").style.display = 'none';
     document.getElementById("btnUpdateStaff").style.display = 'inline-block';
+    document.getElementById("btnBackToList").style.display = 'inline-block';
 }

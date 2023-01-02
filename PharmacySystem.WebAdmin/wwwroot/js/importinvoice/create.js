@@ -89,6 +89,7 @@ $(document).ready(function () {
             data: CreateIInvoiceForm,
             success: function (res) {
                 alertify.success("Done!");
+                $("#datatablecreateiinvoice").load(window.location + " #datatablecreateiinvoice");
             },
             error: function (err) {
                 alertify.error("Not receiving data!");
@@ -107,13 +108,38 @@ $(document).ready(function () {
                     items += "<option value=" + this.value + ">" + this.text + "</option>";
                 })
                 $("#idMedicine").html(items);
+                DisableSupplierSelect();
             },
             failure: function (d) {
                 alert(d.responseText);
+                EnableSupplierSelect();
             },
             error: function (d) {
                 alert(d.responseText);
             }
         });
     })
+
+    $('#btnRefresh').click(function () {
+        $.ajax({
+            url: "/ImportInvoice/Refresh",
+            type: 'GET',
+            success: function (rs) {
+                if (rs == 1) {
+                    alertify.success("Done!");
+                    EnableSupplierSelect();
+                    location.reload();
+                }
+            },
+            error: function (err) {
+                alertify.error("Not receiving data!");
+            }
+        })
+    });
 });
+function DisableSupplierSelect() {
+    document.getElementById("idSupllier").disabled = true;
+}
+function EnableSupplierSelect() {
+    document.getElementById("idSupllier").disabled = false;
+}

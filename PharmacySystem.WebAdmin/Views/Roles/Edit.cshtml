@@ -51,12 +51,15 @@
                                                 <button id="btnUpdateRoles" type="button" class="btn btn-primary waves-effect waves-light" onclick="EnableUpdate()">
                                                     Update
                                                 </button>
-                                                <button id="btnConfirmUpdateRoles" type="button" class="btn btn-primary waves-effect waves-light" style="display:none">
+                                                <button id="btnConfirmUpdateRoles" type="button" class="btn btn-success waves-effect waves-light" style="display:none">
                                                     Confirm
                                                 </button>
-                                                <button id="btnCancelUpdateRoles" type="button" class="btn btn-primary waves-effect waves-light" style="display:none" onclick="DisableUpdate()">
+                                                <button id="btnCancelUpdateRoles" type="button" class="btn btn-danger waves-effect waves-light" style="display:none" onclick="DisableUpdate()">
                                                     Cancel
                                                 </button>
+                                                <a id="btnBackToList" asp-controller="Roles" asp-action="Index" class="btn btn-secondary waves-effect m-l-5">
+                                                    Cancel
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -71,5 +74,5 @@
     </div><!-- container fluid -->
 
 </div> <!-- Page content Wrapper -->
-<script src="~/js/users.js"></script>
+<script src="~/js/roles.js"></script>
 

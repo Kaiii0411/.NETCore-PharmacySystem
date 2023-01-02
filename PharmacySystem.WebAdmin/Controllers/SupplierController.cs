@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using PharmacySystem.Models.ViewModels;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
 using PharmacySystem.Models.Common;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Admin,StoreOwner")]
     public class SupplierController : BaseController
     {
         private readonly ISupplierApiClient _supplierApiClient;

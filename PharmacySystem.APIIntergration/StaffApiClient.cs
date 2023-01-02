@@ -21,6 +21,8 @@ namespace PharmacySystem.APIIntergration
         Task<staff> GetById(long id);
         Task<bool> DeleteStaff(long id);
         Task<List<staff>> GetListStaff();
+        Task<List<staff>> GetListNewStaff();
+
     }
     public class StaffApiClient: BaseApiClient, IStaffApiClient
     {
@@ -63,6 +65,10 @@ namespace PharmacySystem.APIIntergration
             var body = await GetAsync<RequestResponse>("api/staff/list");
             return OutPutApi.OutPut<staff>(body);
         }
-
+        public async Task<List<staff>> GetListNewStaff()
+        {
+            var body = await GetAsync<RequestResponse>("api/staff/newlist");
+            return OutPutApi.OutPut<staff>(body);
+        }
     }
 }

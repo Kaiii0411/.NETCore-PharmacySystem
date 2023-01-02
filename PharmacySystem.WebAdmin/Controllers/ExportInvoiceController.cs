@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using PharmacySystem.APIIntergration;
@@ -9,19 +10,26 @@ using PharmacySystem.Models.ViewModels;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Admin,StoreOwner,Staff")]
     public class ExportInvoiceController : BaseController
     {
         private readonly IConfiguration _configuration;
         private readonly IInvoiceApiClient _invoiceApiClient;
         private readonly ISupplierApiClient _supplierApiClient;
         private readonly IMedicineApiClient _medicineApiClient;
+        private readonly IUserApiClient _userApiClient;
+        private readonly IStaffApiClient _staffApiClient;
+        private readonly IStoreApiClient _storeApiClient;
 
-        public ExportInvoiceController(IConfiguration configuration, IInvoiceApiClient invoiceApiClient, ISupplierApiClient supplierApiClient, IMedicineApiClient medicineApiClient)
+        public ExportInvoiceController(IConfiguration configuration, IInvoiceApiClient invoiceApiClient, ISupplierApiClient supplierApiClient, IMedicineApiClient medicineApiClient, IUserApiClient userApiClient, IStaffApiClient staffApiClient, IStoreApiClient storeApiClient)
         {
             this._configuration = configuration;
             this._invoiceApiClient = invoiceApiClient;
             this._supplierApiClient = supplierApiClient;
             this._medicineApiClient = medicineApiClient;
+            this._userApiClient = userApiClient;
+            this._staffApiClient = staffApiClient;
+            this._storeApiClient = storeApiClient;
         }
         public async Task<IActionResult> Index(DateTime? DateCheckIn, DateTime? DateCheckOut, long? IdSupplier, int? StatusID)
         {
@@ -60,9 +68,13 @@ namespace PharmacySystem.WebAdmin.Controllers
                     TotalPrice = item.IQuantity * item.IPrice
                 });
             }
+
+            var userName = User.Identity.Name;
+            var user = await _userApiClient.GetByName(userName);
+
             var createRequest = new ExportInvoiceCreateRequest()
             {
-                IdStaff = 1,
+                IdStaff = user.ResultObj.IdStaff,
                 DateCheckIn = DateTime.Now,
                 DateCheckOut = DateTime.Now,
                 StatusID = 6,
@@ -70,6 +82,7 @@ namespace PharmacySystem.WebAdmin.Controllers
                 InvoiceDetails = invoiceDetails
             };
             await _invoiceApiClient.CreateExportInvoice(createRequest);
+            ClearItems();
             return RedirectToAction("Index", "ExportInvoice");
         }
         public async Task<IActionResult> Details(long id)
@@ -158,8 +171,20 @@ namespace PharmacySystem.WebAdmin.Controllers
             };
             return einvoiceVM;
         }
-        public IActionResult CheckOut(ExportInvoiceCreateRequest CreateEInvoiceForm)
+        public async Task<IActionResult> CheckOut(ExportInvoiceCreateRequest CreateEInvoiceForm)
         {
+
+            var userName = User.Identity.Name;
+            var user = await _userApiClient.GetByName(userName);
+            var Staff = await _staffApiClient.GetById(user.ResultObj.IdStaff);
+            var Store = await _storeApiClient.GetById((long)Staff.IdStore);
+            ViewBag.UserName = userName;
+            ViewBag.StaffName = Staff.StaffName;
+            ViewBag.StaffEmail = Staff.Email;
+            ViewBag.StoreName = Store.StoreName;
+            ViewBag.StoreAddress = Store.Address;
+            ViewBag.StorePhone = Store.Phone;
+
             var model = GetEInvoiceViewModel();
             var invoiceDetails = new List<InvoiceDetailsVM>();
             foreach (var item in model.EInvoiceItems)
@@ -173,6 +198,19 @@ namespace PharmacySystem.WebAdmin.Controllers
                 });
             }
             return View(model);
+        }
+        private void ClearItems()
+        {
+            var session = HttpContext.Session.GetString(SystemConstants.EInvoice);
+            List<EInvoice> currentInvoice = new List<EInvoice>();
+            if (session != null)
+                currentInvoice = JsonConvert.DeserializeObject<List<EInvoice>>(session);
+            foreach (var item in currentInvoice.ToList())
+            {
+                    currentInvoice.Remove(item);
+            }
+
+            HttpContext.Session.SetString(SystemConstants.EInvoice, JsonConvert.SerializeObject(currentInvoice));
         }
     }
 }

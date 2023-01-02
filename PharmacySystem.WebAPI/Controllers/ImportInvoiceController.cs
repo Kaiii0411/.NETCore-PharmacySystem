@@ -128,6 +128,23 @@ namespace PharmacySystem.WebAPI.Controllers
                 Message = "Update sucess!"
             };
         }
-
+        [HttpPut("reject")]
+        public async Task<RequestResponse> Reject(RejectRequest request)
+        {
+            var InvoiceId = await _InvoiceService.ProcessReject(request);
+            if (InvoiceId == 0)
+            {
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Message = "Update Failed!"
+                };
+            }
+            return new RequestResponse
+            {
+                StatusCode = Code.Success,
+                Message = "Update sucess!"
+            };
+        }
     }
 }

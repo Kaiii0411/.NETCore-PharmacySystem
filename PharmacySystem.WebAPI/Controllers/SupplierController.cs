@@ -113,6 +113,13 @@ namespace PharmacySystem.WebAPI.Controllers
                 return BadRequest("Cannot find supplier");
             return Ok(supllier);
         }
-
+        [HttpGet("listbysuppliergroupid/{IdSupplierGroup}")]
+        public async Task<IActionResult> GetByIdMedicine(long IdSupplierGroup)
+        {
+            var list = await _SupplierService.GetListBuSupplierGroup(IdSupplierGroup);
+            if (list == null)
+                return BadRequest("Cannot find suppliers");
+            return Ok(list);
+        }
     }
 }

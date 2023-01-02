@@ -21,6 +21,10 @@ namespace PharmacySystem.APIIntergration
         Task<Medicine> GetById(long id);
         Task<bool> DeleteMedicine(long id);
         Task<List<Medicine>> GetListMedicine();
+        Task<List<MedicineVM>> GetListByMedicineGroupId(long id);
+        Task<PagedResult<MedicineVM>> GetListOutOfStock(GetManageMedicinePagingRequest request);
+        Task<PagedResult<MedicineVM>> GetListOutOfDate(GetManageMedicinePagingRequest request);
+        Task<bool> ImportExcel(IFormFile file);
     }
     public class MedicineApiClient: BaseApiClient, IMedicineApiClient
     {
@@ -62,6 +66,27 @@ namespace PharmacySystem.APIIntergration
         {
             var body = await GetAsync<RequestResponse>("api/medicines/list");
             return OutPutApi.OutPut<Medicine>(body);
+        }
+        public async Task<List<MedicineVM>> GetListByMedicineGroupId(long id)
+        {
+            var body = await GetAsync<RequestResponse>($"/api/medicines/listbymedicinegroupid/{id}");
+            return OutPutApi.OutPut<MedicineVM>(body);
+        }
+        public async Task<PagedResult<MedicineVM>> GetListOutOfStock(GetManageMedicinePagingRequest request)
+        {
+            var data = await GetAsync<PagedResult<MedicineVM>>(
+                $"/api/medicines/paging/outstock?Keyword={request.Keyword}&IdMedicineGroup={request.IdMedicineGroup}&IdSupplier={request.IdSupplier}");
+            return data;
+        }
+        public async Task<PagedResult<MedicineVM>> GetListOutOfDate(GetManageMedicinePagingRequest request)
+        {
+            var data = await GetAsync<PagedResult<MedicineVM>>(
+                $"/api/medicines/paging/outdate?Keyword={request.Keyword}&IdMedicineGroup={request.IdMedicineGroup}&IdSupplier={request.IdSupplier}");
+            return data;
+        }
+        public async Task<bool> ImportExcel(IFormFile file)
+        {
+            return await AddFileAsync($"api/medicines/import", file);
         }
     }
 }

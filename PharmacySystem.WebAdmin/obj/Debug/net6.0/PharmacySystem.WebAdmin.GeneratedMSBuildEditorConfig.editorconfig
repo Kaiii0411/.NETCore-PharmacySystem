@@ -99,6 +99,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/PharmacySystem/PharmacySystem.WebAdmin/Views/Medicine/OutOfDate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVcT3V0T2ZEYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PharmacySystem/PharmacySystem.WebAdmin/Views/Medicine/OutOfStock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVcT3V0T2ZTdG9jay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PharmacySystem/PharmacySystem.WebAdmin/Views/Medicine/_Import.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVcX0ltcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PharmacySystem/PharmacySystem.WebAdmin/Views/Roles/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -201,6 +213,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/PharmacySystem/PharmacySystem.WebAdmin/Views/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PharmacySystem/PharmacySystem.WebAdmin/Views/Users/Forbidden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRm9yYmlkZGVuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/PharmacySystem/PharmacySystem.WebAdmin/Views/Users/Index.cshtml]

@@ -104,6 +104,7 @@ function EnableUpdate() {
     document.getElementById("btnConfirmUpdateUsers").style.display = 'inline-block';
     document.getElementById("btnCancelUpdateUsers").style.display = 'inline-block';
     document.getElementById("btnUpdateUsers").style.display = 'none';
+    document.getElementById("btnBackToList").style.display = 'none';
 }
 
 function DisableUpdate() {
@@ -113,4 +114,5 @@ function DisableUpdate() {
     document.getElementById("btnConfirmUpdateUsers").style.display = 'none';
     document.getElementById("btnCancelUpdateUsers").style.display = 'none';
     document.getElementById("btnUpdateUsers").style.display = 'inline-block';
+    document.getElementById("btnBackToList").style.display = 'inline-block';
 }

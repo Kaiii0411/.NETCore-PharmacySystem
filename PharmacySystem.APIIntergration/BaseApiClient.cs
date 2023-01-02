@@ -124,5 +124,36 @@ namespace PharmacySystem.APIIntergration
             }
             return false;
         }
+        protected async Task<bool> AddFileAsync(string url, IFormFile file)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_Address);
+            string body;
+            HttpResponseMessage response;
+            if (file.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    //Get the file steam from the multiform data uploaded from the browser
+                    await file.CopyToAsync(memoryStream);
+
+                    //Build an multipart/form-data request to upload the file to Web API
+                    using var form = new MultipartFormDataContent();
+                    using var fileContent = new ByteArrayContent(memoryStream.ToArray());
+                    fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+                    form.Add(fileContent, "file", file.FileName);
+
+                    response = await client.PostAsync(url, form);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            return false;
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PharmacySystem.APIIntergration;
 using PharmacySystem.Models;
@@ -9,6 +10,7 @@ using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
+    [Authorize(Roles="Admin,StoreOwner,Staff")]
     public class MedicineController : BaseController
     {
         private readonly IMedicineApiClient _medicineApiClient;
@@ -168,6 +170,72 @@ namespace PharmacySystem.WebAdmin.Controllers
         {
             var data = await _medicineApiClient.GetListMedicine();
             return data;
+        }
+        public IActionResult Import()
+        {
+            return PartialView("_Import");
+        }
+        public async Task<JsonResult> ImportExcel(IFormFile file)
+        {
+            if (await _medicineApiClient.ImportExcel(file))
+                return Json(1);
+            return Json(0);
+        }
+        public async Task<IActionResult> OutOfDate(string? Keyword, long? IdMedicineGroup, long? IdSupplier)
+        {
+            var request = new GetManageMedicinePagingRequest()
+            {
+                Keyword = Keyword,
+                IdMedicineGroup = IdMedicineGroup,
+                IdSupplier = IdSupplier
+            };
+            var data = await _medicineApiClient.GetListOutOfDate(request);
+            ViewBag.Keyword = Keyword;
+
+            var medicineGroupList = await _medicineGroupApiClient.GetListMedicineGroup();
+            ViewBag.ListOfMedicineGroup = medicineGroupList.Select(x => new SelectListItem()
+            {
+                Text = x.MedicineGroupName,
+                Value = x.IdMedicineGroup.ToString(),
+                Selected = IdMedicineGroup.HasValue && IdMedicineGroup.Value == x.IdMedicineGroup
+            });
+            var supplierList = await _supplierApiClient.GetListSupplier();
+            ViewBag.ListOfSupplier = supplierList.Select(x => new SelectListItem()
+            {
+                Text = x.SupplierName,
+                Value = x.IdSupplier.ToString(),
+                Selected = IdSupplier.HasValue && IdSupplier.Value == x.IdSupplier
+            });
+
+            return View(data);
+        }
+        public async Task<IActionResult> OutOfStock(string? Keyword, long? IdMedicineGroup, long? IdSupplier)
+        {
+            var request = new GetManageMedicinePagingRequest()
+            {
+                Keyword = Keyword,
+                IdMedicineGroup = IdMedicineGroup,
+                IdSupplier = IdSupplier
+            };
+            var data = await _medicineApiClient.GetListOutOfStock(request);
+            ViewBag.Keyword = Keyword;
+
+            var medicineGroupList = await _medicineGroupApiClient.GetListMedicineGroup();
+            ViewBag.ListOfMedicineGroup = medicineGroupList.Select(x => new SelectListItem()
+            {
+                Text = x.MedicineGroupName,
+                Value = x.IdMedicineGroup.ToString(),
+                Selected = IdMedicineGroup.HasValue && IdMedicineGroup.Value == x.IdMedicineGroup
+            });
+            var supplierList = await _supplierApiClient.GetListSupplier();
+            ViewBag.ListOfSupplier = supplierList.Select(x => new SelectListItem()
+            {
+                Text = x.SupplierName,
+                Value = x.IdSupplier.ToString(),
+                Selected = IdSupplier.HasValue && IdSupplier.Value == x.IdSupplier
+            });
+
+            return View(data);
         }
     }
 }

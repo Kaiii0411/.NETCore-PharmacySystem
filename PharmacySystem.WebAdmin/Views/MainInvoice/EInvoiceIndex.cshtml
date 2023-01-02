@@ -68,7 +68,11 @@
                                         <td>@item.IdExportInvoice</td>
                                         <td>@string.Format("{0:dd/MM/yyyy}", @item.DateCheckIn)</td>
                                         <td>@string.Format("{0:dd/MM/yyyy}", @item.DateCheckOut)</td>
-                                        <td>@item.StatusName</td>
+                                        <td>
+                                            <div style="background: @item.StatusColor; color: @item.StatusText;border-radius:10px;text-align:center;">
+                                                @item.StatusName
+                                            </div>
+                                        </td>
                                         <td>@item.UserName</td>
                                         <td>@item.Note</td>
                                         <td>

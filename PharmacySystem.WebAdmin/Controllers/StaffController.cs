@@ -4,9 +4,11 @@ using PharmacySystem.Models.Request;
 using PharmacySystem.Models;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Admin,StoreOwner")]
     public class StaffController : BaseController
     {
         private readonly IConfiguration _configuration;

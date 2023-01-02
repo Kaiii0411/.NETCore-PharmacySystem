@@ -60,7 +60,11 @@
                                         <td>@item.Description</td>
                                         <td>
                                             <a asp-controller="Roles" asp-action="Edit" asp-route-id="@item.Id" class="details btn btn-primary waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
-                                            <a asp-controller="Roles" asp-action="UserAssign" asp-route-id="@item.Id" class="details btn btn-success waves-effect waves-light"><div><i class="fa fa-eye"></i></div></a>
+                                            <a asp-controller="Roles" asp-action="UserAssign" asp-route-id="@item.Id" class="details btn btn-success waves-effect waves-light">
+                                                <div>
+                                                    <i class="fa fa-user-o"></i>
+                                                </div>
+                                            </a>
                                         </td>
                                     </tr>
                                 }

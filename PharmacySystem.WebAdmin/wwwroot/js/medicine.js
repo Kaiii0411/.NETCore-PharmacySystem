@@ -1,11 +1,8 @@
 ﻿
-function ShowDetails(id) {
-    var Id = id;
+function ShowImport() {
     $.ajax({
-        type: "POST",
-        url: "/Medicine/Edit",
-        data: { id: Id },
-
+        type: "GET",
+        url: "/Medicine/Import",
         success: function (response) {
             $("#partialModal").find(".modal-body").html(response);
             $("#partialModal").modal('show');

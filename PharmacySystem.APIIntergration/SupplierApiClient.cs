@@ -57,5 +57,10 @@ namespace PharmacySystem.APIIntergration
             var data = await GetAsync<Supplier>($"/api/supplier/details/{id}");
             return data;
         }
+        public async Task<List<SupplierVM>> GetListBuSupplierGroup(long id)
+        {
+            var body = await GetAsync<RequestResponse>($"/api/supplier/listbysuppliergroupid/{id}");
+            return OutPutApi.OutPut<SupplierVM>(body);
+        }
     }
 }

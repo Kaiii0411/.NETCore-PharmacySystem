@@ -27,6 +27,9 @@ namespace PharmacySystem.APIIntergration
         Task<ExportInvoiceVM> GetExportInvoiceByID(long id);
         Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long id);
         Task<int> ProcessApproved(ProcessRequest request);
+        Task<List<InvoiceDetailsDeleteVM>> GetDetailsByMedicineId(long id);
+        Task<RevenueVM> GetRevenue();
+        Task<int> ProcessReject(RejectRequest request);
     }
     public class InvoiceApiClient: BaseApiClient,IInvoiceApiClient
     {
@@ -90,11 +93,25 @@ namespace PharmacySystem.APIIntergration
             var body = await PutAsync<RequestResponse, ProcessRequest>($"/api/importinvoices/process", request);
             return (int)body.StatusCode;
         }
+        public async Task<int> ProcessReject(RejectRequest request)
+        {
+            var body = await PutAsync<RequestResponse, RejectRequest>($"/api/importinvoices/reject", request);
+            return (int)body.StatusCode;
+        }
         public async Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long id)
         {
             var body = await GetAsync<RequestResponse>($"/api/importinvoices/procdetails/{id}");
             return OutPutApi.OutPut<IInvoiceReportModels>(body);
         }
-
+        public async Task<List<InvoiceDetailsDeleteVM>> GetDetailsByMedicineId(long id)
+        {
+            var body = await GetAsync<RequestResponse>($"/api/invoicedetails/detailsbymedicine/{id}");
+            return OutPutApi.OutPut<InvoiceDetailsDeleteVM>(body);
+        }
+        public async Task<RevenueVM> GetRevenue()
+        {
+            var data = await GetAsync<RevenueVM>($"/api/invoicedetails/revenue");
+            return data;
+        }
     }
 }

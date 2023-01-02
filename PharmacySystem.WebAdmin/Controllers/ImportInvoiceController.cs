@@ -12,9 +12,11 @@ using AspNetCore.Reporting;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Reflection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Admin,StoreOwner,Staff")]
     public class ImportInvoiceController : BaseController
     {
         private readonly IConfiguration _configuration;
@@ -22,7 +24,9 @@ namespace PharmacySystem.WebAdmin.Controllers
         private readonly ISupplierApiClient _supplierApiClient;
         private readonly IMedicineApiClient _medicineApiClient;
         private readonly IWebHostEnvironment _webHostEnviroment;
-        public ImportInvoiceController(IConfiguration configuration, IInvoiceApiClient invoiceApiClient, ISupplierApiClient supplierApiClient, IMedicineApiClient medicineApiClient, IWebHostEnvironment webHostEnviroment)
+        private readonly IUserApiClient _userApiClient;
+
+        public ImportInvoiceController(IConfiguration configuration, IInvoiceApiClient invoiceApiClient, ISupplierApiClient supplierApiClient, IMedicineApiClient medicineApiClient, IWebHostEnvironment webHostEnviroment, IUserApiClient userApiClient)
         {
             this._configuration = configuration;
             this._invoiceApiClient = invoiceApiClient;
@@ -30,6 +34,7 @@ namespace PharmacySystem.WebAdmin.Controllers
             this._medicineApiClient = medicineApiClient;
             this._webHostEnviroment = webHostEnviroment;
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            this._userApiClient = userApiClient;
         }
         public async Task<IActionResult> Index(DateTime? DateCheckIn, DateTime? DateCheckOut, long? IdSupplier, int? StatusID)
         {
@@ -101,9 +106,13 @@ namespace PharmacySystem.WebAdmin.Controllers
                     TotalPrice = item.IQuantity * item.IPrice
                 });
             }
+
+            var userName = User.Identity.Name;
+            var user = await _userApiClient.GetByName(userName);
+
             var createRequest = new ImportInvoiceCreateRequest()
             {
-                IdStaff = 1,
+                IdStaff = user.ResultObj.IdStaff,
                 DateCheckIn = DateTime.Now,
                 DateCheckOut = null,
                 StatusID = 1,
@@ -112,6 +121,7 @@ namespace PharmacySystem.WebAdmin.Controllers
                 InvoiceDetails = invoiceDetails
             };
             await _invoiceApiClient.CreateImportInvoice(createRequest);
+            ClearItems();
             return View(model);
         }
         public async Task<IActionResult> Details(long id)
@@ -232,6 +242,32 @@ namespace PharmacySystem.WebAdmin.Controllers
             localReport.AddDataSource("IInvoiceDataSet", detailsForm);
             var result = localReport.Execute(RenderType.Pdf, extension, parameters, mimtype);
             return File(result.MainStream, "application/pdf");
+        }
+
+        private void ClearItems()
+        {
+            var session = HttpContext.Session.GetString(SystemConstants.IInvoice);
+            List<IInvoice> currentInvoice = new List<IInvoice>();
+            if (session != null)
+                currentInvoice = JsonConvert.DeserializeObject<List<IInvoice>>(session);
+            foreach (var item in currentInvoice.ToList())
+            {
+                currentInvoice.Remove(item);
+            }
+            HttpContext.Session.SetString(SystemConstants.IInvoice, JsonConvert.SerializeObject(currentInvoice));
+        }
+
+        public JsonResult Refresh()
+        {
+            try
+            {
+                ClearItems();
+                return Json(1);
+            }
+            catch (Exception ex)
+            {
+                return Json(0);
+            }
         }
     }
 }

@@ -1,0 +1,74 @@
+﻿@model PharmacySystem.Models.Common.FileForm
+<form id="upload" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-10">
+                <div class="card-body p-t-5">
+                    <div class="form-group row">
+                        <div class="col-sm-8 file-upload">
+                            <div class="file-select">
+                                <div class="file-select-button" id="fileName">Choose File</div>
+                                <div class="file-select-name" id="noFile">No file chosen...</div>
+                                <input type="file" asp-for="File" id="inputFile" accept="xlsx/*">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 text-center m-t-36">
+                            <button name="send" type="submit" id="submit" runat="server" class="btn btn-primary waves-effect m-l-5">
+                                <i class="fa fa-mouse-pointer"></i>  <b>Submit</b>
+                            </button>
+                            <button type="reset" class="btn btn-secondary waves-effect m-l-5" data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#inputFile').bind('change', function () {
+            var filename = $("#inputFile").val();
+            if (/^\s*$/.test(filename)) {
+                $(".file-upload").removeClass('active');
+                $("#noFile").text("No file chosen...");
+            }
+            else {
+                $(".file-upload").addClass('active');
+                $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+            }
+        });
+
+        $('#upload').submit(function (e) {
+            e.preventDefault();
+            if (document.getElementById('inputFile').files.length == 0) {
+                alertify.error("NO FILES SELECTED!!!");
+            }
+
+            var input = document.getElementById('inputFile');
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: 'POST',
+                url: '/Medicine/ImportExcel',
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (response) {
+                    if(response == 1)
+                    {
+                        alertify.success("DONE!!");
+                    }
+                },
+                error: function (e) {
+                    alertify.error("Not receiving data!");
+                }
+            });
+        });
+    });
+
+</script>

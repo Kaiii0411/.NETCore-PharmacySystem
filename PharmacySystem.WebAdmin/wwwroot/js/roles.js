@@ -71,6 +71,7 @@ function EnableUpdate() {
     document.getElementById("btnConfirmUpdateRoles").style.display = 'inline-block';
     document.getElementById("btnCancelUpdateRoles").style.display = 'inline-block';
     document.getElementById("btnUpdateRoles").style.display = 'none';
+    document.getElementById("btnBackToList").style.display = 'none';
 }
 
 function DisableUpdate() {
@@ -80,4 +81,5 @@ function DisableUpdate() {
     document.getElementById("btnConfirmUpdateRoles").style.display = 'none';
     document.getElementById("btnCancelUpdateRoles").style.display = 'none';
     document.getElementById("btnUpdateRoles").style.display = 'inline-block';
+    document.getElementById("btnBackToList").style.display = 'inline-block';
 }

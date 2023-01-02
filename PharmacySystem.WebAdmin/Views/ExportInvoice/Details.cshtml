@@ -26,19 +26,19 @@
                                         <div class="form-group row">
                                             <label for="MedicineName" class="col-sm-3 col-form-label">Invoice Id:</label>
                                             <div class="col-sm-9">
-                                                <input id="InvoiceId" class="form-control" type="text" value="@Model.IdExportInvoice" >
+                                                <input id="InvoiceId" class="form-control" type="text" value="@Model.IdExportInvoice" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="DateCheckIn" class="col-sm-3 col-form-label">Date Check In:</label>
                                             <div class="col-sm-9">
-                                                <input id="DateCheckIn" class="form-control" type="date" value="@Model.DateCheckIn">
+                                                <input id="DateCheckIn" class="form-control" type="date" value="@Model.DateCheckIn" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="DateCheckOut" class="col-sm-3 col-form-label">Date Check Out:</label>
                                             <div class="col-sm-9">
-                                                <input id="DateCheckOut" class="form-control" type="date" value="@Model.DateCheckOut">
+                                                <input id="DateCheckOut" class="form-control" type="date" value="@Model.DateCheckOut" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -46,20 +46,22 @@
                                         <div class="form-group row">
                                             <label for="UserName" class="col-sm-3 col-form-label">User Name:</label>
                                             <div class="col-sm-9">
-                                                <input id="UserName" class="form-control" type="text" value="@Model.UserName">
+                                                <input id="UserName" class="form-control" type="text" value="@Model.UserName" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="Status" class="col-sm-3 col-form-label">Status:</label>
                                             <div class="col-sm-9">
-                                                <input id="Status" class="form-control" type="text" value="@Model.StatusName">
+                                                <div style="background: @Model.StatusColor; color: @Model.StatusText;border-radius:10px;text-align:center;">
+                                                    @Model.StatusName
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <label for="Note" class="col-form-label">Note: </label>
                                         <div>
-                                            <textarea  id="Note" class="form-control" rows="2">@Model.Note</textarea>
+                                            <textarea id="Note" class="form-control" rows="2" disabled>@Model.Note</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +76,7 @@
                 <div class="card m-b-30">
                     <div class="card-body">
 
-                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <table id="datatableinvoicedetails" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Medicine Name</th>

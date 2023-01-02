@@ -113,5 +113,35 @@ namespace PharmacySystem.WebAPI.Controllers
                 };
             }
         }
+        [HttpGet("newlist")]
+        public async Task<RequestResponse> GetListNew()
+        {
+            try
+            {
+                IEnumerable<staff> staffs = await _StaffService.GetListNewStaff();
+                if (staffs != null && staffs.Any())
+                {
+                    return new RequestResponse
+                    {
+                        StatusCode = Code.Success,
+                        Content = JsonConvert.SerializeObject(staffs)
+                    };
+                }
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = string.Empty
+                };
+            }
+            catch (Exception ex)
+            {
+                string errorDetail = ex.InnerException != null ? ex.InnerException.ToString() : ex.Message.ToString();
+                return new RequestResponse
+                {
+                    StatusCode = Code.Failed,
+                    Content = errorDetail
+                };
+            }
+        }
     }
 }

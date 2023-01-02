@@ -1,4 +1,5 @@
 ﻿using AspNetCore.Report.ReportService2010_;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PharmacySystem.APIIntergration;
 using PharmacySystem.Models.Common;
@@ -7,6 +8,7 @@ using PharmacySystem.Models.ViewModels;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RolesController : BaseController
     {
         private readonly IConfiguration _configuration;

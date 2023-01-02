@@ -182,14 +182,11 @@ D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-arm\native
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
@@ -216,3 +213,12 @@ D:\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.p
 D:\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\PharmacySystem.WebAPI.genruntimeconfig.cache
 D:\PharmacySystem\PharmacySystem.WebAPI\obj\Debug\net6.0\ref\PharmacySystem.WebAPI.dll
 D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\FluentValidation.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\EPPlus.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\EPPlus.Interfaces.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\PharmacySystem\PharmacySystem.WebAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll

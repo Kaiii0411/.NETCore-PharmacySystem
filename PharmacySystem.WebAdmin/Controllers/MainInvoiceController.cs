@@ -5,9 +5,11 @@ using PharmacySystem.Models;
 using PharmacySystem.APIIntergration;
 using System.Text;
 using PharmacySystem.Models.Common;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PharmacySystem.WebAdmin.Controllers
 {
+    [Authorize(Roles = "Admin,StoreOwner")]
     public class MainInvoiceController : BaseController
     {
         private readonly IConfiguration _configuration;
@@ -84,6 +86,20 @@ namespace PharmacySystem.WebAdmin.Controllers
             if (ModelState.IsValid && StatusID != 4)
             {
                 var result = await _invoiceApiClient.ProcessApproved(ProcessForm);
+                if (result == 0)
+                {
+                    return Json(0);
+                }
+            }
+            return Json(1);
+        }
+        [HttpPut]
+        public async Task<JsonResult> RejectProcess([FromForm] RejectRequest ProcessForm)
+        {
+            int StatusID = ConvertStatus(ProcessForm.Status);
+            if (ModelState.IsValid && StatusID == 1)
+            {
+                var result = await _invoiceApiClient.ProcessReject(ProcessForm);
                 if (result == 0)
                 {
                     return Json(0);

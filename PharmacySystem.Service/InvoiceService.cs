@@ -26,6 +26,7 @@ namespace PharmacySystem.Service
         Task<ExportInvoiceVM> GetExportInvoiceByID(long IdInvoice);
         Task<List<IInvoiceReportModels>> ProcGetImportInvoiceById(long IdInvoice);
         Task<long> ProcessApprove(ProcessRequest request);
+        Task<long> ProcessReject(RejectRequest request);
         Task<List<IInvoiceReportModels>> GetListImportInvoiceById(long IdInvoice);
     }
     public class InvoiceService : IInvoiceService
@@ -280,6 +281,18 @@ namespace PharmacySystem.Service
             Invoice.StatusId = CheckStatus(Invoice.StatusId);
             if(StatusId == (int)EStatus.RECEIVED)
                 Invoice.DateCheckOut = DateTime.Now;
+            _context.ImportInvoices.Update(Invoice);
+            await _context.SaveChangesAsync();
+            return Invoice.IdImportInvoice;
+        }
+        public async Task<long> ProcessReject(RejectRequest request)
+        {
+            int StatusId = ConvertStatus(request.Status);
+            var Invoice = await _context.ImportInvoices.FindAsync(request.IdInvoice);
+            if (Invoice == null)
+                return 0;
+            Invoice.StatusId = (int)EStatus.REJECTED;
+            Invoice.Note = request.Note;
             _context.ImportInvoices.Update(Invoice);
             await _context.SaveChangesAsync();
             return Invoice.IdImportInvoice;

@@ -21,6 +21,7 @@ namespace PharmacySystem.Service
         Task<IEnumerable<Supplier>> GetListSupplier();
         Task<PagedResult<SupplierVM>> Get(GetManageSupplierPagingRequest request);
         Task<Supplier> GetByID(long SupplierId);
+        Task<List<SupplierVM>> GetListBuSupplierGroup(long SupplierGroupId);
     }
     public class SupplierService : ISupplierService
     {
@@ -119,6 +120,20 @@ namespace PharmacySystem.Service
                  IdSupplierGroup = supllier.IdSupplierGroup
             };
             return supllierDetails;
+        }
+        public async Task<List<SupplierVM>> GetListBuSupplierGroup(long SupplierGroupId)
+        {
+            var list = new List<SupplierVM>();
+            var query = from s in _context.Suppliers select s;
+            var listSupplier = await query.Where(x => x.IdSupplierGroup == SupplierGroupId).Select(x => new SupplierVM()
+            {
+                IdSupplier = x.IdSupplier,
+                SupplierName = x.SupplierName,
+                Address = x.Address,
+                Phone = x.Phone,
+                Email = x.Email
+            }).ToListAsync();
+            return listSupplier;
         }
     }
 }

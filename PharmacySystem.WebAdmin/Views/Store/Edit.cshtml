@@ -64,12 +64,15 @@
                                                     <button id="btnUpdateStore" type="button" class="btn btn-primary waves-effect waves-light" onclick="EnableUpdate()">
                                                         Update
                                                     </button>
-                                                    <button id="btnConfirmUpdateStore" type="button" class="btn btn-primary waves-effect waves-light" style="display:none">
+                                                    <button id="btnConfirmUpdateStore" type="button" class="btn btn-success waves-effect waves-light" style="display:none">
                                                         Confirm
                                                     </button>
-                                                    <button id="btnCancelUpdateStore" type="button" class="btn btn-primary waves-effect waves-light" style="display:none" onclick="DisableUpdate()">
+                                                    <button id="btnCancelUpdateStore" type="button" class="btn btn-danger waves-effect waves-light" style="display:none" onclick="DisableUpdate()">
                                                         Cancel
                                                     </button>
+                                                    <a id="btnBackToList" asp-controller="Store" asp-action="Index" class="btn btn-secondary waves-effect m-l-5">
+                                                        Cancel
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

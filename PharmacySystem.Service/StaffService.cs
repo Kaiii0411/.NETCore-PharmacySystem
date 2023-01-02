@@ -21,6 +21,7 @@ namespace PharmacySystem.Service
         Task<PagedResult<StaffVM>> Get(GetManageStaffPagingRequest request);
         Task<staff> GetByID(long StaffId);
         Task<IEnumerable<staff>> GetListStaff();
+        Task<IEnumerable<staff>> GetListNewStaff();
     }
     public class StaffService : IStaffService
     {
@@ -125,6 +126,24 @@ namespace PharmacySystem.Service
         {
             IReadOnlyList<staff> listStaff = await _staffRepo.ListAsync();
             return _mapper.Map<IEnumerable<staff>>(listStaff);
+        }
+        public async Task<IEnumerable<staff>> GetListNewStaff()
+        {
+            var query = from s in _context.staff
+                        join u in _context.Users on s.IdStaff equals u.IdStaff into tempUsers
+                        from u in tempUsers.DefaultIfEmpty()
+                        select new { s, u };
+
+            IEnumerable<staff> data = await query.Where(x => x.u.UserName == null).Select(x => new staff()
+            {
+                IdStaff = x.s.IdStaff,
+                StaffName = x.s.StaffName,
+                DateOfBirth = x.s.DateOfBirth,
+                Phone = x.s.Phone,
+                Email = x.s.Email,
+                IdStore = x.s.IdStore
+            }).ToListAsync();
+            return data;
         }
     }
 }
